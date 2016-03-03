@@ -1,26 +1,8 @@
 
 export class User {
-  id: string;
-
-  constructor(public name: string,
-              public avatarSrc: string) {
-    this.id = 'ssasdasds0';
-  }
 }
 
 export class Thread {
-  id: string;
-  lastMessage: Message;
-  name: string;
-  avatarSrc: string;
-
-  constructor(id?: string,
-              name?: string,
-              avatarSrc?: string) {
-    this.id = id || 'ssasdasds0';
-    this.name = name;
-    this.avatarSrc = avatarSrc;
-  }
 }
 
 export class Message {

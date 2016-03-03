@@ -1,6 +1,6 @@
 import {
-  Component,
-  ChangeDetectionStrategy
+    Component,
+    ChangeDetectionStrategy
 } from 'angular2/core';
 import {FORM_DIRECTIVES} from 'angular2/common';
 import {Observable} from 'rxjs';
@@ -8,11 +8,11 @@ import {Message} from '../models';
 
 
 @Component({
-  selector: 'chat-window',
-  directives: [
-               FORM_DIRECTIVES],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  template: `
+    selector: 'chat-window',
+    directives: [
+        FORM_DIRECTIVES],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    template: `
     <div class="chat-window-container">
       <div class="chat-window">
         <div class="panel-container">
@@ -59,7 +59,11 @@ import {Message} from '../models';
   `
 })
 export class ChatWindow {
-  messages: Observable<any>;
-  draftMessage: Message= new Message({text: ''});
+    messages:Observable<any>;
+    draftMessage:Message = new Message({text: ''});
 
+    onEnter(event:any):void {
+        console.log(event);
+        event.preventDefault();
+    }
 }
