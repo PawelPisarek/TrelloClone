@@ -1,69 +1,15 @@
 import {
   Component,
-  OnInit,
-  ElementRef,
   ChangeDetectionStrategy
 } from 'angular2/core';
 import {FORM_DIRECTIVES} from 'angular2/common';
-import {
-  MessagesService,
-  ThreadsService,
-  UserService
-} from '../services/services';
-import {FromNowPipe} from '../util/FromNowPipe';
 import {Observable} from 'rxjs';
-import {User, Thread, Message} from '../models';
+import {Message} from '../models';
 
-@Component({
-  inputs: ['message'],
-  selector: 'chat-message',
-  pipes: [FromNowPipe],
-  template: `
-  <div class="msg-container"
-       [ngClass]="{'base-sent': !incoming, 'base-receive': incoming}">
-
-    <div class="avatar"
-         *ngIf="!incoming">
-      <img src="{{message.author.avatarSrc}}">
-    </div>
-
-    <div class="messages"
-      [ngClass]="{'msg-sent': !incoming, 'msg-receive': incoming}">
-      <p>{{message.text}}</p>
-      <time>{{message.sender}} • {{message.sentAt | fromNow}}</time>
-    </div>
-
-    <div class="avatar"
-         *ngIf="incoming">
-      <img src="{{message.author.avatarSrc}}">
-    </div>
-  </div>
-  `
-})
-export class ChatMessage implements OnInit {
-  message: Message;
-  currentUser: User;
-  incoming: boolean;
-
-  constructor(public userService: UserService) {
-  }
-
-  ngOnInit(): void {
-    this.userService.currentUser
-      .subscribe(
-        (user: User) => {
-          this.currentUser = user;
-          if (this.message.author && user) {
-            this.incoming = this.message.author.id !== user.id;
-          }
-        });
-  }
-
-}
 
 @Component({
   selector: 'chat-window',
-  directives: [ChatMessage,
+  directives: [
                FORM_DIRECTIVES],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
@@ -76,7 +22,7 @@ export class ChatMessage implements OnInit {
               <div class="panel-title-container">
                 <h3 class="panel-title">
                   <span class="glyphicon glyphicon-comment"></span>
-                  Chat - {{currentThread.name}}
+                  Chat - 
                 </h3>
               </div>
               <div class="panel-buttons-container">
@@ -85,10 +31,10 @@ export class ChatMessage implements OnInit {
             </div>
 
             <div class="panel-body msg-container-base">
-              <chat-message
-                   *ngFor="#message of messages | async"
-                   [message]="message">
-              </chat-message>
+              <!--<chat-message-->
+                   <!--*ngFor="#message of messages | async"-->
+                   <!--[message]="message">-->
+              <!--</chat-message>-->
             </div>
 
             <div class="panel-footer">
@@ -112,61 +58,8 @@ export class ChatMessage implements OnInit {
     </div>
   `
 })
-export class ChatWindow implements OnInit {
+export class ChatWindow {
   messages: Observable<any>;
-  currentThread: Thread;
-  draftMessage: Message;
-  currentUser: User;
-
-  constructor(public messagesService: MessagesService,
-              public threadsService: ThreadsService,
-              public userService: UserService,
-              public el: ElementRef) {
-  }
-
-  ngOnInit(): void {
-    this.messages = this.threadsService.currentThreadMessages;
-
-    this.draftMessage = new Message();
-
-    this.threadsService.currentThread.subscribe(
-      (thread: Thread) => {
-        this.currentThread = thread;
-      });
-
-    this.userService.currentUser
-      .subscribe(
-        (user: User) => {
-          this.currentUser = user;
-        });
-
-    this.messages
-      .subscribe(
-        (messages: Array<Message>) => {
-          setTimeout(() => {
-            this.scrollToBottom();
-          });
-        });
-  }
-
-  onEnter(event: any): void {
-    this.sendMessage();
-    event.preventDefault();
-  }
-
-  sendMessage(): void {
-    let m: Message = this.draftMessage;
-    m.author = this.currentUser;
-    m.thread = this.currentThread;
-    m.isRead = true;
-    this.messagesService.addMessage(m);
-    this.draftMessage = new Message();
-  }
-
-  scrollToBottom(): void {
-    let scrollPane: any = this.el
-      .nativeElement.querySelector('.msg-container-base');
-    scrollPane.scrollTop = scrollPane.scrollHeight;
-  }
+  draftMessage: Message= new Message({text: ''});
 
 }

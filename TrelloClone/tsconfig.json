@@ -13,9 +13,6 @@
     "node_modules/angular2/typings/browser.d.ts",
     "typings/tsd.d.ts",
     "app/ts/app.ts",
-    "app/ts/services/services.ts",
-    "app/ts/services/UserService.ts",
-    "app/ts/util/uuid.ts",
     "app/ts/vendor.ts"
   ],
   "filesGlob": [

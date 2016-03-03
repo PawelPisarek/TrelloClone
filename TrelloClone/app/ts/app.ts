@@ -11,30 +11,7 @@ import {
 } from 'angular2/core';
 import { bootstrap } from 'angular2/platform/browser';
 
-/*
- * Components
- */
-import {ChatNavBar} from './components/ChatNavBar';
-import {ChatThreads} from './components/ChatThreads';
-import {ChatWindow} from './components/ChatWindow';
-
-/*
- * Injectables
- */
-import { servicesInjectables } from './services/services';
-import {utilInjectables} from './util/util';
-
-/*
- * Services
- */
-import {
-  MessagesService,
-  ThreadsService,
-  UserService
-} from './services/services';
-
-import {ChatExampleData} from './ChatExampleData';
-
+import {ChatWindow} from '../ts/components/ChatWindow';
 /*
  * Webpack
  */
@@ -42,37 +19,19 @@ require('../css/styles.scss');
 
 @Component({
   selector: 'chat-app',
-  directives: [ChatNavBar,
-               ChatThreads,
+  directives: [
                ChatWindow],
   template: `
   <div>
-    <nav-bar></nav-bar>
     <div class="container">
-      <chat-threads></chat-threads>
       <chat-window></chat-window>
     </div>
   </div>
   `
 })
 class ChatApp {
-  constructor(public messagesService: MessagesService,
-              public threadsService: ThreadsService,
-              public userService: UserService) {
-    ChatExampleData.init(messagesService, threadsService, userService);
-  }
 }
 
-bootstrap(ChatApp, [ servicesInjectables, utilInjectables ]);
+bootstrap(ChatApp);
 
-// --------------------
-// You can ignore these 'require' statements. The code will work without them.
-// They're currently required to get watch-reloading
-// from webpack, but removing them is a TODO
-require('./services/services');
-require('./ChatExampleData');
-require('./util/util');
-require('./components/ChatNavBar');
-require('./components/ChatWindow');
-require('./components/ChatThreads');
 
