@@ -12,6 +12,7 @@ import {
 import { bootstrap } from 'angular2/platform/browser';
 
 import {ChatWindow} from '../ts/components/ChatWindow';
+import {BoardsList} from '../ts/components/BoardsList';
 /*
  * Webpack
  */
@@ -20,13 +21,16 @@ require('../css/styles.scss');
 @Component({
   selector: 'chat-app',
   directives: [
-               ChatWindow],
+               ChatWindow,
+      BoardsList
+  ],
   template: `
-  <div>
+<boards-list></boards-list>
+<div>
     <div class="container">
-      <chat-window></chat-window>
+        <chat-window></chat-window>
     </div>
-  </div>
+</div>
   `
 })
 class ChatApp {
