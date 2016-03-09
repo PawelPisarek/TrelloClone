@@ -4,7 +4,7 @@ var webpack             = require('webpack'),
     ChunkManifestPlugin = require('chunk-manifest-webpack-plugin'),
     HtmlWebpackPlugin   = require('html-webpack-plugin'),
     WebpackNotifierPlugin = require('webpack-notifier'),
-    ExtractTextPlugin   = require("extract-text-webpack-plugin");
+    ExtractTextPlugin = require("extract-text-webpack-plugin");
  
 /**
  * Support for extra commandline arguments
