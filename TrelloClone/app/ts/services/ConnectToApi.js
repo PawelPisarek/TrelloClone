@@ -16,7 +16,7 @@ var ConnectToApi = (function () {
         this.http = http;
     }
     ConnectToApi.prototype.getBoards = function () {
-        return this.http.get("https://api.trello.com/1/member/me/boards?key=9a3819808f99910b07298c67795ab160&token=1b344a228d231bd368d6c124cc50ff8805fe55abdb9721b605ba243bdbc744a2")
+        return this.http.get("https://api.trello.com/1/member/me/boards?key=" + "tutaj-wstaw-klucz" + "&token=" + "tutaj-wstaw-token")
             .map(function (res) { return res.json(); })
             .map(function (jboards) {
             var result = [];
