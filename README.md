@@ -13,7 +13,11 @@
 	3. Pracujemy ;)
 
 2. Tips:
-	* Brak.
+	1. Tutorial na angular.io zawiera blad, `lite-server` zamieniamy na `nano-server`.
+	2. Do rozpoczęcia pracy na frontend:
+		* wchodzimy do folderu glownego frontend (./src/frontend)
+		* Uruchamiamy: `npm start`
+		* Pozostawiamy konsole uruchomioną, będziemy otrzymywać na niej wszelkie informacje o automatycznej kompilacji plików oraz błędach.
 
 3. Autorzy: (Wpiszcie się prosze)
 	
