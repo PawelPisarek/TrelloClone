@@ -21,7 +21,6 @@ gulp.task('ts2js', function () {
 });
 
 gulp.task('play', ['ts2js'], function () {
-
     var http = require('http');
     var connect = require('connect');
     var serveStatic = require('serve-static');
@@ -31,14 +30,10 @@ gulp.task('play', ['ts2js'], function () {
 
     gulp.watch(PATHS.src, ['ts2js']);
 
-    //app = connect().use(serveStatic(__dirname + '/src/forntend'));
-    //http.createServer(app).listen(port, function () {
-    //    open('http://localhost:' + port);
-    //});
-	
-	connect().use(
-		serveStatic("src/frontend")
-	).listen(port);
+    app = connect().use(serveStatic(__dirname));
+    http.createServer(app).listen(port, function () {
+        open('http://localhost:' + port + '/src/frontend/');
+    });
 });
 
 gulp.task('default', ['play']);
