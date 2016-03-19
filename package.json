@@ -35,7 +35,8 @@
 	"statuses": "*",
 	"fs": "*",
 	"body-parser": "*",
-	"multer": "*"
+	"multer": "*",
+	"mongodb": "*"
   },
   "devDependencies": {
     "concurrently": "^2.0.0",
