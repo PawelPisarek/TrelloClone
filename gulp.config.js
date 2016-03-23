@@ -42,11 +42,13 @@ module.exports = {
                 './node_modules/ng2-material/font/*.{eot,woff2,woff,ttf}',
                 './src/frontend/**/*.{jpg,jpg,gif,png}'
             ],
+            styles: './src/frontend/styles',
             index: './src/frontend/index.html'
         },
         build: {
             app: './dist/frontend',
-            styles: './dist/frontend/styles'
+            styles: './dist/frontend/styles',
+            index: './dist/frontend/index.html'
         },
         port: 8080
     }

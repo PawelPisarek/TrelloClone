@@ -7,6 +7,7 @@ if (process.argv.indexOf('--src') === -1) {
 } else {
     console.log('Using source files!');
     basePath = __dirname + '/../../src/frontend/';
+    app.use('/node_modules', express.static(__dirname + '/../../node_modules/'));
 }
 
 app.use(express.static(basePath));

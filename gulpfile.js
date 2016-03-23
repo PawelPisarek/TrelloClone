@@ -9,7 +9,8 @@ var browserSync = require('browser-sync'),
     sourcemaps = require('gulp-sourcemaps'),
     ts = require('gulp-typescript');
 
-var cfg = require('./gulp.config.js');
+var cfg = require('./gulp.config.js'),
+    tasks = require('./gulp.tasks.js');
 
 gulp.task('clean:server', function (done) {
     del([cfg.server.build], done);
@@ -38,23 +39,30 @@ gulp.task('build:frontend:vendors', function() {
              .pipe(concat('vendor.js'))
              .pipe(gulp.dest(cfg.frontend.build.app));
 
-    var styles = gulp.src(cfg.frontend.src.vendor.sass)
-                 .pipe(sourcemaps.init())
-                 .pipe(sass().on('error', sass.logError))
-                 .pipe(concat('vendor.css'))
-                 .pipe(sourcemaps.write('.'))
-                 .pipe(gulp.dest(cfg.frontend.build.styles));
+    var styles = tasks.buildStyles(cfg.frontend.src.vendor.sass,
+                                   'vendor.css',
+                                   cfg.frontend.build.styles);
 
     return merge([js, styles]);
 });
 
 gulp.task('build:frontend:sass', function() {
-    return gulp.src(cfg.frontend.src.sass)
-           .pipe(sourcemaps.init())
-           .pipe(sass().on('error', sass.logError))
-           .pipe(concat('styles.css'))
-           .pipe(sourcemaps.write('.'))
-           .pipe(gulp.dest(cfg.frontend.build.styles));
+    return tasks.buildStyles(cfg.frontend.src.sass,
+                             'styles.css',
+                             'cfg.frontend.build.styles');
+});
+
+gulp.task('build:frontend:sass:src', function() {
+    var resources = gulp.src(cfg.frontend.src.resources)
+                           .pipe(gulp.dest(cfg.frontend.src.styles));
+    var styles = tasks.buildStyles(cfg.frontend.src.sass,
+                                   'styles.css',
+                                   cfg.frontend.src.styles);
+    var vendorStyles = tasks.buildStyles(cfg.frontend.src.vendor.sass,
+                                         'vendor.css',
+                                         cfg.frontend.src.styles);
+
+    return merge([resources, vendorStyles, styles]);
 });
 
 gulp.task('build:frontend:ts', function() {
@@ -109,14 +117,18 @@ gulp.task('browser-sync', function() {
 
 gulp.task('browser-sync:src', function() {
     browserSyncOn([
-        cfg.frontend.src.app + '/**/*.*',
+        cfg.frontend.src.app + '/**/*.{ts,js,css,html}',
         cfg.server.src + '/**/*.*'
     ]);
 });
 
-gulp.task('watch:src', function() {
-    gulp.watch(cfg.server.src, ['build:server']);
+gulp.task('watch:frontend', function() {
     gulp.watch(cfg.frontend.src.sass, ['build:frontend:sass']);
     gulp.watch(cfg.frontend.src.ts, ['build:frontend:ts']);
     gulp.watch(cfg.frontend.src.resources, ['copy:frontend:resources']);
+    gulp.watch(cfg.frontend.src.index, ['build:frontend']);
+});
+
+gulp.task('watch:frontend:src', function() {
+    gulp.watch(cfg.frontend.src.sass, ['build:frontend:sass:src']);
 });

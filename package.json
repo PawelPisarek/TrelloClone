@@ -12,7 +12,7 @@
     "postinstall": "typings install",
     "test": "echo \"Error: no test specified\" && exit 1",
     "server": "gulp build & concurrently \"gulp server\" \"gulp browser-sync\"",
-    "server:src": "gulp build:server & concurrently \"gulp server:src\" \"gulp browser-sync:src\""
+    "server:src": "gulp build:server & concurrently \"gulp server:src\" \"gulp browser-sync:src\" \"gulp watch:frontend:src\""
   },
   "keywords": [
     "projectmanager",
@@ -33,13 +33,13 @@
     "rxjs": "5.0.0-beta.2",
     "systemjs": "0.19.24",
     "zone.js": "0.5.15",
-	"socket.io": "1.2.0",
-	"http-errors": "*",
-	"statuses": "*",
-	"fs": "*",
-	"body-parser": "*",
-	"multer": "*",
-	"mongodb": "*"
+    "socket.io": "1.2.0",
+    "http-errors": "*",
+    "statuses": "*",
+    "fs": "*",
+    "body-parser": "*",
+    "multer": "*",
+    "mongodb": "*"
   },
   "devDependencies": {
     "browser-sync": "^2.11.1",
