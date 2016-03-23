@@ -11,7 +11,7 @@ if (process.argv.indexOf('--src') === -1) {
 }
 
 app.use(express.static(basePath));
-
+app.use("/node_modules", express.static(__dirname + '/../../node_modules/'));
 var server = app.listen(8081, function () {
   var port = server.address().port
   console.log("Example app listening at http://127.0.0.1:%s", port)

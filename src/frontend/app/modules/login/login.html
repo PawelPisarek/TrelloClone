@@ -1,0 +1,20 @@
+<div id="content" layout="row" layout-align="center center">
+    <div flex="25">
+        <md-toolbar layout-xs="row" layout-align="center center" >
+            <h1>LOGIN</h1>
+
+        </md-toolbar>
+
+
+        <md-input-container class="md-block">
+            <label for="clientName">Client Name</label>
+            <input md-input ngControl="clientName" id="clientName" [(value)]="model.clientName">
+            <div md-messages="clientName" role="alert">
+                <div md-message="required">This is required.</div>
+            </div>
+        </md-input-container>
+
+
+
+    </div>
+</div>

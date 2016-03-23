@@ -1,14 +1,12 @@
 import {Component} from 'angular2/core';
 import {bootstrap} from 'angular2/platform/browser';
-
+import {Login} from './modules/login/login.component';
 @Component({
     selector: 'hello-app',
     template: `
-        <h1>Hello, {{name}}!</h1>
-        Say hello to: <input [value]="name" (input)="name = $event.target.value">
-        <md-card>Dowód na Material Design</md-card>
-        <button md-raised-button class="md-raised md-primary">Primary</button>
-    `
+    <login>LOAD LOGIN</login>
+    `,
+   directives: [Login],
 })
 export class HelloApp {
     name:string = 'World';
