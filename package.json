@@ -10,7 +10,9 @@
     "nano": "nano-server",
     "typings": "typings",
     "postinstall": "typings install",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "server": "gulp build & concurrently \"gulp server\" \"gulp browser-sync\"",
+    "server:src": "gulp build:server & concurrently \"gulp server:src\" \"gulp browser-sync:src\" \"gulp watch:frontend:src\""
   },
   "keywords": [
     "projectmanager",
@@ -31,23 +33,29 @@
     "rxjs": "5.0.0-beta.2",
     "systemjs": "0.19.24",
     "zone.js": "0.5.15",
-	"socket.io": "1.2.0",
-	"http-errors": "*",
-	"statuses": "*",
-	"fs": "*",
-	"body-parser": "*",
-	"multer": "*",
-	"mongodb": "*"
+    "socket.io": "1.2.0",
+    "http-errors": "*",
+    "statuses": "*",
+    "fs": "*",
+    "body-parser": "*",
+    "multer": "*",
+    "mongodb": "*"
   },
   "devDependencies": {
+    "browser-sync": "^2.11.1",
     "concurrently": "^2.0.0",
-    "gulp": "^3.9.1",
-    "serve-static": "*",
-    "typescript": "^1.8.7",
-    "typings": "^0.7.5",
     "connect": "^3.4.0",
     "del": "^1.2.0",
+    "gulp": "^3.9.1",
+    "gulp-concat": "^2.6.0",
+    "gulp-nodemon": "^2.0.6",
+    "gulp-sass": "^2.2.0",
+    "gulp-sourcemaps": "^1.6.0",
     "gulp-typescript": "^2.8.0",
-    "open": "0.0.5"
+    "merge-stream": "^1.0.0",
+    "open": "0.0.5",
+    "serve-static": "*",
+    "typescript": "^1.8.7",
+    "typings": "^0.7.5"
   }
 }

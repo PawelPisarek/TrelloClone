@@ -7,6 +7,7 @@ import {bootstrap} from 'angular2/platform/browser';
         <h1>Hello, {{name}}!</h1>
         Say hello to: <input [value]="name" (input)="name = $event.target.value">
         <md-card>Dowód na Material Design</md-card>
+        <button md-raised-button class="md-raised md-primary">Primary</button>
     `
 })
 export class HelloApp {
