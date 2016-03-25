@@ -34,4 +34,9 @@ typings
 
 .idea/*
 typings
-/src/frontend/styles
+/src/frontend/styles/*.css
+/src/frontend/styles/*.css.map
+/src/frontend/styles/*.eot
+/src/frontend/styles/*.ttf
+/src/frontend/styles/*.woff
+/src/frontend/styles/*.woff2

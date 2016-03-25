@@ -5,7 +5,9 @@ var browserSync = require('browser-sync'),
     gulp = require('gulp'),
     merge = require('merge-stream'),
     nodemon = require('gulp-nodemon'),
+    path = require('path'),
     sass = require('gulp-sass'),
+    sequence = require('gulp-sequence'),
     sourcemaps = require('gulp-sourcemaps'),
     ts = require('gulp-typescript');
 
@@ -17,7 +19,7 @@ gulp.task('clean:server', function (done) {
 });
 
 gulp.task('clean:frontend', function(done) {
-    del([cfg.server.build], done);
+    del([cfg.frontend.build.app], done);
 });
 
 gulp.task('build:server', ['clean:server'], function() {
@@ -49,7 +51,7 @@ gulp.task('build:frontend:vendors', function() {
 gulp.task('build:frontend:sass', function() {
     return tasks.buildStyles(cfg.frontend.src.sass,
                              'styles.css',
-                             'cfg.frontend.build.styles');
+                             cfg.frontend.build.styles);
 });
 
 gulp.task('build:frontend:sass:src', function() {
@@ -80,23 +82,25 @@ gulp.task('build:frontend:index', function() {
            .pipe(gulp.dest(cfg.frontend.build.app));
 });
 
-gulp.task('build:frontend', [
+gulp.task('build:frontend', sequence(
     'clean:frontend',
     'copy:frontend:resources',
     'build:frontend:vendors',
-    'build:frontend:sass',
-    'build:frontend:ts',
-    'build:frontend:index'
-]);
+    [
+        'build:frontend:sass',
+        'build:frontend:ts',
+        'build:frontend:index'
+    ]
+));
 
 gulp.task('build', ['build:server', 'build:frontend']);
 
 gulp.task('server', function() {
-    nodemon('./dist/server/server.js');
+    nodemon(path.join(cfg.server.build, 'server.js'));
 });
 
 gulp.task('server:src', function() {
-    nodemon('./dist/server/server.js --src');
+    nodemon(path.join(cfg.server.build, 'server.js') + ' --src');
 });
 
 function browserSyncOn(files) {
@@ -110,15 +114,15 @@ function browserSyncOn(files) {
 
 gulp.task('browser-sync', function() {
     browserSyncOn([
-        cfg.frontend.build.app + '/**/*.*',
-        cfg.server.build + '/**/*.*'
+        path.join(cfg.frontend.build.app, '/**/*.*'),
+        path.join(cfg.server.build, '/**/*.*')
     ]);
 });
 
 gulp.task('browser-sync:src', function() {
     browserSyncOn([
-        cfg.frontend.src.app + '/**/*.{ts,js,css,html}',
-        cfg.server.src + '/**/*.*'
+        path.join(cfg.frontend.src.app + '/**/*.{ts,js,css,html}'),
+        path.join(cfg.server.build, '/**/*.*')
     ]);
 });
 
@@ -129,6 +133,10 @@ gulp.task('watch:frontend', function() {
     gulp.watch(cfg.frontend.src.index, ['build:frontend']);
 });
 
-gulp.task('watch:frontend:src', function() {
+gulp.task('watch:frontend:styles', function() {
     gulp.watch(cfg.frontend.src.sass, ['build:frontend:sass:src']);
+});
+
+gulp.task('watch:server', function() {
+    gulp.watch(cfg.server.src, ['build:server']);
 });
