@@ -1,0 +1,29 @@
+<head>
+    <meta charset="UTF-8">
+    <title>Angular2 playground</title>
+</head>
+
+<body>
+<hello-app>Loading...</hello-app>
+</body>
+
+<!-- ES6-related imports -->
+<script src="/assets/lib/angular2-polyfills.js"></script>
+<script src="/assets/lib/es6-shim.min.js"></script>
+<script src="/assets/lib/system.js"></script>
+<link rel="stylesheet" href="/assets/lib/ng2-material.css">
+<link rel="stylesheet" href="/assets/lib/font.css">
+<script>
+    //configure system loader
+    System.config({defaultJSExtensions: true,
+        map: {
+            "ng2-material":"/assets/lib/ng2-material"
+        }
+    });
+</script>
+<script src="/assets/lib/Rx.js"></script>
+<script src="/assets/lib/angular2.min.js"></script>
+<script>
+    //bootstrap the Angular2 application
+    System.import('app/app.routes').catch(console.log.bind(console));
+</script>

@@ -4,12 +4,11 @@ import {Login} from './modules/login/login.component';
 @Component({
     selector: 'hello-app',
     template: `
-    <login>LOAD LOGIN</login>
+    <login></login>
     `,
    directives: [Login],
 })
 export class HelloApp {
-    name:string = 'World';
 }
 
 bootstrap(HelloApp);
