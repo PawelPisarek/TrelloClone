@@ -7,30 +7,11 @@
 
 
         <md-input-container class="md-block">
-
-            <label for="clientNameInput">Client Name</label>
-            <form [ngFormModel]="myForm"
-                  (ngSubmit)="onSubmit(myForm.value)"
-                 >
-
-                <div class="field"
-                     [class.error]="!clientName.valid && clientName.touched">
-                    <input type="text"
-                           id="clientNameInput"
-                           [ngFormControl]="clientName">
-                    <div *ngIf="!clientName.valid"
-                         md-message="required">client name is invalid</div>
-                    <div *ngIf="clientName.hasError('required')"
-                         md-message="required">client name is required</div>
-                    <div *ngIf="clientName.hasError('invalid clientName')"
-                         md-message="required">client name must begin with <tt>gonto</tt></div>
-                </div>
-
-                <div *ngIf="!myForm.valid">Form is invalid</div>
-                <button md-button md-no-ink class="md-primary" type="submit">submit</button>
-                </form>
-
-
+            <label for="clientName">Client Name</label>
+            <input md-input ngControl="clientName" id="clientName" [(value)]="model.clientName">
+            <div md-messages="clientName" role="alert">
+                <div md-message="required">This is required.</div>
+            </div>
         </md-input-container>
 
 
