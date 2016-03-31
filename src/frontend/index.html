@@ -28,7 +28,12 @@
             System.config({
                 transpiler: 'typescript',
                 typescriptOptions: { emitDecoratorMetadata: true },
-                packages: {'app':{defaultExtension: 'ts' }},
+                packages: {
+                    app: {defaultExtension: 'ts'},
+                    'ng2-material': {
+                        defaultExtension: 'js'
+                    }
+                },
                 map: {
                     "ng2-material":"/../../node_modules/ng2-material"
                 }
@@ -41,6 +46,8 @@
         </script>
         <!--<script src="/../../node_modules/rxjs/bundles/Rx.js"></script>-->
         <!--<script src="/../../node_modules/angular2/bundles/angular2.min.js"></script>-->
+        <link rel="stylesheet" href="/../../node_modules/ng2-material/dist/ng2-material.css">
+        <link rel="stylesheet" href="/../../node_modules/ng2-material/dist/font.css">
         <script>
         </script>
     </head>
