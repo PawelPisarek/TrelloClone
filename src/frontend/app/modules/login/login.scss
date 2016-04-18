@@ -1,0 +1,65 @@
+.loginForm{
+  position: relative;
+	margin: auto;
+  top: 40px;
+	left: 0;
+	z-index: 200;
+	right: 0;
+	width:400px;
+	color:#666;
+	padding:10px 0px;
+	border-radius: 10px;
+	background:rgba(255,255,255,1);
+	border-top: 2px solid #C0C0C0;
+	border-bottom: 2px solid #F00;
+}
+
+.loginForm button{
+	background:#FF4747 ;
+	border:0;
+	color:#fff;
+	padding:10px;
+	font-size:20px;
+	width:330px;
+	margin:20px auto;
+	display:block;
+	cursor:pointer;
+    -webkit-transition: all 0.4s;
+	transition: all 0.4s;
+	border-radius: 10px;
+}
+
+md-input-container:not(.md-input-invalid).md-input-focused .md-input {
+    border-color: red !important;
+}
+
+.loginForm button:active{
+	background:#27ae60;
+}
+
+.loginForm button:hover{
+	background:#FF2020;
+    -webkit-transition: all 0.4s;
+	transition: all 0.4s;
+}
+
+.container{
+  height: 70%;
+}
+
+#title{
+  text-align: center;
+}
+
+#test{
+  width: 330px;
+  margin: auto;
+}
+
+body{
+  background-color: #333 !important;
+}
+
+.md-input-focused .inputTitle{
+  color: red !important;
+}

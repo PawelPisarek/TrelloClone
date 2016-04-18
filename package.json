@@ -11,8 +11,9 @@
     "typings": "typings",
     "postinstall": "typings install",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "server": "gulp build & concurrently \"gulp server\" \"gulp browser-sync\"",
-    "server:src": "gulp build:server & concurrently \"gulp server:src\" \"gulp browser-sync:src\" \"gulp watch:frontend:src\""
+    "dist": "gulp build & concurrently \"gulp server\" \"gulp browser-sync\"",
+    "frontend": "gulp build:server & gulp build:frontend:sass:src & concurrently \"gulp server:src\" \"gulp browser-sync:src\" \"gulp watch:frontend:styles\"",
+    "server": "gulp build:server & concurrently \"gulp server:src\" \"gulp watch:server\""
   },
   "keywords": [
     "projectmanager",
@@ -50,6 +51,7 @@
     "gulp-concat": "^2.6.0",
     "gulp-nodemon": "^2.0.6",
     "gulp-sass": "^2.2.0",
+    "gulp-sequence": "^0.4.5",
     "gulp-sourcemaps": "^1.6.0",
     "gulp-typescript": "^2.8.0",
     "merge-stream": "^1.0.0",
