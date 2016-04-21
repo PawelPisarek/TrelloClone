@@ -6,7 +6,7 @@
             <form [ngFormModel]="projectForm" (ngSubmit)="onSubmit()">
               <md-input-container class="md-block">
                 <label for="email" class="inputTitle">Email</label>
-                <input md-input type="email" ngControl="email" id="email" [(value)]="model.email"/>
+                <input md-input  ngControl="email" id="email" [(value)]="model.email"/>
                 <div md-messages="email" role="alert">
                   <div md-message>Your email must be between 10 and 100 characters long and look like an e-mail address.</div>
                 </div>
@@ -27,4 +27,3 @@
       </md-content>
     </div>
 </div>
-<!--{{projectForm|json}}-->

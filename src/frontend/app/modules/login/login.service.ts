@@ -35,6 +35,7 @@ export class LoginService {
     saveJwt(jwt) {
         if (jwt) {
             localStorage.setItem('token', jwt.token);
+            console.log(jwt);
         }
         if (jwt.failed){
             console.log("api zwróciło");
