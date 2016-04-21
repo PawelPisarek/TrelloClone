@@ -3,7 +3,7 @@
       <md-content layout-padding class="loginForm">
         <h1 id="title">LOGIN</h1>
         <div id="test">
-            <form [ngFormModel]="projectForm">
+            <form [ngFormModel]="projectForm" (ngSubmit)="onSubmit()">
               <md-input-container class="md-block">
                 <label for="email" class="inputTitle">Email</label>
                 <input md-input type="email" ngControl="email" id="email" [(value)]="model.email"/>
@@ -27,3 +27,4 @@
       </md-content>
     </div>
 </div>
+<!--{{projectForm|json}}-->
