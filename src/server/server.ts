@@ -1,14 +1,25 @@
-var app = require('express')();
+var express = require('express');
+var app = express(), basePath;
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
 var MongoClient = require('mongodb').MongoClient;
 var assert = require('assert');
 ​
-app.get('/', function(req, res) {});
-​
 var url = 'mongodb://PM-user:uidas7be21@51.254.221.201:27017/projectManager';
 ​
 ​
+if (process.argv.indexOf('--src') === -1) {
+   basePath = __dirname + '/../frontend/';
+} else {
+   console.log('Using source files!');
+   basePath = __dirname + '/../../src/frontend/';
+   app.use('/node_modules', express.static(__dirname + '/../../node_modules/'));
+}
+
+app.use(express.static(basePath));
+app.use("/node_modules", express.static(__dirname + '/../../node_modules/'));
+
+
 app.post('/login', function(data, res){
 	if (typeof(data) == 'undefined' || data == null || data.login == '' || data.pass == '') {
             return;
@@ -46,6 +57,7 @@ app.post('/login', function(data, res){
 });
 ​
 ​
-http.listen(3653, function() {
-    console.log('listening on *:3653');
-});
+var server = app.listen(8081, function () {
+	var port = server.address().port
+	console.log("Example app listening at http://127.0.0.1:%s", port)
+})
