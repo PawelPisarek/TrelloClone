@@ -40,3 +40,6 @@ typings
 /src/frontend/styles/*.ttf
 /src/frontend/styles/*.woff
 /src/frontend/styles/*.woff2
+
+# Except JS file
+*.js
