@@ -1,4 +1,5 @@
 import {Component} from "angular2/core";
+import {RouterLink} from 'angular2/router';
 import {
 	MdPatternValidator,
 	MdMinValueValidator,
@@ -12,7 +13,7 @@ import {HTTP_PROVIDERS} from "angular2/http";
 @Component({
 	selector: 'login',
 	templateUrl: 'app/modules/login/login.html',
-	directives: [MATERIAL_DIRECTIVES, FORM_DIRECTIVES],
+	directives: [MATERIAL_DIRECTIVES, FORM_DIRECTIVES,RouterLink],
     providers: [LoginService, HTTP_PROVIDERS]
 })
 export class Login {

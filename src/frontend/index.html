@@ -1,55 +1,64 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <script>document.write('<base href"' + document.location +'" />'); </script>
-        <meta charset="UTF-8">
-        <title>Angular2 playground</title>
+<head>
+    <base href="/">
+    <script>document.write('<base href"' + document.location +'" />'); </script>
+    <meta charset="UTF-8">
+    <title>Angular2 playground</title>
 
-        <!-- ES6-related imports -->
-       <!--  <script src="/../../node_modules/angular2/bundles/angular2-polyfills.js"></script>
-        <script src="/../../node_modules/es6-shim/es6-shim.min.js"></script>
-        <script src="/../../node_modules/typescript/lib/typescript.js"></script>\
-        <script src="/../../node_modules/ng2-material/all.js"></script>
-        <script src="/../../node_modules/systemjs/dist/system.js"></script> -->
+    <!-- ES6-related imports -->
+    <!--  <script src="/../../node_modules/angular2/bundles/angular2-polyfills.js"></script>
+     <script src="/../../node_modules/es6-shim/es6-shim.min.js"></script>
+     <script src="/../../node_modules/typescript/lib/typescript.js"></script>\
+     <script src="/../../node_modules/ng2-material/all.js"></script>
+     <script src="/../../node_modules/systemjs/dist/system.js"></script> -->
 
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/es6-shim/0.35.0/es6-shim.min.js"></script>
-         <script src="https://cdnjs.cloudflare.com/ajax/libs/systemjs/0.19.20/system-polyfills.js"></script>
-         <script src="https://npmcdn.com/angular2@2.0.0-beta.12/es6/dev/src/testing/shims_for_IE.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/es6-shim/0.35.0/es6-shim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/systemjs/0.19.20/system-polyfills.js"></script>
+    <script src="https://npmcdn.com/angular2@2.0.0-beta.12/es6/dev/src/testing/shims_for_IE.js"></script>
 
-         <script src="https://code.angularjs.org/2.0.0-beta.12/angular2-polyfills.js"></script>
-         <script src="https://code.angularjs.org/tools/system.js"></script>
-         <script src="https://npmcdn.com/typescript@1.8.9/lib/typescript.js"></script>
-         <script src="https://code.angularjs.org/2.0.0-beta.12/Rx.js"></script>
-         <script src="https://code.angularjs.org/2.0.0-beta.12/angular2.dev.js"></script>
-         <script src="/../../node_modules/angular2/bundles/http.dev.js"></script>
-         <script src="/../../node_modules/angular2/bundles/router.dev.js"></script>
-        <link rel="stylesheet" href="../styles/vendor.css">
-        <link rel="stylesheet" href="styles/styles.css">
-        <script>
-            //configure system loader
-            System.config({
-                transpiler: 'typescript',
-                typescriptOptions: { emitDecoratorMetadata: true },
-                packages: {
-                     app: {defaultExtension: 'ts'},
-                     'ng2-material': {
-                         defaultExtension: 'js'
-                     }
-                 },
-                map: {
-                    "ng2-material":"/../../node_modules/ng2-material"
+    <script src="https://code.angularjs.org/2.0.0-beta.12/angular2-polyfills.js"></script>
+    <script src="https://code.angularjs.org/tools/system.js"></script>
+    <script src="https://npmcdn.com/typescript@1.8.9/lib/typescript.js"></script>
+    <script src="https://code.angularjs.org/2.0.0-beta.12/Rx.js"></script>
+    <script src="https://code.angularjs.org/2.0.0-beta.12/angular2.dev.js"></script>
+    <script src="/../../node_modules/angular2/bundles/http.dev.js"></script>
+    <script src="/../../node_modules/angular2/bundles/router.dev.js"></script>
+    <link rel="stylesheet" href="../styles/vendor.css">
+    <link rel="stylesheet" href="styles/styles.css">
+    <script>
+        //configure system loader
+        System.config({
+            transpiler: 'typescript',
+            typescriptOptions: { emitDecoratorMetadata: true },
+            packages: {
+                app: {defaultExtension: 'ts'},
+                'ng2-material': {
+                    defaultExtension: 'js'
+                },
+                angular2: {
+                    defaultExtension: 'js',
+                },
+                rxjs: {
+                    defaultExtension: 'js'
                 }
-            });
-            System.import('app/app.routes');
-        </script>
-        <!-- <script src="/../../node_modules/rxjs/bundles/Rx.js"></script>
-        <script src="/../../node_modules/angular2/bundles/angular2.min.js"></script> -->
-         <link rel="stylesheet" href="/../../node_modules/ng2-material/dist/ng2-material.css">
-         <link rel="stylesheet" href="/../../node_modules/ng2-material/dist/font.css">
-        <script>
-        </script>
-    </head>
-    <body>
-        <hello-app>Loading...</hello-app>
-    </body>
+            },
+            map: {
+                "ng2-material":"/../../node_modules/ng2-material",
+                "angular2": '/../../node_modules/angular2',
+                "rxjs": '/../../node_modules/rxjs'
+            }
+        });
+        System.import('app/app.routes');
+    </script>
+    <!-- <script src="/../../node_modules/rxjs/bundles/Rx.js"></script>
+    <script src="/../../node_modules/angular2/bundles/angular2.min.js"></script> -->
+    <link rel="stylesheet" href="/../../node_modules/ng2-material/dist/ng2-material.css">
+    <link rel="stylesheet" href="/../../node_modules/ng2-material/dist/font.css">
+    <script>
+    </script>
+</head>
+<body>
+<my-app>Loading...</my-app>
+</body>
 </html>
