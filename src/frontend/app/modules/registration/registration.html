@@ -1,9 +1,9 @@
 <div layout="row" layout-align="center center" class="container">
   <div flex="100" >
-      <md-content layout-padding class="loginForm">
-        <h1 id="title">LOGIN</h1>
-        <div id="test">
-            <form [ngFormModel]="loginForm" (ngSubmit)="onSubmit()">
+      <md-content layout-padding class="registerForm">
+        <h1 id="title">REGISTRATION</h1>
+        <div id="test1">
+            <form [ngFormModel]="registrationForm" (ngSubmit)="onSubmit()">
               <md-input-container class="md-block">
                 <label for="email" class="inputTitle">Email</label>
                 <input md-input  ngControl="email" id="email" [(value)]="model.email"/>
@@ -18,13 +18,16 @@
                   <div md-message="required">This is required.</div>
                 </div>
               </md-input-container>
-              <!--<a [routerLink]="['Dashboard']"><button md-raised-button class="md-raised">LOGIN</button></a>-->
-              <button md-raised-button class="md-raised">LOGIN</button>
+              <md-input-container class="md-block">
+                <label for="password" class="inputTitle">Confirm Password</label>
+                <input md-input ngControl="confirmPassword" id="confirmPassword" [(value)]="model.confirmPassword">
+                <div md-messages="confirmPassword" role="alert">
+                  <div md-message="required">This is required.</div>
+                </div>
+              </md-input-container>
+              <button md-raised-button class="md-raised">SIGN UP</button>
             </form>
         </div>
-        <p id="title">Log In</p>
-        <!-- <strong>Model</strong>
-        <pre class="md-padding">{{model | json}}</pre> -->
       </md-content>
     </div>
 </div>

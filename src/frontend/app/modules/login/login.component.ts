@@ -17,13 +17,13 @@ import {HTTP_PROVIDERS} from "angular2/http";
     providers: [LoginService, HTTP_PROVIDERS]
 })
 export class Login {
-	projectForm: ControlGroup;
+	loginForm: ControlGroup;
 	model = {
 		email: '',
 		password: ''
 	};
 	constructor(fb: FormBuilder, private _loginService:LoginService) {
-		this.projectForm = fb.group({
+		this.loginForm = fb.group({
 			'password': ['', Validators.required],
 			'email': ['', Validators.compose([
 				// MdPatternValidator.inline('^.+@.+\..+$'),
@@ -34,8 +34,8 @@ export class Login {
 		});
 	}
     onSubmit(){
-		this._loginService.auth(this.projectForm.value);
-        // console.log(this.projectForm.value);
+		this._loginService.auth(this.loginForm.value);
+        // console.log(this.loginForm.value);
         
     }
 
