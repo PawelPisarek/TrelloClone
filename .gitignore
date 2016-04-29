@@ -1,3 +1,5 @@
+/src/server/server.js.map
+/src/server/users.js.map
 ### Node template
 # Logs
 logs
@@ -33,7 +35,6 @@ typings
 # Created by .ignore support plugin (hsz.mobi)
 
 .idea/*
-typings
 /src/frontend/styles/*.css
 /src/frontend/styles/*.css.map
 /src/frontend/styles/*.eot
@@ -43,3 +44,4 @@ typings
 
 # Except JS file
 *.js
+*.js.map

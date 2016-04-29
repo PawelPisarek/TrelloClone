@@ -48,12 +48,16 @@ module.exports = function(app){
                 });
                 console.log(":Poza kursorem.");
             });
-         console.log(":POST login end.");   
+         console.log(":POST login end.");
     });
 
-    app.post('/register', function(data, res){
-            var user = data.body;
-            console.log("POST with registering this data: " + user);        
+    // app.post('/register', function(data, res){
+    //         var user = data.body;
+    //         console.log("POST with registering this data: " + user);
+    // });
+
+    app.post('/register', function(data, res) {
+        res.status(200).send({test:"udalo sie"});
     });
-    
+
 }

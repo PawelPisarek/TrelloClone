@@ -49,11 +49,7 @@ export class LoginService {
             this.router.navigateByUrl('/dashboard');
         }
     }
-
-    constructor(public http:Http) {
-
-    }
-
+    
     private logError(err):any {
         console.log("wrong" + err);
     }
