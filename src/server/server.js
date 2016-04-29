@@ -19,6 +19,7 @@ require('./users')(app);
 //require('./site')(app);
 //require('./upload')(app);
 //require('./admin')(app);
+require('./dashboard')(app);
 //Starting server listen here:
 var server = app.listen(8081, function () {
     var port = server.address().port;

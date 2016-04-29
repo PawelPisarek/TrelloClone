@@ -1,5 +1,7 @@
 <div id="test2">
-PUTTED<br>
-Name: {{name}}<br>
-Token: {{token}}
+    <ul>
+        <li>  id       name        author  </li>
+        <li *ngFor="#dashboard of _dashboards">{{dashboard.id}} {{dashboard.name}} {{dashboard.author}}</li>
+    </ul>
+
 </div>

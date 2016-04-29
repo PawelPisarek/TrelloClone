@@ -1,5 +1,5 @@
 import {Component} from "angular2/core";
-import {RouterLink} from 'angular2/router';
+import {RouterLink, Router} from 'angular2/router';
 import {
 	MdPatternValidator,
 	MdMinValueValidator,
@@ -22,7 +22,8 @@ export class Login {
 		email: '',
 		password: ''
 	};
-	constructor(fb: FormBuilder, private _loginService:LoginService) {
+
+    constructor(fb:FormBuilder, private _loginService:LoginService, private _router:Router) {
 		this.loginForm = fb.group({
 			'password': ['', Validators.required],
 			'email': ['', Validators.compose([
@@ -33,9 +34,10 @@ export class Login {
 			])]
 		});
 	}
-    onSubmit(){
-		this._loginService.auth(this.loginForm.value);
-        // console.log(this.loginForm.value);
+
+    onSubmit() {
+        this._loginService.auth(this.loginForm.value);
+        this._router.navigate(['Dashboard']);
         
     }
 
