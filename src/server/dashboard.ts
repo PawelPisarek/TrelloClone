@@ -19,7 +19,7 @@ module.exports = function (app) {
     //no ale na zajeciach mowlismy co innego wiec nie wiem
     app.get('/dashboard/:id', function (data, res) {
         res.status(200).send({
-            id: data.param('id')
+            id: data.param('id')+' id dashboardu'
         });
     });
 
@@ -35,7 +35,7 @@ module.exports = function (app) {
                     "users": ["admin", "admin2", "admin3"]
                 },
                 {
-                    "tags": [ "vosco", "polishgirl"],
+                    "tags": ["vosco", "polishgirl"],
                     "label": "opis2",
                     "column": "21",
                     "author": "admin",
@@ -44,6 +44,16 @@ module.exports = function (app) {
 
             ]
         })
+    });
+
+    app.get('/api/task/:id', (data, res)=> {
+        res.status(200).send({
+            "id": data.param('id'),
+            "name": "taskDoZrobienia",
+            "nrColumn": "1",
+            "description": "opis"
+        })
+
     })
 
 };

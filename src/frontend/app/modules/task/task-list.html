@@ -1,0 +1,9 @@
+<ul>
+    <li *ngFor="#task of _tasks">
+        {{task.tags |json}}
+        {{task.label}}
+        {{task.column}}
+        {{task.author}}
+        {{task.users|json}}
+    </li>
+</ul>
