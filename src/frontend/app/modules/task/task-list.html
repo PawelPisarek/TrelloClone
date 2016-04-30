@@ -1,5 +1,5 @@
 <ul>
-    <li *ngFor="#task of _tasks">
+    <li *ngFor="#task of _tasks" (click)="onSelect(task)">
         {{task.tags |json}}
         {{task.label}}
         {{task.column}}

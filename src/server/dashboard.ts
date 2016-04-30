@@ -28,6 +28,7 @@ module.exports = function (app) {
         res.status(200).send({
             "tasks": [
                 {
+                    "id":"1000", //nie zgodne z ustaleniami ale nie wiem o co chodzilo dlaczego tu nie ma id a po nizej jest
                     "tags": ["polishgirl", "vosco"],
                     "label": "opis",
                     "column": "2",
@@ -35,6 +36,7 @@ module.exports = function (app) {
                     "users": ["admin", "admin2", "admin3"]
                 },
                 {
+                    "id":"1002",
                     "tags": ["vosco", "polishgirl"],
                     "label": "opis2",
                     "column": "21",
@@ -50,7 +52,7 @@ module.exports = function (app) {
         res.status(200).send({
             "id": data.param('id'),
             "name": "taskDoZrobienia",
-            "nrColumn": "1",
+            "column": "1",
             "description": "opis"
         })
 

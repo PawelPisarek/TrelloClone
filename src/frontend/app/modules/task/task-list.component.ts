@@ -1,6 +1,6 @@
 import {Component, Injector} from 'angular2/core';
 import {DashboardService} from "../dashboard/dashboard.service";
-import {RouteParams, ROUTER_DIRECTIVES, RouteData} from "angular2/router";
+import {RouteParams, ROUTER_DIRECTIVES, RouteData, Router} from "angular2/router";
 import {MATERIAL_DIRECTIVES} from "ng2-material/all";
 import {TaskService} from "./task.service";
 import {Task} from "./task.model";
@@ -12,7 +12,10 @@ import {Task} from "./task.model";
     providers: [TaskService]
 })
 export class TaskListComponent {
-    constructor(private _dashboardService:DashboardService, injector:Injector, private _taskService:TaskService) {
+    constructor(private _dashboardService:DashboardService,
+                injector:Injector,
+                private _taskService:TaskService,
+                private _router:Router) {
         this._parentParams = injector.parent.parent.get(RouteParams);
     }
 
@@ -28,5 +31,9 @@ export class TaskListComponent {
         this._taskService.getTasks().subscribe(data=> {
             this._tasks = data;
         })
+    }
+
+    onSelect(task:Task) {
+        this._router.navigate(['TaskDetail', {id: task.id}])
     }
 }
