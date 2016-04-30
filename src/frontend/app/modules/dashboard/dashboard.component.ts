@@ -13,7 +13,7 @@ import {DashboardDetailComponent} from "./dashboard-detail.component";
 })
 @RouteConfig([
     {path: '/', name: 'DashboardList', component: DashboardListComponent, useAsDefault: true},
-    {path: '/:id', name: 'DashboardDetail', component: DashboardDetailComponent}
+    {path: '/:id/...', name: 'DashboardDetail', component: DashboardDetailComponent}
 
 ])
 export class DashboardComponent {
