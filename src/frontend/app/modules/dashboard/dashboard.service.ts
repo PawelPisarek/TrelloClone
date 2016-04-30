@@ -9,7 +9,7 @@ export class DashboardService {
     constructor(private http:Http) {
     }
 
-    getDashboard() {
+    getDashboards() {
         return this.http.get("http://localhost:8081/dashboard")
             .map(res => (<Response>res).json())
             .map((apiDashboard:ApiDashboard) => {
@@ -23,5 +23,11 @@ export class DashboardService {
                 }
             )
     }
+    getDashboard(dashboard:string){
+     return this.http.get(`http://localhost:8081/dashboard/${dashboard}`)
+         .map(res => (<Response>res).json())
+         .map(jdashboard=> {return jdashboard.id})
+    }
+
 
 }

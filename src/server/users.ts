@@ -56,6 +56,14 @@ module.exports = function(app){
     //         console.log("POST with registering this data: " + user);
     // });
 
+
+    app.get('/api/user', (data, res)=> {
+        res.status(200).send({
+            id: "jakiesId",
+            email: "admin@admin"
+        })
+    });
+
     app.post('/register', function(data, res) {
         res.status(200).send({test:"udalo sie"});
     });
