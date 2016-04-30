@@ -19,9 +19,5 @@ export class DashboardDetailComponent implements OnInit {
     }
 
     ngOnInit() {
-        let id = this._routeParams.get('id');
-        this._service.getDashboard(id).subscribe(data=> {
-            console.log(data);
-        })
     }
 }
