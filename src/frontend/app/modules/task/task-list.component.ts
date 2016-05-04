@@ -4,7 +4,7 @@ import {RouteParams, ROUTER_DIRECTIVES, RouteData, Router} from "angular2/router
 import {MATERIAL_DIRECTIVES} from "ng2-material/all";
 import {TaskService} from "./task.service";
 import {Task} from "./task.model";
-import {DashboardService} from "../board/dashboard.service";
+import {BoardService} from "../board/board.service";
 
 @Component({
     selector: 'task-list',
@@ -13,7 +13,7 @@ import {DashboardService} from "../board/dashboard.service";
     providers: [TaskService]
 })
 export class TaskListComponent {
-    constructor(private _dashboardService:DashboardService,
+    constructor(private _boardService:BoardService,
                 injector:Injector,
                 private _taskService:TaskService,
                 private _router:Router) {
@@ -25,7 +25,7 @@ export class TaskListComponent {
 
     ngOnInit() {
         let id = this._parentParams.get('id');
-        this._dashboardService.getDashboard(id).subscribe(data=> {
+        this._boardService.getBoard(id).subscribe(data=> {
             console.log(data);
         });
 

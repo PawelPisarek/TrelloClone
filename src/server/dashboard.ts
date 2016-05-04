@@ -17,9 +17,9 @@ module.exports = function (app) {
 
     //tego nie ma w trello, albo nie widzialem ale chyba musi byc dodane bo kryteriach akceptacji jest że mamy kilka dashboardow
     //no ale na zajeciach mowlismy co innego wiec nie wiem
-    app.get('/dashboard/:id', function (data, res) {
+    app.get('/board/:id', function (data, res) {
         res.status(200).send({
-            id: data.param('id')+' id dashboardu'
+            id: data.param('id')+' id boardu'
         });
     });
 
