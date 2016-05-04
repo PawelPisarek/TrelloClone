@@ -6,7 +6,7 @@ import {Dashboard} from "./dashboard.model";
 import {Router} from "angular2/router";
 @Component({
     selector: 'dashboard-list',
-    templateUrl: 'app/modules/dashboard/dashboard-list.html',
+    templateUrl: 'app/modules/board/dashboard-list.html',
     providers: [DashboardService, HTTP_PROVIDERS],
     directives: [MATERIAL_DIRECTIVES]
 })
