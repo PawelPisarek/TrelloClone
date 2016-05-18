@@ -14,8 +14,10 @@
         <h3 id="header-name">My boards:</h3>
       </div>
 
-       <md-buttons-container class="buttons" flex-gt-sm> 
-            <md-button *ngFor="#item of list, #i = index" class="md-raised-button"><span>{{item.name}}</span></md-button>  
+       <md-buttons-container class="buttons" flex-gt-sm>
+         <div class="buttons-list" *ngFor="#board of boards">
+            <md-button (click)="gotoDetail(board)" class="md-raised-button"><span>{{board.name}}</span></md-button>
+        </div>
       </md-buttons-container>
       <!-- </md-content> -->
   </div>
