@@ -17,7 +17,8 @@
     top: 10px;
 	z-index: 200;
 	right: 0;
-	width:500px;
+	min-width: 250px;
+	width:50%;
 	color:#666;
 	padding:10px 0px;
 	border-radius: 10px;
@@ -29,13 +30,16 @@
 #input-newBoardName{
 	margin-top: 15px;
 	margin-left: 10px;
-	margin-right: 20px;
+	margin-right: 10px;
 	max-width: 70%;
+	min-width: 150px;
 	position: center;
 }
 
 
 #button-addNewBoard{
+	margin-left: 10px;
+	margin-top:5px;
 	position: center;
 	color: #fff;
 	background: #FF4747;
@@ -66,17 +70,11 @@
 	margin-bottom: 20px;
 }
 
-.buttons-section{
+.buttons{
+	position: relative;
 	width: 100%;
-}
-
-.buttons div{
-	
-	padding: 15px;
-	min-width: 220px;
-	max-width: 220px;
-	height: 100px;
-	margin: 4px;
+	margin: auto;
+	z-index: 200;
 }
 
 .buttons md-button{
@@ -87,9 +85,10 @@
 	font-size: 13px;
 	text-align: center;
 	font-weight: bold;
-	min-width: 110px;
+	min-width: 150px;
+	width: 15%;
 	height: 40px; 
-	margin: 20px auto;
+	margin: 20px;
 	display: inline-block;
 	cursor: pointer;
     -webkit-transition: all 0.4s;
