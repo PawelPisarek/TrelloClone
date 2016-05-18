@@ -16,7 +16,7 @@ import {BoardComponent} from "../board/board.component";
 export class DashboardComponent {
   list: Object[] = [];
 	constructor(){
-
+    
       this.addItem("testid","testname","testautor");
       this.addItem("testid2","testname2","testautor2");
       this.addItem("testid3","testname3","testautor3");

@@ -7,41 +7,32 @@
 	    <h2 id="header-name">Create new board:</h2>
 	    <md-input-container  md-no-float class="md-block-new-board" flex-gt-sm>
 	    	<input  md-input id="input-newBoardName" placeholder="New board name">
-	    	<md-button id="button-addNewBoard"><span>+ Add</span></md-button> 
+	    	<md-button id="button-addNewBoard"><span>+ Add</span></md-button>
         </md-input-container>
-      </div> 
+      </div>
       <div class="boards-section-header">
         <h3 id="header-name">My boards:</h3>
       </div>
 
        <div class="buttons" layout="column" layout-align="center center">
-        <section class="buttons-section"  layout="row" layout-sm="column">
-            <div >
-              <md-button class="md-raised-button"><span>My first board</span></md-button>
-            </div>
-            <div >
-              <md-button  class="md-raised-button"><span>My second board</span></md-button>
-            </div>  
-            <div >
-              <md-button  class="md-raised-button"><span>My third board</span></md-button>
-            </div>
-            <div >
-              <md-button class="md-raised-button"><span>My fourth board</span></md-button>
-            </div>        
-        </section>
+          <section *ngIf="index%4!=0" class="buttons-section"  layout="row" layout-sm="column">
+              <div *ngFor="#item of list, #i = index">
+                <md-button class="md-raised-button"><span>{{item.name}}</span></md-button>
+              </div>
+          </section>
         <section class="buttons-section"  layout="row" layout-sm="column">
             <div >
               <md-button  class="md-raised-button"><span>My fifth board</span></md-button>
             </div>
             <div >
               <md-button class="md-raised-button"><span>My sixth board</span></md-button>
-            </div>  
+            </div>
             <div >
               <md-button class="md-raised-button"><span>My seventh board</span></md-button>
             </div>
             <div >
               <md-button class="md-raised-button"><span>My eighth board</span></md-button>
-            </div>       
+            </div>
         </section>
         <section class="buttons-section"  layout="row" layout-sm="column">
             <div >
@@ -50,17 +41,11 @@
             <div >
               <md-button  class="md-raised-button"><span>My tenth board</span></md-button>
             </div>
-            
+
 
         </section>
       </div>
-       
+
       <!-- </md-content> -->
   </div>
 </div>
-
-
-
-
-
-
