@@ -15,7 +15,7 @@
       </div>
 
        <div class="buttons" layout="column" layout-align="center center">
-          <section *ngIf="index%4!=0" class="buttons-section"  layout="row" layout-sm="column">
+          <section class="buttons-section"  layout="row" layout-sm="column">
               <div *ngFor="#item of list, #i = index">
                 <md-button class="md-raised-button"><span>{{item.name}}</span></md-button>
               </div>
