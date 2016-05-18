@@ -1,3 +1,115 @@
-#test2{
-  color: white !important;
+.container {
+	min-height: 0px;
+	width: 1024px;
+    margin: 0 auto; 
 }
+
+.boards-section-header{
+	width: 1024px;
+	height: 35px;
+}
+
+#button-addNewBoard{
+	background: #fff;
+	color: #FF4747;
+	padding: 20px;
+	font-size: 15px;
+	text-align: center;
+	font-weight: bold;
+	min-width: 140px;
+	height: 20px; 
+	display: inline-block;
+	cursor: pointer;
+	border-radius: 10px;
+	margin-left: 70px;
+}
+
+
+#button-addNewBoard:hover {
+  	min-width: 160px;
+	height: 20px; 
+	transition: 0.5s;
+	text-align: center;
+}
+
+#header-name{
+	color: #fff;
+	font: 30px;
+	font-family: sans-serif;
+	margin: 60px;
+	margin-left: 80px;
+	margin-bottom: 20px;
+}
+
+.buttons-section{
+	width: 100%;
+}
+
+.buttons div{
+	
+	padding: 15px;
+	min-width: 220px;
+	max-width: 220px;
+	height: 100px;
+	margin: 4px;
+}
+
+.buttons md-button{
+	background: #FF4747;
+	border: 15px;
+	color: #fff;
+	padding: 25px;
+	font-size: 13px;
+	text-align: center;
+	font-weight: bold;
+	min-width: 110px;
+	height: 40px; 
+	margin: 20px auto;
+	display: inline-block;
+	cursor: pointer;
+    -webkit-transition: all 0.4s;
+	transition: all 0.4s;
+	border-radius: 10px;
+}
+
+
+.buttons md-button:hover{ 
+  cursor: pointer;
+  position: relative;
+  transition: 0.4s;
+}
+
+.md-raised-button:hover{
+	background-color: #FFffff;
+	color: #FF4747;
+}
+
+.md-raised-button span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.4s;
+  width: 140px;
+  height: 40px;
+}
+
+.md-raised-button span:after {
+  content: '  >>';
+  position: relative;
+  right: 5px;
+  opacity: 0;
+  top: 0;
+  right: -40px;
+  transition: 0;
+}
+
+.md-raised-button:hover span {
+  padding-right: 15px;
+
+}
+
+.md-raised-button:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+

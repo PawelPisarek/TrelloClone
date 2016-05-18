@@ -15,4 +15,8 @@ import {BoardComponent} from "../board/board.component";
 ])
 export class DashboardComponent {
 
+	constructor(){
+
+	}
+
 }
