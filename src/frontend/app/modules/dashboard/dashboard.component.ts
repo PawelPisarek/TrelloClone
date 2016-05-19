@@ -26,9 +26,11 @@ export class DashboardComponent {
           this.boards = data;
       });
   }
-
+  addBoard(name:string){
+    this.boards.push(new Board(this.boards.length+1,name,'TuMusiBycWpisanyAutor'));
+  }
   gotoDetail(board: Board) {
-    let link = ['HeroDetail', { id: board.id }];
+    let link = ['BoardController', { id: board.id }];
     console.log(board);
     //this._router.navigate(link);
   }

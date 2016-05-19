@@ -6,8 +6,8 @@
       <div >
 	    <h2 id="header-name">Create new board:</h2>
 	    <md-input-container  md-no-float class="md-block-new-board" flex-gt-sm>
-	    	<input  md-input id="input-newBoardName" placeholder="New board name">
-	    	<md-button id="button-addNewBoard"><span>+ Add</span></md-button>
+	    	<input md-input #newBoard newBoard.value='' id="input-newBoardName" placeholder="New board name">
+	    	<md-button (click)="addBoard(newBoard.value)"id="button-addNewBoard"><span>Add</span></md-button>
         </md-input-container>
       </div>
       <div class="boards-section-header">
