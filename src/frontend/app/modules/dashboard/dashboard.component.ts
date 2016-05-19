@@ -29,8 +29,8 @@ export class DashboardComponent {
 
   gotoDetail(board: Board) {
     let link = ['HeroDetail', { id: board.id }];
-    console.log(link);
-    this._router.navigate(link);
+    console.log(board);
+    //this._router.navigate(link);
   }
 
 }
