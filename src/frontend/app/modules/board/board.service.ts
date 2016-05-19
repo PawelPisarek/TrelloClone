@@ -24,11 +24,11 @@ export class BoardService {
             )
     }
 
-    getBoard(board:string) {
-        return this.http.get(`http://localhost:8081/board/${board}`)
+    getBoard(id:number) {
+        return this.http.get(`http://localhost:8081/board/${id}`)
             .map(res => (<Response>res).json())
             .map(jboard=> {
-                return jboard.id
+                return new Board(jboard.board.id, jboard.board.name, jboard.board.author);
             })
     }
 
