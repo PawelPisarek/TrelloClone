@@ -19,25 +19,18 @@ import {Router} from "angular2/router";
 ])
 export class DashboardComponent {
   boards: Board[] = [];
-  selectedBoard: Board;
   constructor(private _service:BoardService, private  _router:Router){}
+
   ngOnInit() {
       this._service.getBoards().subscribe(data=> {
-          for(var index in data)
-          {
-            this.addBoard(data[index].id,data[index].name,data[index].author);
-          }
+          this.boards = data;
       });
   }
 
-  addBoard(_id: string,_name: string,_author: string){
-    var _board:Board = new Board(_id,_name,_author);
-    this.boards.push(_board);
-  }
-
-  gotoDetail() {
-    //przekierowanie jeszcze nie dziala
-    this._router.navigate(['BoardDetail', { id: this.selectedBoard.id }]);
+  gotoDetail(board: Board) {
+    let link = ['HeroDetail', { id: board.id }];
+    console.log(link);
+    this._router.navigate(link);
   }
 
 }
