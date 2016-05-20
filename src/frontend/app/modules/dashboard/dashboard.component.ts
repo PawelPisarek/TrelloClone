@@ -13,10 +13,10 @@ import {Router} from "angular2/router";
     providers: [BoardService,HTTP_PROVIDERS],
     directives: [MATERIAL_DIRECTIVES, ROUTER_DIRECTIVES]
 })
-@RouteConfig([
-    {path: '/...', name: 'Board', component: BoardComponent, useAsDefault: true}
-
-])
+// @RouteConfig([
+//     //{path: '/board', name: 'Board', component: BoardComponent, useAsDefault: true}
+//
+// ])
 export class DashboardComponent {
   boards: Board[] = [];
   constructor(private _service:BoardService, private  _router:Router){}
@@ -30,9 +30,9 @@ export class DashboardComponent {
     this.boards.push(new Board(this.boards.length+1,name,'TuMusiBycWpisanyAutor'));
   }
   gotoDetail(board: Board) {
-    let link = ['BoardController', { id: board.id }];
+    let link = ['Board', { id: board.id }];
     console.log(board);
-    //this._router.navigate(link);
+    this._router.navigate(link);
   }
 
 }
