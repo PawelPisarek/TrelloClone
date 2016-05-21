@@ -1,8 +1,47 @@
-<div id="test2">
+
+<div id="content">
     <center>
       <h1>BOARD</h1>
-      <h1>{{boardId}}</h1>
+      <h1>ID: {{board.id}}</h1>
+      <h1>NAZWA: {{board.name}}</h1>
+      <h1>AUTOR: {{board.author}}</h1>
     </center>
+    <div id="boards">
+      <div class="board">
+        <h1>STORIES</h1>
+        <div class="task">
+          NAZWA TASKU & LABEL
+        </div>
+        <div class="task">
+          NAZWA TASKU & LABEL
+        </div>
+        <div class="task">
+          NAZWA TASKU & LABEL
+        </div>
+
+      </div>
+      <div class="board">
+        <h1>TODO</h1>
+        <div class="task">
+          NAZWA TASKU & LABEL
+        </div>
+      </div>
+      <div class="board">
+        <h1>IN PROGRESS</h1>
+
+      </div>
+      <div class="board">
+        <h1>TESTING</h1>
+        <div class="task">
+          NAZWA TASKU & LABEL
+        </div>
+      </div>
+      <div class="board">
+        <h1>DONE</h1>
+
+      </div>
+
+    </div>
     <router-outlet></router-outlet>
 
 </div>

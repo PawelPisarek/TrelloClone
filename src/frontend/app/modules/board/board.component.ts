@@ -6,6 +6,7 @@ import {RouteConfig, ROUTER_DIRECTIVES} from "angular2/router";
 import {BoardListComponent} from "./board.list.component";
 import {BoardDetailComponent} from "./board-detail.component";
 import {BoardService} from "./board.service";
+import {Board} from "./board.model";
 @Component({
     selector: 'board',
     templateUrl: 'app/modules/board/board.html',
@@ -17,11 +18,13 @@ import {BoardService} from "./board.service";
 //
 // ])
 export class BoardComponent {
-  private boardName:string;
-  constructor(public route: Router, params: RouteParams){
-      this.boardId = params.get('id');
-  }
+  board : Board = new Board(0,"",""); // jeśli nie damy = new Board(0,"","") to przy wyświetlaniu zwraca nulla a i tak w inicie getBoard() zwraca obiekt BOARD
+  constructor(public route: Router,public params: RouteParams,public _service:BoardService){}
+
   ngOnInit(){
+    this._service.getBoard(+this.params.get('id')).subscribe(data=> {
+        this.board = data;
+    });
 
   }
 }
