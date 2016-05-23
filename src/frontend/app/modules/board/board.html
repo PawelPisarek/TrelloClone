@@ -1,47 +1,92 @@
 
-<div id="content">
-    <center>
-      <h1>BOARD</h1>
-      <h1>ID: {{board.id}}</h1>
-      <h1>NAZWA: {{board.name}}</h1>
-      <h1>AUTOR: {{board.author}}</h1>
-    </center>
-    <div id="boards">
-      <div class="board">
-        <h1>STORIES</h1>
-        <div class="task">
-          NAZWA TASKU & LABEL
-        </div>
-        <div class="task">
-          NAZWA TASKU & LABEL
-        </div>
-        <div class="task">
-          NAZWA TASKU & LABEL
-        </div>
+<md-toolbar-info class="info-toolbar" layout="row">
+      <div>
+        BOARD ID: {{board.id}} NAZWA: {{board.name}} AUTOR: {{board.author}}
+      </div>
+</md-toolbar-info>
 
-      </div>
-      <div class="board">
-        <h1>TODO</h1>
-        <div class="task">
-          NAZWA TASKU & LABEL
+
+  <div id="boards" layout="row">
+    <div class="board">
+      <md-card  layout="column" >
+        <div layout="row">
+          <md-card-title class="tasks-title">STORIES</md-card-title>
+          <md-button-menu id="menu-icon" class="material-icons">&#xE150;</md-button-menu>
         </div>
-      </div>
-      <div class="board">
-        <h1>IN PROGRESS</h1>
-
-      </div>
-      <div class="board">
-        <h1>TESTING</h1>
-        <div class="task">
-          NAZWA TASKU & LABEL
-        </div>
-      </div>
-      <div class="board">
-        <h1>DONE</h1>
-
-      </div>
-
+      
+        <md-buttons-container class="tasks" layout-align="center center">
+          <div layout="column">
+            <md-button-task class="task"><span>TASK</span></md-button-task>
+            <md-button-task class="task"><span>TASK</span></md-button-task>
+            <md-button-task class="task"><span>TASK</span></md-button-task>
+            <md-button-task class="task"><span>TASK</span></md-button-task>
+            <md-button-task class="task"><span>TASK</span></md-button-task>
+          </div>
+        </md-buttons-container>
+        <md-button class="button-addNewTask">Add</md-button>
+      </md-card>
     </div>
-    <router-outlet></router-outlet>
 
+    <div class="board">
+      <md-card  layout="column" >
+        <div layout="row">
+          <md-card-title class="tasks-title">TODO</md-card-title>
+          <md-button-menu id="menu-icon" class="material-icons">&#xE150;</md-button-menu>
+        </div>
+        <md-buttons-container class="tasks" layout-align="center center">
+          <div layout="column">
+            <md-button-task class="task"><span>TASK</span></md-button-task>
+          </div>
+        </md-buttons-container>
+        <md-button class="button-addNewTask">Add</md-button>
+      </md-card>
+    </div>
+
+    <div class="board">
+      <md-card  layout="column" >
+        <div layout="row">
+          <md-card-title class="tasks-title">IN PROGRESS</md-card-title>
+          <md-button-menu id="menu-icon" class="material-icons">&#xE150;</md-button-menu>
+        </div>
+        <md-buttons-container class="tasks" layout-align="center center">
+          <div layout="column">
+            <md-button-task class="task"><span>TASK</span></md-button-task>
+          </div>
+        </md-buttons-container>
+        <md-button class="button-addNewTask">Add</md-button>
+      </md-card>
+    </div>
+
+    <div class="board">
+      <md-card  layout="column" >
+        <div layout="row">
+          <md-card-title class="tasks-title">TESTING</md-card-title>
+          <md-button-menu id="menu-icon" class="material-icons">&#xE150;</md-button-menu>
+        </div>
+        <md-buttons-container class="tasks" layout-align="center center">
+          <div layout="column">
+            <md-button-task class="task"><span>TASK</span></md-button-task>
+          </div>
+        </md-buttons-container>
+        <md-button class="button-addNewTask">Add</md-button>
+      </md-card>
+    </div>
+
+    <div class="board">
+      <md-card  layout="column" >
+        <div layout="row">
+          <md-card-title class="tasks-title">DONE</md-card-title>
+          <md-button-menu id="menu-icon" class="material-icons">&#xE150;</md-button-menu>
+        </div>
+        <md-buttons-container class="tasks" layout-align="center center">
+          <div layout="column">
+            <md-button-task class="task"><span>TASK</span></md-button-task> 
+          </div>
+        </md-buttons-container>
+        <md-button class="button-addNewTask">Add</md-button>
+      </md-card>
+    </div>
+
+  <router-outlet></router-outlet>
+   
 </div>

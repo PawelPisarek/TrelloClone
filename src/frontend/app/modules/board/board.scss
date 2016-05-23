@@ -1,21 +1,116 @@
+.info-toolbar{
+  background-color: #FF4747;
+  color: white;
+  font-size: 12px;
+  height: 25px;
+  min-width: 1240px;
+}
+
 #boards{
-    width: 100%;
+    width: 1240px;
+    min-height: 0px;
+    margin: auto;
 }
 
 .board{
-  float: left;
-  text-align: center;
-  height: 600px;
-  width: 300px;
-  border-style: solid;
-  border-width: 5px;
-  border-color: grey;
-  color: white;
+  margin: 6px;
+  max-height: 800px;
+  width: 20%;
+  position: relative;
+  
 }
-.task{
-  border-style: solid;
-  border-width: 5px;
-  height: 80px;
-  border-color: white;
 
+.board md-card{
+  margin: 4px;
+  text-align: center;
+  max-height: 800px;
+  width: 95%;
+  color: black;
+  background: white;
+  border-radius: 5px;
+  border-top: 2px solid #C0C0C0;
+  border-bottom: 2px solid #F00;
 }
+
+.tasks-title{
+  text-align: center;
+  color:#FF4747;
+  font-size: 18px;
+  font-weight: bold;
+  padding: 10px;
+  padding-bottom: 5px;
+  float: right;
+  max-width: 80%;
+}
+
+#menu-icon{
+  position: center;
+  margin: 5px;
+  padding: 5px;
+  color:#FF4747;      
+  float: right;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+#menu-icon:hover{
+  border-radius: 100%;
+  background: #ffcccc;
+  color:#e60000;
+  -webkit-transition: all 0.4s;
+  transition: all 0.4s;
+}
+
+.tasks{
+  margin: 4px;
+  color:grey;
+  height: 100%;
+  width: 90%;
+  text-align: center;
+  padding: 6px;
+}
+
+.task{
+  margin: 3px ;
+  background: #C0C0C0;
+  color:#404040;
+  border-radius: 8px;
+  text-align: center;
+  padding: 15px;
+  cursor: pointer;
+  -webkit-transition: all 0.4s;
+}
+
+.button-addNewTask{
+  margin: 8px; 
+  margin-right: 5px;
+  position: relative;
+  color: #fff;
+  background: #FF4747;
+  padding: 20px;
+  font-size: 15px;
+  text-align: center;
+  font-weight: bold;
+
+  height: 8px; 
+  display: inline-block;
+  cursor: pointer;
+  border-radius: 10px;
+  float: right;
+   -webkit-transition: all 0.4s;
+}
+
+.button-addNewTask:hover{
+  background:#e60000;
+  -webkit-transition: all 0.4s;
+  transition: all 0.4s;
+}
+
+.task:hover{
+  background:#ff6666;
+  -webkit-transition: all 0.4s;
+  transition: all 0.4s;
+}
+
+
+
