@@ -28,13 +28,14 @@ router.post('/login', (req, res) => {
 });
 
 router.post('/register', (req, res) => {
-    var auth = {
-        login: req.body.login,
-        password: req.body.pass
-    };
+    var db = req.app.get('DatabaseConnector'),
+        auth = {
+            login: req.body.login,
+            password: req.body.pass
+        };
     
-    req.app.get('DatabaseConnector').createUser(auth, (user, err) => {
-        if (!user || err) {
+    db.createUser(auth, (user, err) => {
+        if (err) {
             res.status(401).json({
                 error: err
             });

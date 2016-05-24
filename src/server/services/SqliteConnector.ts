@@ -36,6 +36,14 @@ module.exports = class SqliteConnector implements IDatabaseConnector {
         });
     }
     
+    createUser(userData, callback:resolver<IUser>) {
+        let values = [userData.login, userData.password].map((str) => '"' + str + '"').join(',');
+        let stmt = 'INSERT INTO "users" (login, password) VALUES(' + values + ')';
+        db.get(stmt, function(err, user) {
+           callback(user, err); 
+        });
+    }
+    
     getBoard(id: number, callback:resolver<IBoard>) {
         let stmt = 'SELECT * FROM boards WHERE id = ';
         db.get(stmt + id, (err, row) => {
