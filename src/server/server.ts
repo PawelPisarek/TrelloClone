@@ -1,8 +1,9 @@
-var express = require('express');
-var app = express(), basePath;
-var http = require('http').Server(app);
-var assert = require('assert');
-var bodyParser = require('body-parser');
+var express = require('express'),
+    bodyParser = require('body-parser'),
+    path = require('path'),
+    DatabaseConnector = require('./services/SqliteConnector'), 
+    app = express(),
+    basePath;
 
 
 if (process.argv.indexOf('--src') === -1) {
@@ -16,14 +17,18 @@ if (process.argv.indexOf('--src') === -1) {
 app.use(express.static(basePath));
 app.use("/node_modules", express.static(__dirname + '/../../node_modules/'));
 app.use(bodyParser.json());
+app.use(function (req, res, next) {
+    if (req.path.indexOf('/api') !== 0 && path.extname(req.path).length === 0) {
+        req.url = '/index.html';
+    }
+    next();
+});
 
+app.set('DatabaseConnector', new DatabaseConnector('./trelloClone.db'));
 
 //Loading modules here:
-require('./users')(app);
-//require('./site')(app);
-//require('./upload')(app);
-//require('./admin')(app);
-require('./dashboard')(app);
+app.use('/api', require('./modules/auth'));
+app.use('/api', require('./modules/dashboard'));
 
 //Starting server listen here:
 var server = app.listen(8081, function () {
