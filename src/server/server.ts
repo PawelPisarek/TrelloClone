@@ -24,10 +24,12 @@ app.use(function (req, res, next) {
     next();
 });
 
+app.set('jwtSecret', 'secretJwtSeedWhichShouldntBeAsReproducibleAsThisString');
 app.set('DatabaseConnector', new DatabaseConnector('./trelloClone.db'));
 
 //Loading modules here:
 app.use('/api', require('./modules/auth'));
+app.use('/api', require('./modules/user'));
 app.use('/api', require('./modules/dashboard'));
 
 //Starting server listen here:

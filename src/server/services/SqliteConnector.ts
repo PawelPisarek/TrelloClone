@@ -23,15 +23,15 @@ module.exports = class SqliteConnector implements IDatabaseConnector {
     }
     
     getUser(id: number, callback:resolver<IUser>) {
-        let stmt = 'SELECT * FROM users WHERE id = ';
+        let stmt = 'SELECT id, login FROM users WHERE id = ';
         db.get(stmt + id, (err, row) => {
             callback(row, err);
         });
     }
     
-    getUserByLogin(name: string, callback:resolver<IUser>) {
-        let stmt = 'SELECT * FROM users WHERE login = ';
-        db.get(stmt + name, (err, row) => {
+    getUserAuthByLogin(name: string, callback:resolver<IUser>) {
+        let stmt = 'SELECT login, password FROM users WHERE login = "' + name + '"';
+        db.get(stmt, (err, row) => {
             callback(row, err);
         });
     }
