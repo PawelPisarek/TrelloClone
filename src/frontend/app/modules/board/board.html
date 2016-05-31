@@ -1,10 +1,8 @@
-
 <md-toolbar-info class="info-toolbar" layout="row">
       <div>
         BOARD ID: {{board.id}} NAZWA: {{board.name}} AUTOR: {{board.author}}
       </div>
 </md-toolbar-info>
-
 
   <div id="boards" layout="row">
     <div class="board">
@@ -13,14 +11,13 @@
           <md-card-title class="tasks-title">STORIES</md-card-title>
           <md-button-menu id="menu-icon" class="material-icons">&#xE150;</md-button-menu>
         </div>
-      
-        <md-buttons-container class="tasks" layout-align="center center">
-          <div layout="column">
-            <md-button-task class="task"><span>TASK</span></md-button-task>
-            <md-button-task class="task"><span>TASK</span></md-button-task>
-            <md-button-task class="task"><span>TASK</span></md-button-task>
-            <md-button-task class="task"><span>TASK</span></md-button-task>
-            <md-button-task class="task"><span>TASK</span></md-button-task>
+        <md-buttons-container  class="tasks" layout-align="center center">
+          <div id="sortable1" class="connectedSortable taskList" layout="column">
+            <md-button-task class="task" (click)="clicked()"><span>TASK</span></md-button-task>
+            <md-button-task class="task" (click)="clicked()"><span>TASK</span></md-button-task>
+            <md-button-task class="task" (click)="clicked()"><span>TASK</span></md-button-task>
+            <md-button-task class="task" (click)="clicked()"><span>TASK</span></md-button-task>
+            <md-button-task class="task" (click)="clicked()"><span>TASK</span></md-button-task>
           </div>
         </md-buttons-container>
         <md-button class="button-addNewTask">Add</md-button>
@@ -33,9 +30,9 @@
           <md-card-title class="tasks-title">TODO</md-card-title>
           <md-button-menu id="menu-icon" class="material-icons">&#xE150;</md-button-menu>
         </div>
-        <md-buttons-container class="tasks" layout-align="center center">
-          <div layout="column">
-            <md-button-task class="task"><span>TASK</span></md-button-task>
+        <md-buttons-container  class="tasks" layout-align="center center">
+          <div id="sortable2" class="connectedSortable taskList" layout="column">
+            <md-button-task class="task" (click)="clicked()"><span>TASK</span></md-button-task>
           </div>
         </md-buttons-container>
         <md-button class="button-addNewTask">Add</md-button>
@@ -49,8 +46,8 @@
           <md-button-menu id="menu-icon" class="material-icons">&#xE150;</md-button-menu>
         </div>
         <md-buttons-container class="tasks" layout-align="center center">
-          <div layout="column">
-            <md-button-task class="task"><span>TASK</span></md-button-task>
+          <div id="sortable2" class="connectedSortable taskList" layout="column">
+            <md-button-task class="task" (click)="clicked()"><span>TASK</span></md-button-task>
           </div>
         </md-buttons-container>
         <md-button class="button-addNewTask">Add</md-button>
@@ -64,8 +61,8 @@
           <md-button-menu id="menu-icon" class="material-icons">&#xE150;</md-button-menu>
         </div>
         <md-buttons-container class="tasks" layout-align="center center">
-          <div layout="column">
-            <md-button-task class="task"><span>TASK</span></md-button-task>
+          <div id="sortable2" class="connectedSortable taskList" layout="column">
+            <md-button-task class="task" (click)="clicked()"><span>TASK</span></md-button-task>
           </div>
         </md-buttons-container>
         <md-button class="button-addNewTask">Add</md-button>
@@ -79,8 +76,8 @@
           <md-button-menu id="menu-icon" class="material-icons">&#xE150;</md-button-menu>
         </div>
         <md-buttons-container class="tasks" layout-align="center center">
-          <div layout="column">
-            <md-button-task class="task"><span>TASK</span></md-button-task> 
+          <div id="sortable2" class="connectedSortable taskList" layout="column">
+            <md-button-task class="task" (click)="clicked()"><span>TASK</span></md-button-task>
           </div>
         </md-buttons-container>
         <md-button class="button-addNewTask">Add</md-button>
@@ -88,5 +85,5 @@
     </div>
 
   <router-outlet></router-outlet>
-   
+
 </div>

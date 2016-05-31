@@ -17,7 +17,7 @@
   max-height: 800px;
   width: 20%;
   position: relative;
-  
+
 }
 
 .board md-card{
@@ -47,7 +47,7 @@
   position: center;
   margin: 5px;
   padding: 5px;
-  color:#FF4747;      
+  color:#FF4747;
   float: right;
   cursor: pointer;
   font-size: 18px;
@@ -82,7 +82,7 @@
 }
 
 .button-addNewTask{
-  margin: 8px; 
+  margin: 8px;
   margin-right: 5px;
   position: relative;
   color: #fff;
@@ -92,7 +92,7 @@
   text-align: center;
   font-weight: bold;
 
-  height: 8px; 
+  height: 8px;
   display: inline-block;
   cursor: pointer;
   border-radius: 10px;
@@ -112,5 +112,8 @@
   transition: all 0.4s;
 }
 
-
-
+.taskList {
+  width: 100% !important;
+  border: 0px !important;
+  min-height: 50px !important;
+}
