@@ -43,3 +43,4 @@ typings
 # Except JS file
 *.js
 *.js.map
+/*.db
