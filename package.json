@@ -61,6 +61,7 @@
     "sqlite3": "^3.1.4",
     "typescript": "^1.8.7",
     "typings": "^0.7.5",
-    "promise": "*"
+    "promise": "*",
+    "bootstrap": "4.0.0-alpha.2"
   }
 }

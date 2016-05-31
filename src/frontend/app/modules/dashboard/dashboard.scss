@@ -39,7 +39,7 @@
 	width: 70%;
 	min-width: 70px;
 	position: relative;
-	
+
 	@media screen and(max-width: 765px){
 		width: 60%;
 	}
@@ -51,23 +51,21 @@
 
 
 #button-addNewBoard{
-	margin: 8px; 
+	margin: 8px;
 	margin-right: 5px;
-	position: relative;
 	color: #fff;
 	background: #FF4747;
-	padding: 20px;
 	font-size: 15px;
 	text-align: center;
 	font-weight: bold;
-	width: 60px;
-	height: 13px; 
-	display: inline-block;
+	height: 50px;
+	width: 90px;
+	padding-top: 14px;
 	cursor: pointer;
 	border-radius: 10px;
 	float: right;
 
-	@media screen and(max-width: 571px){
+	@media screen and(max-width: 560px){
 		float: left;
 		margin-top: 10px;
 		margin-left: 10px;
@@ -98,21 +96,20 @@
 
 .buttons md-button{
 	background: #FF4747;
-	border: 15px;
 	color: #fff;
-	padding: 25px;
-	font-size: 13px;
+	font-size: 15px;
 	text-align: center;
-	font-weight: bold;
+	font-weight: 700;
 	min-width: 150px;
 	width: 15%;
-	height: 40px;
+	height: 80px;
 	margin: 20px;
 	display: inline-block;
 	cursor: pointer;
     -webkit-transition: all 0.4s;
 	transition: all 0.4s;
 	border-radius: 10px;
+	padding-top: 28px;
 }
 
 
@@ -129,32 +126,11 @@
 
 .md-raised-button span {
   cursor: pointer;
-  display: inline-block;
-  position: relative;
   transition: 0.4s;
   width: 140px;
   height: 40px;
 }
 
-.md-raised-button span:after {
-  content: '  >>';
-  position: relative;
-  right: 5px;
-  opacity: 0;
-  top: 0;
-  right: -40px;
-  transition: 0;
-}
-
-.md-raised-button:hover span {
-  padding-right: 15px;
-
-}
-
-.md-raised-button:hover span:after {
-  opacity: 1;
-  right: 0;
-}
 
 .buttons-list{
 	float: left;

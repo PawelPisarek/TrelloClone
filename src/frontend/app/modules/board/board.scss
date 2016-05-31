@@ -44,11 +44,12 @@
 }
 
 #menu-icon{
-  position: center;
-  margin: 5px;
+  width: 30px;
+  height: 30px;
+  margin: 8px;
   padding: 5px;
   color:#FF4747;
-  float: right;
+
   cursor: pointer;
   font-size: 18px;
 }
@@ -62,10 +63,9 @@
 }
 
 .tasks{
-  margin: 4px;
   color:grey;
   height: 100%;
-  width: 90%;
+  width: 100%;
   text-align: center;
   padding: 6px;
 }
@@ -83,21 +83,15 @@
 
 .button-addNewTask{
   margin: 8px;
-  margin-right: 5px;
-  position: relative;
   color: #fff;
   background: #FF4747;
-  padding: 20px;
+  height: 48px;
   font-size: 15px;
   text-align: center;
-  font-weight: bold;
-
-  height: 8px;
-  display: inline-block;
+  font-weight: 700;
   cursor: pointer;
   border-radius: 10px;
-  float: right;
-   -webkit-transition: all 0.4s;
+  padding-top: 13px;
 }
 
 .button-addNewTask:hover{
@@ -116,4 +110,9 @@
   width: 100% !important;
   border: 0px !important;
   min-height: 50px !important;
+}
+
+.taskModal {
+  min-height: 200px;
+  border-radius: 10px;
 }
