@@ -23,7 +23,7 @@ export class LoginService {
         }`;
         var header = new Headers();
         header.append('Content-Type', 'application/json');
-        this.http.post('http://localhost:8081/login', creds,
+        this.http.post('/api/login', creds,
             {
                 headers: header
             })
@@ -37,20 +37,17 @@ export class LoginService {
 
     saveJwt(jwt) {
         if (jwt) {
-
             localStorage.setItem('token', jwt.token);
-            console.log(jwt);
-
         }
         if (jwt.failed){
-            console.log("api zwróciło");
-            console.log(jwt);
+
         }else{
             this.router.navigateByUrl('/dashboard');
         }
     }
-    
+
     private logError(err):any {
+        console.log("PODALES ZLY LOGIN LUB HASLO!");
         console.log("wrong" + err);
     }
 }

@@ -36,9 +36,7 @@ export class Login {
 	}
 
     onSubmit() {
-        this._loginService.auth(this.loginForm.value);
-        this._router.navigate(['Dashboard']);
-        
+        this._loginService.auth(this.loginForm.value);        
     }
 
     get value(): string {
