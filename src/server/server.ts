@@ -1,7 +1,7 @@
 var express = require('express'),
     bodyParser = require('body-parser'),
     path = require('path'),
-    DatabaseConnector = require('./services/SqliteConnector'), 
+    DatabaseConnector = require('./services/SqliteConnector'),
     app = express(),
     basePath;
 
@@ -19,7 +19,8 @@ app.use("/node_modules", express.static(__dirname + '/../../node_modules/'));
 app.use(bodyParser.json());
 app.use(function (req, res, next) {
     if (req.path.indexOf('/api') !== 0 && path.extname(req.path).length === 0) {
-        req.url = '/index.html';
+        //req.url = 'app/index.html';
+        return res.sendFile(path.join(basePath, 'index.html'));
     }
     next();
 });
