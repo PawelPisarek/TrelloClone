@@ -22,7 +22,48 @@ declare var jQuery: any;
 export class BoardComponent {
   board : Board = new Board(0,"",""); // jeśli nie damy = new Board(0,"","") to przy wyświetlaniu zwraca nulla a i tak w inicie getBoard() zwraca obiekt BOARD
   constructor(private _elRef: ElementRef, public route: Router,public params: RouteParams,public _service:BoardService){}
+  hideInput : boolean = false;
+  tasks : any[] =[
+    {
+      'name':"TASKNAME0",
+      'board': 0
+    },
+    {
+      'name':"TASKNAME1",
+      'board': 0
+    },
+    {
+      'name':"TASKNAME2",
+      'board': 0
+    },
+    {
+      'name':"TASKNAME3",
+      'board': 0
+    },
+    {
+      'name':"TASKNAME4",
+      'board': 1
+    },
+    {
+      'name':"TASKNAME5",
+      'board': 1
+    },
+    {
+      'name':"TASKNAME6",
+      'board': 2
+    }
+  ];
 
+
+  showInput()
+  {
+    if(this.hideInput == true)
+    {
+      this.hideInput=false;
+    }else{
+      this.hideInput=true;
+    }
+  }
   clicked(){
     console.log('clicked');
   }
@@ -30,9 +71,9 @@ export class BoardComponent {
     jQuery(this._elRef.nativeElement).find("#sortable1, #sortable2").sortable({
       connectWith: ".connectedSortable"
     }).disableSelection();
-    this._service.getBoard(+this.params.get('id')).subscribe(data=> {
-        this.board = data;
-    });
+    // this._service.getBoard(+this.params.get('id')).subscribe(data=> {
+    //     this.board = data;
+    // });
 
   }
 }
