@@ -1,7 +1,9 @@
 var router = require('express').Router();
 
-// GET /tasks/
+// POST /task
+// POST /taskMove
 // GET /task/:id
+// GET /tasks/:id/:idCategory
 
 router.post('/task', (req, res) => {
     var db = req.app.get('DatabaseConnector'),
@@ -15,8 +17,27 @@ router.post('/task', (req, res) => {
         };
 
     db.createTask(dane, (user, err) => {
-		console.log('task.ts:');
-		console.log(dane);
+        if (err) {
+            res.status(500).json({ //TODO: more user friendly message?
+                error: err.message,
+                errno: err.errno
+            });
+        } else {
+            res.json({
+                data: 'Odswiez taski'
+            });
+        }
+    });
+});
+
+router.post('/taskMove', (req, res) => {
+    var db = req.app.get('DatabaseConnector'),
+        dane = {
+			taskID: req.body.task_id, 
+			newKatID: req.body.new_kat_id,
+        };
+
+    db.moveTask(dane.taskID, dane.newKatID, (user, err) => {
         if (err) {
             res.status(500).json({ //TODO: more user friendly message?
                 error: err.message,
