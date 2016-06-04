@@ -46,6 +46,15 @@ export class BoardComponent {
   clicked(){
     console.log('clicked');
   }
+
+    getCategory() {
+        this._categoryService.getCategories()
+            .subscribe(data=> {
+                this.categories = data;
+            }, error=> {
+                console.log(error);
+            });
+    }
   ngOnInit(){
     jQuery(this._elRef.nativeElement).find("#sortable1, #sortable2").sortable({
       connectWith: ".connectedSortable"
@@ -57,12 +66,8 @@ export class BoardComponent {
           }, error=> {
               console.log(error);
           });
-      this._categoryService.getCategories()
-          .subscribe(data=> {
-              this.categories = data;
-          }, error=> {
-              console.log(error);
-          });
+
+      this.getCategory();
 
   }
 }

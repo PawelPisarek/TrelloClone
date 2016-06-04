@@ -1,4 +1,4 @@
-import {Component, Input} from "angular2/core";
+import {Component, Input, EventEmitter, Output} from "angular2/core";
 import {Router} from "express-serve-static-core";
 import {RouteParams} from "angular2/router";
 import {TaskService} from "./task.service";
@@ -17,6 +17,7 @@ export class TaskNewComponent {
 
     @Input() board:Board;
     @Input() category:Category;
+    @Output() refreshBoard:EventEmitter<any>=new EventEmitter();
     private formModel:string;
     private submitted:boolean = false;
 
@@ -37,9 +38,12 @@ export class TaskNewComponent {
             this.board,
             0,
             this.category,
-            'name',
             this.formModel,
+            'opis',
             'deadline był wczoraj')).subscribe(dane => {
+            this.refreshBoard.emit(null);
+        },error=>{
+            console.log(error);
         });
         this.submitted = false;
     }
