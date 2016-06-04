@@ -18,7 +18,7 @@ export class LoginService {
 
     auth(value:User) {
         var creds = `{
-            "email": "${value.email}",
+            "login": "${value.email}",
             "pass": "${value.password}"
         }`;
         var header = new Headers();
