@@ -1,21 +1,21 @@
 import {Injectable} from 'angular2/core';
-import {Http, Response} from "angular2/http";
+import {Http, Response, Headers} from "angular2/http";
 import {Board} from "./board.model";
-export class ApiBoard {
-    public boards:Array<Board>;
-}
 @Injectable()
 export class BoardService {
     constructor(private http:Http) {
     }
 
     getBoards(iduser) {
-        return this.http.get("http://localhost:8081/boards/1")
+        var header = new Headers();
+        let token =  localStorage.getItem('token');
+        header.append('x-access-token', token);
+        return this.http.get(`http://localhost:8081/api/boards/${iduser}`,{headers:header})
             .map(res => (<Response>res).json())
-            .map((apiDashboard:ApiBoard) => {
+            .map((apiDashboard) => {
                     const results = [];
                     if (apiDashboard) {
-                        apiDashboard.boards.forEach((board:Board)=> {
+                        apiDashboard.forEach((board:Board)=> {
                             results.push(new Board(board.id, board.name, board.author))
                         });
                     }
