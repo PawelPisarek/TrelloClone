@@ -26,13 +26,9 @@
             <task-list [board]="board" [category]="category"></task-list>
             <!--<md-button-task class="task" *ngFor="let task of tasks" (click)="clicked()" data-toggle="modal" data-target=".bd-example-modal-lg"><span>{{task.name}}</span></md-button-task>-->
           </div>
-          <div class="taskList" *ngIf="hideInput==true" layout="column">
-            <md-button-task class="task"><span><input/></span></md-button-task>
-          </div>
         </md-buttons-container>
-        <md-button (click)="showInput()" *ngIf="hideInput==false" class="button-addNewTask">Add</md-button>
-        <md-button (click)="showInput()" *ngIf="hideInput==true" class="button-addNewTask">Add Task</md-button>
-      </md-card>
+        <task-new [board]="board" [category]="category"></task-new>
+     </md-card>
     </div>
 
     <div class="board">
