@@ -25,8 +25,8 @@ router.post('/board', (req, res) => {
     });
 });
 
-router.get('/board/:id', (req, res) => {
-    req.app.get('DatabaseConnector').getBoard(req.params.id, (boards, err) => {
+router.get('/board/:id/:userID', (req, res) => {
+    req.app.get('DatabaseConnector').getBoard(req.params.id, req.params.userID, (boards, err) => {
         if (boards) {
             console.log('Found board id=' + req.params.id);
             res.json(boards);

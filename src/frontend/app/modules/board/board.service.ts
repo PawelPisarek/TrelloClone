@@ -50,8 +50,9 @@ export class BoardService {
 
         var header = new Headers();
         let token =  localStorage.getItem('token');
+		let userId =  localStorage.getItem('userId');
         header.append('x-access-token', token);
-        return this.http.get(`http://localhost:8081/api/board/${id}`,{headers:header})
+        return this.http.get(`http://localhost:8081/api/board/${id}/${userId}`,{headers:header})
             .map(res => (<Response>res).json())
             .map(jboard=> {
 
