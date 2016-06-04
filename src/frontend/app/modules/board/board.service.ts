@@ -9,8 +9,8 @@ export class BoardService {
     constructor(private http:Http) {
     }
 
-    getBoards() {
-        return this.http.get("http://localhost:8081/dashboard")
+    getBoards(iduser) {
+        return this.http.get("http://localhost:8081/boards/1")
             .map(res => (<Response>res).json())
             .map((apiDashboard:ApiBoard) => {
                     const results = [];

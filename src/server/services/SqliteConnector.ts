@@ -21,15 +21,15 @@ module.exports = class SqliteConnector implements IDatabaseConnector {
             });
         });
     }
-    
-    getUser(id: number, callback:resolver<IUser>) {
+
+    getUser(id:number, callback:resolver<IUser>) {
         let stmt = 'SELECT id, login FROM users WHERE id = ';
         db.get(stmt + id, (err, row) => {
             callback(row, err);
         });
     }
-    
-    getUserAuthByLogin(name: string, callback:resolver<IUser>) {
+
+    getUserAuthByLogin(name:string, callback:resolver<IUser>) {
         let stmt = 'SELECT login, password FROM users WHERE login = "' + name + '"';
         db.get(stmt, (err, row) => {
             callback(row, err);
@@ -50,11 +50,26 @@ module.exports = class SqliteConnector implements IDatabaseConnector {
             callback(row, err);
         });
     }
-    
-    getBoards(userId: number, callback:resolver<Array<IBoard>>) {
+
+    getBoards(userId:number, callback:resolver<Array<IBoard>>) {
         let stmt = 'SELECT * FROM boards WHERE author = ';
-        db.get(stmt + userId, (err, row) => {
-            callback(row, err);
+        let dane = [];
+        new Promise(function (resolve, reject) {
+
+            db.each(stmt + userId, (err, row) => {
+
+                dane.push(row);
+
+            });
+            setTimeout(function () {
+
+                resolve(dane);
+            }, 500);
+
+
+        }).then(dane => {
+
+            callback(dane, 'blad');
         });
     }
 }

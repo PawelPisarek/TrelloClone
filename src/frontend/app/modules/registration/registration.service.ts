@@ -21,14 +21,11 @@ export class UsersService {
         var header = new Headers();
         header.append('Content-Type', 'application/json');
         
-        this.http.post('http://localhost:8081/register', creds,
+     return  this.http.post('http://localhost:8081/register', creds,
             {
                 headers: header
             })
             .map(res => (<Response>res).json())
-            .subscribe(
-            err => this.logError(err)
-            );
     }
 
     private logError(err): any {

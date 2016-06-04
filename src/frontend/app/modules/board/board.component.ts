@@ -4,8 +4,6 @@ import {HTTP_PROVIDERS} from "angular2/http";
 import {RouterOutlet, Router,RouteParams} from 'angular2/router';
 import {RouteConfig, ROUTER_DIRECTIVES} from "angular2/router";
 import {ElementRef} from "angular2/core";
-import {BoardListComponent} from "./board.list.component";
-import {BoardDetailComponent} from "./board-detail.component";
 import {BoardService} from "./board.service";
 import {Board} from "./board.model";
 declare var jQuery: any;
