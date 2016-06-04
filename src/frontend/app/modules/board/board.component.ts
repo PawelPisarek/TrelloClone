@@ -9,12 +9,13 @@ import {Board} from "./board.model";
 import {TaskListComponent} from "../task/task-list.component";
 import {Category} from "../category/category.model";
 import {CategoryService} from "../category/category.service";
+import {TaskNewComponent} from "../task/task-new.component";
 declare var jQuery: any;
 @Component({
     selector: 'board',
     templateUrl: 'app/modules/board/board.html',
     providers: [BoardService, HTTP_PROVIDERS, CategoryService],
-    directives: [MATERIAL_DIRECTIVES, ROUTER_DIRECTIVES, TaskListComponent]
+    directives: [MATERIAL_DIRECTIVES, ROUTER_DIRECTIVES, TaskListComponent,TaskNewComponent]
 })
 // @RouteConfig([
 //     {path: '/', name: 'BoardComponent', component: BoardComponent, useAsDefault: true},

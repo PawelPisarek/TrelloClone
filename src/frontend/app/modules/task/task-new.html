@@ -1,0 +1,14 @@
+
+<div *ngIf="!submitted" (click)="edit()">
+    <md-button class="button-addNewTask">----Add-----</md-button>
+</div>
+<div *ngIf="submitted">
+    <md-input-container class="md-block">
+    <label>Opis tasku</label>
+    <input md-input type="text"
+           [(ngModel)]="formModel"
+    >
+</md-input-container>
+    <md-button class="button-addNewTask" (click)="submit()">Add Task</md-button>
+    <br>
+</div>
