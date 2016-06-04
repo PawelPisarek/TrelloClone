@@ -3,8 +3,12 @@ var Promise = require('promise'),
     sqlite = require('sqlite3'),
     db;
     
-const USER_TABLE_CREATE = 'CREATE TABLE "users" ("id" INTEGER PRIMARY KEY AUTOINCREMENT, "login" VARCHAR(64) UNIQUE, "password" VARCHAR(32))';
-const BOARD_TABLE_CREATE = 'CREATE TABLE "boards" ("id" INTEGER PRIMARY KEY AUTOINCREMENT, "name" VARCHAR(64), "author" INTEGER, FOREIGN KEY(author) REFERENCES user(id))';
+const USER_TABLE_CREATE = 'CREATE TABLE "users" ( "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, "email" INTEGER UNIQUE, "password" VARCHAR(32));';
+const TASK_TABLE_CREATE = 'CREATE TABLE "task" ( "id" INTEGER NOT NULL, "id_boards" INTEGER NOT NULL, "id_users" INTEGER NOT NULL, "id_kategorie" INTEGER NOT NULL, "name" TEXT, "opis" VARCHAR(32), "deadline" DATATIME, PRIMARY KEY(id), FOREIGN KEY("id_boards") REFERENCES "boards"("id"), FOREIGN KEY("id_users") REFERENCES "users"("id"), FOREIGN KEY("id_kategorie") REFERENCES "kategorie"("id"));';
+const KATEGORIE_TABLE_CREATE = 'CREATE TABLE "kategorie" ( "id" INTEGER NOT NULL, "name" VARCHAR(32), PRIMARY KEY(id));';
+const CHECKLIST_TABLE_CREATE = 'CREATE TABLE "checklist" ( "id" INTEGER NOT NULL, "id_task" INTEGER NOT NULL, "name" NUMERIC, "is_check" INTEGER, PRIMARY KEY(id), FOREIGN KEY("id_task") REFERENCES task(id));';
+const BOARDS_TABLE_CREATE = 'CREATE TABLE "boards" ( "id" INTEGER NOT NULL, "name" VARCHAR(64), "author" INTEGER NOT NULL, PRIMARY KEY(id), FOREIGN KEY("author") REFERENCES users(id));';
+const BOARDUSERREL_TABLE_CREATE = 'CREATE TABLE "board_user_rel" ( "id_users" INTEGER NOT NULL, "id_boards" INTEGER NOT NULL, FOREIGN KEY("id_users") REFERENCES "users"("id"), FOREIGN KEY("id_boards") REFERENCES boards(id));';
 
 module.exports = class SqliteConnector implements IDatabaseConnector {
     constructor(path:string) {
@@ -13,7 +17,11 @@ module.exports = class SqliteConnector implements IDatabaseConnector {
             db.get('SELECT name FROM sqlite_master WHERE type="table" AND name="users"', (err, row) => {
                 if (!row) {
                     db.run(USER_TABLE_CREATE);
-                    db.run(BOARD_TABLE_CREATE);
+					db.run(KATEGORIE_TABLE_CREATE);
+                    db.run(BOARDS_TABLE_CREATE);
+                    db.run(BOARDUSERREL_TABLE_CREATE);
+                    db.run(TASK_TABLE_CREATE);
+                    db.run(CHECKLIST_TABLE_CREATE);
                     db.serialize(() => {
                         db.run('INSERT INTO "users" (login, password) VALUES("admin", "admin")');
                     });
