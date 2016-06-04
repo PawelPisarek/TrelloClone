@@ -10,7 +10,32 @@ const CHECKLIST_TABLE_CREATE = 'CREATE TABLE "checklist" ( "id" INTEGER NOT NULL
 const BOARDS_TABLE_CREATE = 'CREATE TABLE "boards" ( "id" INTEGER NOT NULL, "name" VARCHAR(64), "author" INTEGER NOT NULL, PRIMARY KEY(id), FOREIGN KEY("author") REFERENCES users(id));';
 const BOARDUSERREL_TABLE_CREATE = 'CREATE TABLE "board_user_rel" ( "id_users" INTEGER NOT NULL, "id_boards" INTEGER NOT NULL, FOREIGN KEY("id_users") REFERENCES "users"("id"), FOREIGN KEY("id_boards") REFERENCES boards(id));';
 
+function mysql_real_escape_string (str) {
+    return str.replace(/[\0\x08\x09\x1a\n\r"'\\\%]/g, function (char) {
+        switch (char) {
+            case "\0":
+                return "\\0";
+            case "\x08":
+                return "\\b";
+            case "\x09":
+                return "\\t";
+            case "\x1a":
+                return "\\z";
+            case "\n":
+                return "\\n";
+            case "\r":
+                return "\\r";
+            case "\"":
+            case "'":
+            case "\\":
+            case "%":
+                return "\\"+char;
+        }
+    });
+}
+
 module.exports = class SqliteConnector implements IDatabaseConnector {
+
     constructor(path:string) {
         db = new sqlite.Database(path);
         db.serialize(() => {
@@ -34,70 +59,41 @@ module.exports = class SqliteConnector implements IDatabaseConnector {
         });
     }
 
+
+	
+	//USER------------------------------------------------------------------------------------------------
+	
     getUser(id:number, callback:resolver<IUser>) {
-        let stmt = 'SELECT id, email FROM users WHERE id = ';
-        db.get(stmt + id, (err, row) => {
-            callback(row, err);
-        });
+		let stmt = 'SELECT id, email FROM users WHERE id = ';
+		db.get(stmt + id, (err, row) => {
+			callback(row, err);
+		});
     }
 
     getUserAuthByLogin(name:string, callback:resolver<IUser>) {
-        let stmt = 'SELECT * FROM users WHERE email = "' + name + '"';
+		let email = mysql_real_escape_string(name);
+		
+        let stmt = 'SELECT * FROM users WHERE email = "' + email + '"';
         db.get(stmt, (err, row) => {
             callback(row, err);
         });
     }
 	
-	getKategorie(callback:resolver<IUser>) {
-		let stmt = 'SELECT * FROM kategorie';
-        let dane = [];
-        new Promise(function (resolve, reject) {
-		
-            db.each(stmt, (err, row) => {
-                dane.push(row);
-            });
-			
-            setTimeout(function () {
-                resolve(dane);
-            }, 500);
-			
-        }).then(dane => {
-            callback(dane, 'blad');
-        });
-    }
-
     createUser(userData, callback:resolver<IUser>) {
-        let values = [userData.email, userData.password].map((str) => '"' + str + '"').join(',');
+		let mail = mysql_real_escape_string(userData.email);
+		let pass = mysql_real_escape_string(userData.password);
+		
+        let values = [mail, pass].map((str) => '"' + str + '"').join(',');
         let stmt = 'INSERT INTO "users" (email, password) VALUES(' + values + ')';
         db.get(stmt, function(err, user) {
            callback(user, err);
         });
-    }
-
-    createBoard(boardData, callback:resolver<IUser>) {
-        let values = [boardData.name, boardData.author].map((str) => '"' + str + '"').join(',');
-        let stmt = 'INSERT INTO "boards" (name,author)  VALUES(' + values + ')';
-        db.get(stmt, function (err, user) {
-            callback(user, err);
-        });  
-    }
+    }	
 	
-	createTask(taskData, callback:resolver<IUser>) {
-		console.log(taskData);
-        let values = [taskData.name, taskData.opis, taskData.id_board, taskData.id_user, taskData.id_kategoria].map((str) => '"' + str + '"').join(',');
-        let stmt = 'INSERT INTO "task" (name,opis,id_boards,id_users,id_kategorie)  VALUES(' + values + ')';
-        db.get(stmt, function (err, user) {
-            callback(user, err);
-        });  
-    }
 	
-    getBoard(id: number, callback:resolver<IBoard>) {
-        let stmt = 'SELECT * FROM boards WHERE id = ';
-        db.get(stmt + id, (err, row) => {
-            callback(row, err);
-        });
-    }
-
+	
+	//DASHBOARD------------------------------------------------------------------------------------------------
+	
     getBoards(userId:number, callback:resolver<Array<IBoard>>) {
         let stmt = 'SELECT * FROM boards WHERE author = ';
         let dane = [];
@@ -119,33 +115,92 @@ module.exports = class SqliteConnector implements IDatabaseConnector {
             callback(dane, 'blad');
         });
     }
+	
+	
+	
+	//BOARD------------------------------------------------------------------------------------------------
+	
+	getBoard(id: number, callback:resolver<IBoard>) {
+        let stmt = 'SELECT * FROM boards WHERE id = ';
+        db.get(stmt + id, (err, row) => {
+            callback(row, err);
+        });
+    }
+	
+    createBoard(boardData, callback:resolver<IUser>) {
+		let boardName = boardData.name;
+		let userID = boardData.author;
+		
+        let values = [boardName, userID].map((str) => '"' + str + '"').join(',');
+        let stmt = 'INSERT INTO "boards" (name,author)  VALUES(' + values + ')';
+        db.get(stmt, function (err, user) {
+            callback(user, err);
+        });  
+    }	
+	
 
-    getTasks(params, callback:resolver<Array<IBoard>>) {
-
-        if (Number.isInteger(parseInt(params.id)) && Number.isInteger(parseInt(params.idCategory))) {
-            let stmt = `SELECT * FROM task WHERE id_boards = ${params.id} and id_kategorie = ${params.idCategory}`;
-            let dane = [];
-            new Promise(function (resolve, reject) {
-
-                db.each(stmt, (err, row) => {
-
-                    dane.push(row);
-
-                });
-                setTimeout(function () {
-
-                    resolve(dane);
-                }, 500);
-
-
-            }).then(dane => {
-
-                callback(dane, 'blad');
+	
+	//KATEGORIA------------------------------------------------------------------------------------------------
+	
+	getKategorie(callback:resolver<IUser>) {
+		let stmt = 'SELECT * FROM kategorie';
+        let dane = [];
+        new Promise(function (resolve, reject) {
+		
+            db.each(stmt, (err, row) => {
+                dane.push(row);
             });
-        }
-        else {
-            callback('blad', 'blad');
-        }
+			
+            setTimeout(function () {
+                resolve(dane);
+            }, 500);
+			
+        }).then(dane => {
+            callback(dane, 'blad');
+        });
+    }
+	
+	
+	
+	//TASK------------------------------------------------------------------------------------------------
+	
+	getTasks(params, callback:resolver<Array<IBoard>>) {
+		let boardID = parseInt(params.id);
+		let katID = parseInt(params.idCategory);
+		
+		let stmt = `SELECT * FROM task WHERE id_boards = ${boardID} and id_kategorie = ${katID}`;
+		let dane = [];
+		new Promise(function (resolve, reject) {
+
+			db.each(stmt, (err, row) => {
+
+				dane.push(row);
+
+			});
+			setTimeout(function () {
+
+				resolve(dane);
+			}, 500);
+
+
+		}).then(dane => {
+
+			callback(dane, 'blad');
+		});
+    }
+	
+	createTask(taskData, callback:resolver<IUser>) {
+		let taskName = mysql_real_escape_string(taskData.name);
+		let taskOpis = mysql_real_escape_string(taskData.opis);
+		let boardID = parseInt(taskData.id_board);
+		let userID = parseInt(taskData.id_user);
+		let katID = parseInt(taskData.id_kategoria);
+		
+        let values = [taskName, taskOpis, boardID, userID, katID].map((str) => '"' + str + '"').join(',');
+        let stmt = 'INSERT INTO "task" (name,opis,id_boards,id_users,id_kategorie)  VALUES(' + values + ')';
+        db.get(stmt, function (err, user) {
+            callback(user, err);
+        });  
     }
 
 }
