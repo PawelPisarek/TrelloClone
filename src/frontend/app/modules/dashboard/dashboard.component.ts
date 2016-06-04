@@ -22,8 +22,10 @@ export class DashboardComponent {
   constructor(private _service:BoardService, private  _router:Router){}
 
   ngOnInit() {
-      this._service.getBoards(1).subscribe(data=> {
+      this._service.getBoards().subscribe(data=> {
           this.boards = data;
+      },error => {
+          console.log(error);
       });
   }
   addBoard(name:string){

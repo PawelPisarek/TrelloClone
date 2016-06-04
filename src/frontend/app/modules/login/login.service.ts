@@ -38,6 +38,7 @@ export class LoginService {
     saveJwt(jwt) {
         if (jwt) {
             localStorage.setItem('token', jwt.token);
+            localStorage.setItem('userId', jwt.userId);
         }
         if (jwt.failed){
 

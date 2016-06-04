@@ -49,7 +49,8 @@ router.post('/login', (req, res) => {
             res.json({
                 token: jwt.sign(user, req.app.get('jwtSecret'), {
                     expiresIn: '24h'
-                })
+                }),
+                userId: user.id
             });
         }
     });
