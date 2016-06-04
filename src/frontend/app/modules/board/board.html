@@ -23,7 +23,7 @@
         </div>
         <md-buttons-container  class="tasks" layout-align="center center">
           <div id="sortable1" class="connectedSortable taskList" layout="column">
-            <task-list [board]="board"></task-list>
+            <task-list [board]="board" [category]="category"></task-list>
             <!--<md-button-task class="task" *ngFor="let task of tasks" (click)="clicked()" data-toggle="modal" data-target=".bd-example-modal-lg"><span>{{task.name}}</span></md-button-task>-->
           </div>
           <div class="taskList" *ngIf="hideInput==true" layout="column">

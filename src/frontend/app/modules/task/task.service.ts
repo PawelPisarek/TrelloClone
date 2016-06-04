@@ -1,17 +1,19 @@
 import {Injectable} from "angular2/core";
 import {Http, Response, Headers} from "angular2/http";
 import {Task, OneTask} from "./task.model";
+import {Board} from "../board/board.model";
+import {Category} from "../category/category.model";
 @Injectable()
 export class TaskService {
     constructor(private http:Http) {
 
     }
 
-    getTasks(idBoard) {
+    getTasks(board:Board,category:Category) {
         var header = new Headers();
         let token = localStorage.getItem('token');
         header.append('x-access-token', token);
-        return this.http.get(`http://localhost:8081/api/tasks/${idBoard}`,
+        return this.http.get(`http://localhost:8081/api/tasks/${board.id}/${category.id}`,
             {headers: header})
             .map(res=> (<Response>res).json())
             .map((apiTasks)=> {

@@ -119,27 +119,33 @@ module.exports = class SqliteConnector implements IDatabaseConnector {
             callback(dane, 'blad');
         });
     }
-	
-    getTasks(idBoard:number, callback:resolver<Array<IBoard>>) {
-        let stmt = 'SELECT * FROM task WHERE id_boards = ';
-        let dane = [];
-        new Promise(function (resolve, reject) {
 
-            db.each(stmt + idBoard, (err, row) => {
+    getTasks(params, callback:resolver<Array<IBoard>>) {
 
-                dane.push(row);
+        if (Number.isInteger(parseInt(params.id)) && Number.isInteger(parseInt(params.idCategory))) {
+            let stmt = `SELECT * FROM task WHERE id_boards = ${params.id} and id_kategorie = ${params.idCategory}`;
+            let dane = [];
+            new Promise(function (resolve, reject) {
 
+                db.each(stmt, (err, row) => {
+
+                    dane.push(row);
+
+                });
+                setTimeout(function () {
+
+                    resolve(dane);
+                }, 500);
+
+
+            }).then(dane => {
+
+                callback(dane, 'blad');
             });
-            setTimeout(function () {
-
-                resolve(dane);
-            }, 500);
-
-
-        }).then(dane => {
-
-            callback(dane, 'blad');
-        });
+        }
+        else {
+            callback('blad', 'blad');
+        }
     }
 
 }

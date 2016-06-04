@@ -29,8 +29,8 @@ router.post('/task', (req, res) => {
     });
 });
 
-router.get('/tasks/:id', (req, res) => {
-    req.app.get('DatabaseConnector').getTasks(req.params.id, (tasks, err) => {
+router.get('/tasks/:id/:idCategory', (req, res) => {
+    req.app.get('DatabaseConnector').getTasks(req.params, (tasks, err) => {
         if (tasks) {
             console.log('Found task for board id=' + req.params.id);
             res.json(tasks);

@@ -7,6 +7,7 @@ import {Task} from "./task.model";
 import {BoardService} from "../board/board.service";
 import {Board} from "../board/board.model";
 import {error} from "util";
+import {Category} from "../category/category.model";
 declare var jQuery:any;
 @Component({
     selector: 'task-list',
@@ -21,6 +22,7 @@ export class TaskListComponent {
     }
 
     @Input() board:Board;
+    @Input() category:Category;
     private tasks:Task[]=[
         {
             'name':"TASKNAME0",
@@ -66,8 +68,7 @@ export class TaskListComponent {
             connectWith: ".connectedSortable"
         }).disableSelection();
 
-        this._taskService.getTasks(this.board.id).subscribe(data=> {
-
+        this._taskService.getTasks(this.board,this.category).subscribe(data=> {
             this.tasks = data; //zakomentuj tą linie jeżeli chcesz mieć dane z powyższej tablicy
         }, error=> {
             console.log(error);
