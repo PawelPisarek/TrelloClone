@@ -23,7 +23,7 @@ module.exports = class SqliteConnector implements IDatabaseConnector {
                     db.run(TASK_TABLE_CREATE);
                     db.run(CHECKLIST_TABLE_CREATE);
                     db.serialize(() => {
-                        db.run('INSERT INTO "users" (login, password) VALUES("admin", "admin")');
+                        db.run('INSERT INTO "users" (email, password) VALUES("admin", "admin")');
                     });
                 }
             });
@@ -31,22 +31,22 @@ module.exports = class SqliteConnector implements IDatabaseConnector {
     }
 
     getUser(id:number, callback:resolver<IUser>) {
-        let stmt = 'SELECT id, login FROM users WHERE id = ';
+        let stmt = 'SELECT id, email FROM users WHERE id = ';
         db.get(stmt + id, (err, row) => {
             callback(row, err);
         });
     }
 
     getUserAuthByLogin(name:string, callback:resolver<IUser>) {
-        let stmt = 'SELECT * FROM users WHERE login = "' + name + '"';
+        let stmt = 'SELECT * FROM users WHERE email = "' + name + '"';
         db.get(stmt, (err, row) => {
             callback(row, err);
         });
     }
     
     createUser(userData, callback:resolver<IUser>) {
-        let values = [userData.login, userData.password].map((str) => '"' + str + '"').join(',');
-        let stmt = 'INSERT INTO "users" (login, password) VALUES(' + values + ')';
+        let values = [userData.email, userData.password].map((str) => '"' + str + '"').join(',');
+        let stmt = 'INSERT INTO "users" (email, password) VALUES(' + values + ')';
         db.get(stmt, function(err, user) {
            callback(user, err); 
         });
