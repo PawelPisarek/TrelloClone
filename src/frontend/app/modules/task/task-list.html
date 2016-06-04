@@ -1,7 +1,1 @@
-<ul>
-    <li *ngFor="#task of _tasks" (click)="onSelect(task)">
-        {{task.id |json}}
-        {{task.name}}
-        {{task.opis}}
-    </li>
-</ul>
+<md-button-task class="task" *ngFor="let task of tasks" (click)="clicked()" data-toggle="modal" data-target=".bd-example-modal-lg"><span>{{task.name}}</span></md-button-task>

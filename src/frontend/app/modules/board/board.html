@@ -5,7 +5,6 @@
       </div>
 </md-toolbar-info>
 
-<task-list [board]="board"></task-list>
   <div id="boards" layout="row">
     <div class="board">
       <md-card  layout="column" >
@@ -22,7 +21,8 @@
         </div>
         <md-buttons-container  class="tasks" layout-align="center center">
           <div id="sortable1" class="connectedSortable taskList" layout="column">
-            <md-button-task class="task" *ngFor="let task of tasks" (click)="clicked()" data-toggle="modal" data-target=".bd-example-modal-lg"><span>{{task.name}}</span></md-button-task>
+            <task-list [board]="board"></task-list>
+            <!--<md-button-task class="task" *ngFor="let task of tasks" (click)="clicked()" data-toggle="modal" data-target=".bd-example-modal-lg"><span>{{task.name}}</span></md-button-task>-->
           </div>
           <div class="taskList" *ngIf="hideInput==true" layout="column">
             <md-button-task class="task"><span><input/></span></md-button-task>

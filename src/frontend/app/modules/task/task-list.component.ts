@@ -1,4 +1,4 @@
-import {Component, Injector, Input} from 'angular2/core';
+import {Component, Injector, Input, ElementRef} from 'angular2/core';
 
 import {RouteParams, ROUTER_DIRECTIVES, RouteData, Router} from "angular2/router";
 import {MATERIAL_DIRECTIVES} from "ng2-material/all";
@@ -7,7 +7,7 @@ import {Task} from "./task.model";
 import {BoardService} from "../board/board.service";
 import {Board} from "../board/board.model";
 import {error} from "util";
-
+declare var jQuery:any;
 @Component({
     selector: 'task-list',
     directives: [MATERIAL_DIRECTIVES, ROUTER_DIRECTIVES],
@@ -15,19 +15,60 @@ import {error} from "util";
     providers: [TaskService]
 })
 export class TaskListComponent {
-    constructor(private _boardService:BoardService,
-                injector:Injector,
+    constructor(private _elRef:ElementRef,
                 private _taskService:TaskService,
                 private _router:Router) {
     }
 
     @Input() board:Board;
-    private _tasks:Task[];
+    private tasks:Task[]=[
+        {
+            'name':"TASKNAME0",
+            'board': 0
+        },
+        {
+            'name':"TASKNAME1",
+            'board': 0
+        },
+        {
+            'name':"TASKNAME2",
+            'board': 0
+        },
+        {
+            'name':"TASKNAME3",
+            'board': 0
+        },
+        {
+            'name':"TASKNAME4",
+            'board': 1
+        },
+        {
+            'name':"TASKNAME5",
+            'board': 1
+        },
+        {
+            'name':"TASKNAME6",
+            'board': 2
+        }
+    ];
+    hideInput:boolean = false;
+
+    showInput() {
+        this.hideInput = this.hideInput ? false : true;
+    }
+
+    clicked() {
+        console.log('clicked');
+    }
 
     ngOnInit() {
+        jQuery(this._elRef.nativeElement).find("#sortable1, #sortable2").sortable({
+            connectWith: ".connectedSortable"
+        }).disableSelection();
 
         this._taskService.getTasks(this.board.id).subscribe(data=> {
-            this._tasks = data;
+
+            this.tasks = data; //zakomentuj tą linie jeżeli chcesz mieć dane z powyższej tablicy
         }, error=> {
             console.log(error);
         })
