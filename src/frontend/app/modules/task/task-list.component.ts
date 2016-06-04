@@ -1,10 +1,12 @@
-import {Component, Injector} from 'angular2/core';
+import {Component, Injector, Input} from 'angular2/core';
 
 import {RouteParams, ROUTER_DIRECTIVES, RouteData, Router} from "angular2/router";
 import {MATERIAL_DIRECTIVES} from "ng2-material/all";
 import {TaskService} from "./task.service";
 import {Task} from "./task.model";
 import {BoardService} from "../board/board.service";
+import {Board} from "../board/board.model";
+import {error} from "util";
 
 @Component({
     selector: 'task-list',
@@ -17,21 +19,18 @@ export class TaskListComponent {
                 injector:Injector,
                 private _taskService:TaskService,
                 private _router:Router) {
-        // this._parentParams = injector.parent.parent.get(RouteParams);
     }
 
+    @Input() board:Board;
     private _tasks:Task[];
-    private _parentParams:RouteParams;
 
     ngOnInit() {
-        let id = +this._parentParams.get('id');
-        this._boardService.getBoards(id).subscribe(data=> {
-            console.log(data);
-        });
 
-        // this._taskService.getTasks().subscribe(data=> {
-        //     this._tasks = data;
-        // })
+        this._taskService.getTasks(this.board.id).subscribe(data=> {
+            this._tasks = data;
+        }, error=> {
+            console.log(error);
+        })
     }
 
     onSelect(task:Task) {

@@ -32,6 +32,7 @@ app.set('DatabaseConnector', new DatabaseConnector('./trelloClone.db'));
 app.use('/api', require('./modules/auth'));
 app.use('/api', require('./modules/user'));
 app.use('/api', require('./modules/dashboard'));
+app.use('/api', require('./modules/task'));
 
 //Starting server listen here:
 var server = app.listen(8081, function () {

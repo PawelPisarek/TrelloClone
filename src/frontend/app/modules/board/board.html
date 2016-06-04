@@ -1,9 +1,11 @@
+<div *ngIf="board">
 <md-toolbar-info class="info-toolbar" layout="row">
       <div>
         BOARD ID: {{board.id}} NAZWA: {{board.name}} AUTOR: {{board.author}}
       </div>
 </md-toolbar-info>
 
+<task-list [board]="board"></task-list>
   <div id="boards" layout="row">
     <div class="board">
       <md-card  layout="column" >
@@ -93,4 +95,5 @@
 
   <router-outlet></router-outlet>
 
+</div>
 </div>

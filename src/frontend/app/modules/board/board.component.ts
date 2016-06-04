@@ -6,19 +6,21 @@ import {RouteConfig, ROUTER_DIRECTIVES} from "angular2/router";
 import {ElementRef} from "angular2/core";
 import {BoardService} from "./board.service";
 import {Board} from "./board.model";
+import {TaskListComponent} from "../task/task-list.component";
 declare var jQuery: any;
 @Component({
     selector: 'board',
     templateUrl: 'app/modules/board/board.html',
     providers: [BoardService, HTTP_PROVIDERS],
-    directives: [MATERIAL_DIRECTIVES, ROUTER_DIRECTIVES]
+    directives: [MATERIAL_DIRECTIVES, ROUTER_DIRECTIVES, TaskListComponent]
 })
 // @RouteConfig([
 //     {path: '/', name: 'BoardComponent', component: BoardComponent, useAsDefault: true},
 //
 // ])
 export class BoardComponent {
-  board : Board = new Board(0,"",""); // jeśli nie damy = new Board(0,"","") to przy wyświetlaniu zwraca nulla a i tak w inicie getBoard() zwraca obiekt BOARD
+  board : Board ;
+      // = new Board(0,"",""); // jeśli nie damy = new Board(0,"","") to przy wyświetlaniu zwraca nulla a i tak w inicie getBoard() zwraca obiekt BOARD
   constructor(private _elRef: ElementRef, public route: Router,public params: RouteParams,public _service:BoardService){}
   hideInput : boolean = false;
   tasks : any[] =[

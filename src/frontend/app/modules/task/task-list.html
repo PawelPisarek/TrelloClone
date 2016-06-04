@@ -1,9 +1,7 @@
 <ul>
     <li *ngFor="#task of _tasks" (click)="onSelect(task)">
-        {{task.tags |json}}
-        {{task.label}}
-        {{task.column}}
-        {{task.author}}
-        {{task.users|json}}
+        {{task.id |json}}
+        {{task.name}}
+        {{task.opis}}
     </li>
 </ul>
