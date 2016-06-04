@@ -1,0 +1,57 @@
+Pobranie listy boardow uzytkownika o id:
+	GET /boards/:id
+
+	
+Tworzenie board:
+	POST /board
+		name, //Nazwa boardu
+		author //Id uzytkownika
+
+		
+Pobranie boardu o ID i uzytkownika ID:
+	GET /board/:id/:userID
+
+	
+Pobranie kategori:
+	GET /kategorie
+
+
+Tworzenie pola w checkliscie:
+	POST /checklist
+		name, //Nazwa dla pola
+		id_task, //Id taska gdzie ma byc pole
+		is_check //0 jezeli odznaczony, 1 jezeli zaznaczony
+
+		
+Zaznaczanie/Odznaczenie pola w checkliscie:
+	POST /checklistUpdate
+		id, //id pola ktore ma byc check/uncheck
+		checked //0 jezeli odznaczony, 1 jezeli zaznaczony
+
+		
+Pobranie p¢l checklisty dla task'a o ID:
+	GET /checklist/:id
+
+
+Tworzenie taska:
+	POST /task
+		name, //Nazwa taska
+		opis, //Opis taska (wyswietlany w modalu)
+		deadline, //Data wykonania w formacie rrrr-mm-dd
+		id_boards, //ID boardu
+		id_users,  //ID uzytkownika
+		id_kategorie //ID kategori
+	
+	
+Drag and drop taska:
+	POST /taskMove
+		task_id, //ID taska majacego byc przeniesiony
+		new_kat_id //ID kategori do ktorej task jest przenoszony
+	
+	
+Pobranie danych tasku o ID:
+	GET /task/:id
+	
+	
+Pobranie listy taskow dla boardu o ID i Kategori o ID:
+	GET /tasks/:id/:idCategory

@@ -34,7 +34,7 @@ router.post('/taskMove', (req, res) => {
     var db = req.app.get('DatabaseConnector'),
         dane = {
 			taskID: req.body.task_id, 
-			newKatID: req.body.new_kat_id,
+			newKatID: req.body.new_kat_id
         };
 
     db.moveTask(dane.taskID, dane.newKatID, (user, err) => {

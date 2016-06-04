@@ -1,6 +1,7 @@
 var router = require('express').Router();
 
-// GET /checklist
+// POST /checklist
+// POST /checklistUpdate
 // GET /checklist/:id
 
 router.post('/checklist', (req, res) => {
@@ -8,7 +9,7 @@ router.post('/checklist', (req, res) => {
         dane = {
 			name: req.body.name, 
 			id_task: req.body.id_task,
-			is_check: req.body.is_check,
+			is_check: req.body.is_check
         };
 
     db.createChecklist(dane, (user, err) => {

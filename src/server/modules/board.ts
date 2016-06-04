@@ -1,8 +1,8 @@
 var router = require('express').Router();
 
-// GET /board 		<- Tworzenie nowego board'a
-// GET /board/:id 	<- Id uzytkownika, ktorego boardy maja byc wyswietlone
-// GET /kategorie 	<- Wyswietla kategorie
+// POST /board
+// GET /board/:id/:userID
+// GET /kategorie
 
 router.post('/board', (req, res) => {
     var db = req.app.get('DatabaseConnector'),
