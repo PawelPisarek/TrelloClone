@@ -9,7 +9,7 @@ export class TaskService {
 
     }
 
-    getTasks(board:Board,category:Category) {
+    getTasks(board:Board, category:Category) {
         var header = new Headers();
         let token = localStorage.getItem('token');
         header.append('x-access-token', token);
@@ -34,5 +34,30 @@ export class TaskService {
                 return new OneTask(task.id, task.name, task.column, task.description)
             })
     }
+
+
+    createTask(task:Task) {
+
+        var header = new Headers();
+        let token = localStorage.getItem('token');
+        let userId = localStorage.getItem('userId');
+        header.append('x-access-token', token);
+        var creds = `{
+    "id_boards": "${task.board.id}",
+    "id_users": "${userId}",
+    "id_kategorie": "${task.id_kategorie.id}",
+    "name": "${task.name}",
+    "opis": "${task.opis}",
+    "deadline": "${task.deadline}"
+            }`;
+
+        header.append('Content-Type', 'application/json');
+        return this.http.post(`http://localhost:8081/api/task`, creds, {headers: header})
+            .map(res => (<Response>res).json())
+            .map(data=> {
+                return data;
+            })
+    }
+
 
 }
