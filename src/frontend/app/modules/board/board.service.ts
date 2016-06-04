@@ -26,8 +26,28 @@ export class BoardService {
             )
     }
 
-    getBoard(id:number) {
+    createBoard(board:Board) {
       
+        var header = new Headers();
+        let token =  localStorage.getItem('token');
+        let userId =  localStorage.getItem('userId');
+        header.append('x-access-token', token);
+        var creds = `{
+            "name": "${board.name}",
+            "author": "${userId}"
+        }`;
+
+        header.append('Content-Type', 'application/json');
+        return this.http.post(`http://localhost:8081/api/board/`,creds,{headers:header})
+            .map(res => (<Response>res).json())
+            .map(data=> {
+
+                return data;
+            })
+    }
+
+    getBoard(id:number) {
+
         var header = new Headers();
         let token =  localStorage.getItem('token');
         header.append('x-access-token', token);
@@ -38,6 +58,4 @@ export class BoardService {
                 return new Board(jboard.id, jboard.name, jboard.author);
             })
     }
-
-
 }

@@ -30,6 +30,10 @@ export class DashboardComponent {
   }
   addBoard(name:string){
     this.boards.push(new Board(this.boards.length+1,name,'TuMusiBycWpisanyAutor'));
+      this._service.createBoard(new Board(this.boards.length+1,name,'TuMusiBycWpisanyAutor'))
+          .subscribe(data=>{
+              console.log(data);
+          })
   }
   gotoDetail(board: Board) {
     let link = ['Board', { id: board.id }];
