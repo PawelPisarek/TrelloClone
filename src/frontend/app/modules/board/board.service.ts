@@ -27,10 +27,15 @@ export class BoardService {
     }
 
     getBoard(id:number) {
-        return this.http.get(`http://localhost:8081/board/${id}`)
+      
+        var header = new Headers();
+        let token =  localStorage.getItem('token');
+        header.append('x-access-token', token);
+        return this.http.get(`http://localhost:8081/api/board/${id}`,{headers:header})
             .map(res => (<Response>res).json())
             .map(jboard=> {
-                return new Board(jboard.board.id, jboard.board.name, jboard.board.author);
+
+                return new Board(jboard.id, jboard.name, jboard.author);
             })
     }
 

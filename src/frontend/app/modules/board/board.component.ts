@@ -69,9 +69,13 @@ export class BoardComponent {
     jQuery(this._elRef.nativeElement).find("#sortable1, #sortable2").sortable({
       connectWith: ".connectedSortable"
     }).disableSelection();
-    // this._service.getBoard(+this.params.get('id')).subscribe(data=> {
-    //     this.board = data;
-    // });
+      let id = +this.params.get('id');
+      this._service.getBoard(id)
+          .subscribe(data=> {
+              this.board = data;
+          }, error=> {
+              console.log(error);
+          });
 
   }
 }

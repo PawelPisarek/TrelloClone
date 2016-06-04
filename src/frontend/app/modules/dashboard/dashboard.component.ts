@@ -33,7 +33,6 @@ export class DashboardComponent {
   }
   gotoDetail(board: Board) {
     let link = ['Board', { id: board.id }];
-    console.log(board);
     this._router.navigate(link);
   }
 
