@@ -1,56 +1,41 @@
 <div layout="row" layout-align="center center" class="container">
-  <div flex="100" >
-      <md-content layout-padding class="registerForm">
-        <h1 id="title">REGISTRATION</h1>
-        <div id="test1">
-          <!--UWAGA UWAGA Żeby to odkomentować i robisz ctrl + slash pisze dlatego żeby nie przyszło komuś do głowy ręcznie tego robić-->
-          <!--<form [ngFormModel]="registrationForm" (ngSubmit)="onSubmit()">-->
-            <!--<md-input-container class="md-block">-->
-              <!--<label for="email" class="inputTitle">Email</label>-->
-              <!--<input md-input  ngControl="email" id="email" [(value)]="model.email"/>-->
-              <!--<div md-messages="email" role="alert">-->
-                <!--<div md-message>Your email must be between 10 and 100 characters long and look like an e-mail address.</div>-->
-              <!--</div>-->
-            <!--</md-input-container>-->
-            <!--<div ngControlGroup="passwordRetry">-->
-            <!--<md-input-container class="md-block">-->
-              <!--<label for="password" class="inputTitle">Password</label>-->
-              <!--<input md-input ngControl="password" id="password" [(value)]="model.password">-->
-              <!--<div md-messages="password" role="alert">-->
-                <!--<div md-message="required">This is required.</div>-->
-              <!--</div>-->
-            <!--</md-input-container>-->
-            <!--<md-input-container class="md-block">-->
-              <!--<label for="password" class="inputTitle">Confirm Password</label>-->
-              <!--<input md-input ngControl="confirmPassword" id="confirmPassword" [(value)]="model.confirmPassword">-->
-              <!--<div md-messages="confirmPassword" role="alert">-->
-                <!--<div md-message="required">This is required.</div>-->
-              <!--</div>-->
-            <!--</md-input-container>-->
-              <!--</div>-->
-            <!--<button md-raised-button class="md-raised">SIGN UP</button>-->
-          <!--</form>-->
-          <form [ngFormModel]="registrationForm"
-                (ngSubmit)="onSubmit(registrationForm.value)">
+    <div flex="100">
+        <md-content layout-padding class="registerForm">
+            <h1 id="title">REGISTRATION</h1>
+            <div id="test1">
+                <form [ngFormModel]="registrationForm"
+                      (ngSubmit)="onSubmit(registrationForm.value)">
 
-            <md-input-container class="md-block">
-              <label for="email" class="inputTitle">Email</label>
-              <input md-input  ngControl="email" id="email"/>
-              <div md-messages="email" role="alert">
-                <div md-message>Your email must be between 10 and 100 characters long and look like an e-mail address.</div>
-              </div>
-            </md-input-container>
+                    <md-input-container class="md-block">
+                        <label for="email" class="inputTitle">Email</label>
+                        <input md-input ngControl="email" id="email" type="email"/>
+                        <div md-messages="email" role="alert">
+                            <div md-message>Your email must be between 10 and 100 characters long and look like an
+                                e-mail address.
+                            </div>
+                        </div>
+                    </md-input-container>
 
-            <div ngControlGroup="passwordRetry">
-              Password <input type="password" ngControl="password"> <br>
-              Confirm password <input type="password" ngControl="passwordConfirmation">
+                    <div ngControlGroup="passwordRetry">
+                        <md-input-container class="md-block">
+                            <label for="password" class="inputTitle">Password</label>
+                            <input type="password" md-input id="password" ngControl="password"> <br>
+                        </md-input-container>
+                        <md-input-container class="md-block">
+                            <label for="passwordC" class="inputTitle">Confirm password </label>
+                            <input type="password" md-input id="passwordC" ngControl="passwordConfirmation">
+
+                        </md-input-container>
+
+                    </div>
+                    <div *ngIf="!registrationForm.valid" style="background-color: yellow">Form is invalid</div>
+
+                    <button md-button class="md-primary" type="submit" [disabled]="!registrationForm.valid">submit
+                    </button>
+                    {{apiResponse|json}}
+                </form>
+
             </div>
-            <div *ngIf="!registrationForm.valid" style="background-color: yellow">Form is invalid</div>
-
-            <button md-button class="md-primary" type="submit" [disabled]="!registrationForm.valid">submit</button> {{apiResponse}}
-          </form>
-
-        </div>
-      </md-content>
+        </md-content>
     </div>
 </div>

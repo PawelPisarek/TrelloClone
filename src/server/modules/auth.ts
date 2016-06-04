@@ -64,8 +64,8 @@ router.post('/login', (req, res) => {
 router.post('/register', (req, res) => {
     var db = req.app.get('DatabaseConnector'),
         auth = {
-            login: req.body.login,
-            password: req.body.pass
+            email: req.body.email,
+            password: req.body.password
         };
     
     db.createUser(auth, (user, err) => {
@@ -75,7 +75,7 @@ router.post('/register', (req, res) => {
                 errno: err.errno
             });
         } else {
-            db.getUserAuthByLogin(auth.login, (user, err) => {
+            db.getUserAuthByLogin(auth.email, (user, err) => {
                 res.json({
                     token: jwt.sign(user, req.app.get('jwtSecret'), {
                         expiresIn: '24h'

@@ -15,13 +15,13 @@ export class UsersService {
 
     register(value: UserForm) {
         var creds = `{
-            "login": "${value.email}",
-            "pass": "${value.password}"
+            "email": "${value.email}",
+            "password": "${value.password}"
         }`;
         var header = new Headers();
         header.append('Content-Type', 'application/json');
         
-     return  this.http.post('http://localhost:8081/register', creds,
+     return  this.http.post('http://localhost:8081/api/register', creds,
             {
                 headers: header
             })

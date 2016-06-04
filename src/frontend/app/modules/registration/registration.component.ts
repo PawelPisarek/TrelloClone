@@ -43,7 +43,9 @@ export class Registration {
 			data => {
 				this.apiResponse = data;
 			},
-			err => console.log(err)
+			err => {
+				this.apiResponse = err._body;
+			}
 		);
 
 	}}
