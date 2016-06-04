@@ -2,7 +2,7 @@
 var Promise = require('promise'),
     sqlite = require('sqlite3'),
     db;
-    
+
 const USER_TABLE_CREATE = 'CREATE TABLE "users" ( "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, "email" INTEGER UNIQUE, "password" VARCHAR(32));';
 const TASK_TABLE_CREATE = 'CREATE TABLE "task" ( "id" INTEGER NOT NULL, "id_boards" INTEGER NOT NULL, "id_users" INTEGER NOT NULL, "id_kategorie" INTEGER NOT NULL, "name" TEXT, "opis" VARCHAR(32), "deadline" DATATIME, PRIMARY KEY(id), FOREIGN KEY("id_boards") REFERENCES "boards"("id"), FOREIGN KEY("id_users") REFERENCES "users"("id"), FOREIGN KEY("id_kategorie") REFERENCES "kategorie"("id"));';
 const KATEGORIE_TABLE_CREATE = 'CREATE TABLE "kategorie" ( "id" INTEGER NOT NULL, "name" VARCHAR(32), PRIMARY KEY(id));';
@@ -43,20 +43,22 @@ module.exports = class SqliteConnector implements IDatabaseConnector {
             callback(row, err);
         });
     }
-    
+
     createUser(userData, callback:resolver<IUser>) {
         let values = [userData.email, userData.password].map((str) => '"' + str + '"').join(',');
         let stmt = 'INSERT INTO "users" (email, password) VALUES(' + values + ')';
         db.get(stmt, function(err, user) {
-           callback(user, err); 
+           callback(user, err);
         });
     }
-    
-    getBoard(id: number, callback:resolver<IBoard>) {
-        let stmt = 'SELECT * FROM boards WHERE id = ';
-        db.get(stmt + id, (err, row) => {
-            callback(row, err);
+
+    createBoard(userData, callback:resolver<IUser>) {
+        let values = [userData.name, userData.author].map((str) => '"' + str + '"').join(',');
+        let stmt = 'INSERT INTO "boards" (name,author)  VALUES(' + values + ')';
+        db.get(stmt, function (err, user) {
+            callback(user, err);
         });
+        
     }
 
     getBoards(userId:number, callback:resolver<Array<IBoard>>) {
