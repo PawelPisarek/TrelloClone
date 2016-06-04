@@ -3,6 +3,31 @@ var router = require('express').Router();
 // GET /tasks/
 // GET /task/:id
 
+router.post('/task', (req, res) => {
+    var db = req.app.get('DatabaseConnector'),
+        dane = {
+			name: req.body.name, 
+			opis: req.body.opis, 
+			id_board: req.body.idBoard, 
+			id_user: req.body.author, 
+			id_kategoria: req.body.idKategoria
+        };
+
+    db.createTask(dane, (user, err) => {
+		console.log('task.ts:');
+		console.log(dane);
+        if (err) {
+            res.status(500).json({ //TODO: more user friendly message?
+                error: err.message,
+                errno: err.errno
+            });
+        } else {
+            res.json({
+                data: 'Odswiez taski'
+            });
+        }
+    });
+});
 
 router.get('/tasks/:id', (req, res) => {
     req.app.get('DatabaseConnector').getTasks(req.params.id, (tasks, err) => {

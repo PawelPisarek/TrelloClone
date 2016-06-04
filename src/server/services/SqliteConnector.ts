@@ -47,6 +47,24 @@ module.exports = class SqliteConnector implements IDatabaseConnector {
             callback(row, err);
         });
     }
+	
+	getKategorie(callback:resolver<IUser>) {
+		let stmt = 'SELECT * FROM kategorie';
+        let dane = [];
+        new Promise(function (resolve, reject) {
+		
+            db.each(stmt, (err, row) => {
+                dane.push(row);
+            });
+			
+            setTimeout(function () {
+                resolve(dane);
+            }, 500);
+			
+        }).then(dane => {
+            callback(dane, 'blad');
+        });
+    }
 
     createUser(userData, callback:resolver<IUser>) {
         let values = [userData.email, userData.password].map((str) => '"' + str + '"').join(',');
@@ -56,14 +74,23 @@ module.exports = class SqliteConnector implements IDatabaseConnector {
         });
     }
 
-    createBoard(userData, callback:resolver<IUser>) {
-        let values = [userData.name, userData.author].map((str) => '"' + str + '"').join(',');
+    createBoard(boardData, callback:resolver<IUser>) {
+        let values = [boardData.name, boardData.author].map((str) => '"' + str + '"').join(',');
         let stmt = 'INSERT INTO "boards" (name,author)  VALUES(' + values + ')';
         db.get(stmt, function (err, user) {
             callback(user, err);
-        });
-        
+        });  
     }
+	
+	createTask(taskData, callback:resolver<IUser>) {
+		console.log(taskData);
+        let values = [taskData.name, taskData.opis, taskData.id_board, taskData.id_user, taskData.id_kategoria].map((str) => '"' + str + '"').join(',');
+        let stmt = 'INSERT INTO "task" (name,opis,id_boards,id_users,id_kategorie)  VALUES(' + values + ')';
+        db.get(stmt, function (err, user) {
+            callback(user, err);
+        });  
+    }
+	
     getBoard(id: number, callback:resolver<IBoard>) {
         let stmt = 'SELECT * FROM boards WHERE id = ';
         db.get(stmt + id, (err, row) => {
@@ -92,6 +119,7 @@ module.exports = class SqliteConnector implements IDatabaseConnector {
             callback(dane, 'blad');
         });
     }
+	
     getTasks(idBoard:number, callback:resolver<Array<IBoard>>) {
         let stmt = 'SELECT * FROM task WHERE id_boards = ';
         let dane = [];
