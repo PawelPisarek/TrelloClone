@@ -7,10 +7,11 @@ router.post('/task', (req, res) => {
     var db = req.app.get('DatabaseConnector'),
         dane = {
 			name: req.body.name, 
-			opis: req.body.opis, 
-			id_board: req.body.idBoard, 
-			id_user: req.body.author, 
-			id_kategoria: req.body.idKategoria
+			opis: req.body.opis,
+			deadline: req.body.deadline,
+			id_board: req.body.id_boards, 
+			id_user: req.body.id_users, 
+			id_kategoria: req.body.id_kategorie
         };
 
     db.createTask(dane, (user, err) => {

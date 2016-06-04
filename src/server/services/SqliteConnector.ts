@@ -192,12 +192,13 @@ module.exports = class SqliteConnector implements IDatabaseConnector {
 	createTask(taskData, callback:resolver<IUser>) {
 		let taskName = mysql_real_escape_string(taskData.name);
 		let taskOpis = mysql_real_escape_string(taskData.opis);
+		let deadline = mysql_real_escape_string(taskData.deadline);
 		let boardID = parseInt(taskData.id_board);
 		let userID = parseInt(taskData.id_user);
 		let katID = parseInt(taskData.id_kategoria);
 		
-        let values = [taskName, taskOpis, boardID, userID, katID].map((str) => '"' + str + '"').join(',');
-        let stmt = 'INSERT INTO "task" (name,opis,id_boards,id_users,id_kategorie)  VALUES(' + values + ')';
+        let values = [taskName, taskOpis, deadline, boardID, userID, katID].map((str) => '"' + str + '"').join(',');
+        let stmt = 'INSERT INTO "task" (name,opis,deadline,id_boards,id_users,id_kategorie)  VALUES(' + values + ')';
         db.get(stmt, function (err, user) {
             callback(user, err);
         });  
