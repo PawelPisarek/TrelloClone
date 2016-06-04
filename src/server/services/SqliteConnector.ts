@@ -25,6 +25,10 @@ module.exports = class SqliteConnector implements IDatabaseConnector {
                     db.serialize(() => {
                         db.run('INSERT INTO "users" (email, password) VALUES("admin", "admin")');
                     });
+					
+					db.serialize(() => {
+                        db.run('INSERT INTO "kategorie" (name) VALUES ("STORIES"), ("TODO"), ("IN PROGRESS"), ("TESTING"), ("DONE")');
+                    });
                 }
             });
         });
