@@ -7,11 +7,13 @@ import {ElementRef} from "angular2/core";
 import {BoardService} from "./board.service";
 import {Board} from "./board.model";
 import {TaskListComponent} from "../task/task-list.component";
+import {Category} from "../category/category.model";
+import {CategoryService} from "../category/category.service";
 declare var jQuery: any;
 @Component({
     selector: 'board',
     templateUrl: 'app/modules/board/board.html',
-    providers: [BoardService, HTTP_PROVIDERS],
+    providers: [BoardService, HTTP_PROVIDERS, CategoryService],
     directives: [MATERIAL_DIRECTIVES, ROUTER_DIRECTIVES, TaskListComponent]
 })
 // @RouteConfig([
@@ -21,9 +23,15 @@ declare var jQuery: any;
 export class BoardComponent {
   board : Board ;
       // = new Board(0,"",""); // jeśli nie damy = new Board(0,"","") to przy wyświetlaniu zwraca nulla a i tak w inicie getBoard() zwraca obiekt BOARD
-  constructor(private _elRef: ElementRef, public route: Router,public params: RouteParams,public _service:BoardService){}
-  hideInput : boolean = false;
+  constructor(private _elRef: ElementRef,
+              public route: Router,
+              public params: RouteParams,
+              public _service:BoardService,
+              public _categoryService:CategoryService) {
+  }
 
+    hideInput:boolean = false;
+    private categories:Category[];
 
   showInput()
   {
@@ -45,6 +53,12 @@ export class BoardComponent {
       this._service.getBoard(id)
           .subscribe(data=> {
               this.board = data;
+          }, error=> {
+              console.log(error);
+          });
+      this._categoryService.getCategories()
+          .subscribe(data=> {
+              this.categories = data;
           }, error=> {
               console.log(error);
           });

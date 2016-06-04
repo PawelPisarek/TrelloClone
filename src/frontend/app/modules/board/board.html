@@ -1,15 +1,17 @@
 <div *ngIf="board">
-<md-toolbar-info class="info-toolbar" layout="row">
-      <div>
-        BOARD ID: {{board.id}} NAZWA: {{board.name}} AUTOR: {{board.author}}
-      </div>
-</md-toolbar-info>
+  <md-toolbar-info class="info-toolbar" layout="row">
+    <div>
+      BOARD ID: {{board.id}} NAZWA: {{board.name}} AUTOR: {{board.author}}
+    </div>
+  </md-toolbar-info>
 
   <div id="boards" layout="row">
-    <div class="board">
+    <div  *ngFor="let task of tasks" (click)="clicked()" data-toggle="modal" data-target=".bd-example-modal-lg"><span>{{task.name}}</span></div>
+
+    <div class="board" *ngFor="#category of categories">
       <md-card  layout="column" >
         <div layout="row">
-          <md-card-title class="tasks-title">STORIES</md-card-title>
+          <md-card-title class="tasks-title">{{category.name}}</md-card-title>
           <md-button-menu id="menu-icon" class="material-icons">&#xE150;</md-button-menu>
         </div>
         <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
