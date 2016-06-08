@@ -43,18 +43,20 @@ md-input-container:not(.md-input-invalid).md-input-focused .md-input {
     -webkit-transition: all 0.4s;
 	transition: all 0.4s;
 }
-
-.container{
- 
+.submitButton:disabled{
+    background-color: #d3d3d3 !important;
 }
-
-#title{
+.submitButton:enabled:hover{
+  background-color: #E50000 !important;
+}
+#registrationTitle{
   text-align: center;
 }
 
-#test1{
+#registration{
   width: 70%;
   margin: auto;
+  margin-top: 50px;
 }
 a {
 	text-decoration: none;
@@ -65,8 +67,6 @@ body{
   height: 100%;
 }
 
-.md-input-focused .inputTitle{
+.md-input-focused .registerInput{
   color: red !important;
 }
-
-

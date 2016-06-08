@@ -1,14 +1,14 @@
 <div layout="row" layout-align="center center" class="container">
     <div flex="100">
         <md-content layout-padding class="registerForm">
-            <h1 id="title">REGISTRATION</h1>
-            <div id="test1">
+            <h1 id="registrationTitle">Create a Scrapp Account</h1>
+            <div id="registration">
                 <form [ngFormModel]="registrationForm"
                       (ngSubmit)="onSubmit(registrationForm.value)">
 
                     <md-input-container class="md-block">
-                        <label for="email" class="inputTitle">Email</label>
-                        <input md-input ngControl="email" id="email" type="email"/>
+                        <label for="email" class="registerInput">Email</label>
+                        <input md-input  [(ngModel)]="registrationForm.email" ngControl="email" id="email" type="email"/>
                         <div md-messages="email" role="alert">
                             <div md-message>Your email must be between 10 and 100 characters long and look like an
                                 e-mail address.
@@ -18,19 +18,17 @@
 
                     <div ngControlGroup="passwordRetry">
                         <md-input-container class="md-block">
-                            <label for="password" class="inputTitle">Password</label>
+                            <label for="password" class="registerInput">Password</label>
                             <input type="password" md-input id="password" ngControl="password"> <br>
                         </md-input-container>
                         <md-input-container class="md-block">
-                            <label for="passwordC" class="inputTitle">Confirm password </label>
+                            <label for="passwordC" class="registerInput">Confirm password </label>
                             <input type="password" md-input id="passwordC" ngControl="passwordConfirmation">
-
                         </md-input-container>
 
                     </div>
-                    <div *ngIf="!registrationForm.valid" style="background-color: yellow">Form is invalid</div>
-
-                    <button md-button class="md-primary" type="submit" [disabled]="!registrationForm.valid">submit
+                    <!-- <div *ngIf="registrationForm.email" style="color:#ff0000">Invalid email or password</div> -->
+                      <button md-button class="md-button submitButton" type="submit" [disabled]="!registrationForm.valid">Create New Account
                     </button>
                     {{apiResponse|json}}
                 </form>

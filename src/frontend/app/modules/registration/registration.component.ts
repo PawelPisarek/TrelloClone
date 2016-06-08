@@ -1,5 +1,5 @@
 import {Component} from "angular2/core";
-import {RouterLink} from 'angular2/router';
+import {RouterLink,Router} from 'angular2/router';
 import {MATERIAL_DIRECTIVES} from "ng2-material/all";
 import {FORM_DIRECTIVES, Validators, FormBuilder, ControlGroup} from "angular2/common";
 //import {RegistrationService} from "./registration.service";
@@ -27,7 +27,7 @@ export class Registration {
 	registrationForm:ControlGroup;
 	public apiResponse:string;
 
-	constructor(builder:FormBuilder, private _service:UsersService) {
+	constructor(builder:FormBuilder, private _service:UsersService,private _router:Router) {
 		this.registrationForm = builder.group({
 			email: ["", Validators.required],
 			passwordRetry: builder.group({
