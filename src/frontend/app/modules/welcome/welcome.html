@@ -1,9 +1,16 @@
-<div id="welcome">
-    <span id="headerText">Welcome page</span>
-    <div id="login">
-        <a [routerLink]="['Login']"> <button md-raised-button class="md-raised md-primary" id="loginButton">Login</button></a>
+
+<div layout="row" layout-align="center center" class="container">
+  <div flex="100" >
+    <div id="welcome">
+        <div id="headerText">Scrapp</div>
+        <div id="headerDetail">Scrapp is the tool that lets you work more collaboratively, and get more done.</div>
+        <div id="register">
+          <a [routerLink]="['Registration']"> <button md-raised-button class="md-raised md-primary" id="registerButton">Sign Up - It's Free.</button></a>
+        </div>
+        <div id="login">
+            <a [routerLink]="['Login']"> <div id="loginButton">Log in...</div></a>
+        </div>
+
     </div>
-    <div id="register">
-    	<a [routerLink]="['Registration']"> <button md-raised-button class="md-raised md-primary" id="registerButton">Register</button></a>
-    </div>
+  </div>
 </div>
