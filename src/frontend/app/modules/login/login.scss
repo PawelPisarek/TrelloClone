@@ -1,17 +1,21 @@
 .loginForm{
   position: relative;
 	margin: auto;
-  top: 40px;
+  top: 60px;
 	left: 0;
 	z-index: 200;
 	right: 0;
-	width:400px;
+	width:600px;
 	color:#666;
 	padding:10px 0px;
 	border-radius: 10px;
 	background:rgba(255,255,255,1);
 	border-top: 2px solid #C0C0C0;
 	border-bottom: 2px solid #F00;
+
+}
+.container{
+  margin-top: 10%;
 }
 
 .loginForm button{
@@ -20,9 +24,9 @@
 	color:#fff;
 	padding:10px;
 	font-size:20px;
-	width:330px;
+	width:70%;
 	margin:20px auto;
-	display:block;
+  display:block;
 	cursor:pointer;
     -webkit-transition: all 0.4s;
 	transition: all 0.4s;
@@ -43,15 +47,12 @@ md-input-container:not(.md-input-invalid).md-input-focused .md-input {
 	transition: all 0.4s;
 }
 
-.container{
-  height: 70%;
-}
-
-#title{
+#loginTitle{
   text-align: center;
+  margin-bottom: 90px;
 }
 
-#test{
+#loginContent{
   width: 330px;
   margin: auto;
 }
@@ -66,4 +67,3 @@ body{
 .md-input-focused .inputTitle{
   color: red !important;
 }
-
