@@ -19,7 +19,7 @@ router.post('/board', (req, res) => {
             });
         } else {
             res.json({
-                data: 'nie wiem pewnie siê doda³o ale jak to sprawdziæ?'
+                data: 'nie wiem pewnie siï¿½ dodaï¿½o ale jak to sprawdziï¿½?'
             });
         }
     });
