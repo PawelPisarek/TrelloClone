@@ -166,7 +166,7 @@ module.exports = class SqliteConnector implements IDatabaseConnector {
 			});
 			setTimeout(function () {
 				resolve(dane);
-			}, 500);
+			}, 5);
 		}).then(dane => {
 			callback(dane, 'blad');
 		});

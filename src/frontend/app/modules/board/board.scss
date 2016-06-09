@@ -9,7 +9,7 @@
 #boards{
     width: 1240px;
     min-height: 0px;
-    margin: auto;
+    margin-top: 30px;
 }
 
 .board{
@@ -22,7 +22,6 @@
 
 .board md-card{
   margin: 4px;
-  text-align: center;
   max-height: 800px;
   width: 95%;
   color: black;
@@ -49,7 +48,6 @@
   margin: 8px;
   padding: 5px;
   color:#FF4747;
-
   cursor: pointer;
   font-size: 18px;
 }
@@ -66,8 +64,8 @@
   color:grey;
   height: 100%;
   width: 100%;
-  text-align: center;
   padding: 6px;
+  text-align: center;
 }
 
 .task{
@@ -75,7 +73,6 @@
   background: #C0C0C0;
   color:#404040;
   border-radius: 8px;
-  text-align: center;
   padding: 15px;
   cursor: pointer;
   -webkit-transition: all 0.4s;
@@ -87,11 +84,9 @@
   background: #FF4747;
   height: 48px;
   font-size: 15px;
-  text-align: center;
   font-weight: 700;
   cursor: pointer;
   border-radius: 10px;
-  padding-top: 13px;
 }
 
 .button-addNewTask:hover{
@@ -113,6 +108,215 @@
 }
 
 .taskModal {
+  position: relative;
   min-height: 200px;
   border-radius: 10px;
+}
+
+
+#close-icon{
+  width: 30px;
+  height: 30px;
+  margin: 8px;
+  padding: 6px;
+  color: #FF4747;
+  cursor: pointer;
+  font-size: 18px;
+  float: right;
+  position: relative;
+  
+}
+
+#close-icon:hover{
+  border-radius: 100%;
+  background: #ffcccc;
+  color:#e60000;
+  transition: all 0.4s;
+}
+
+#task-name{
+  color: #FF4747; 
+  height: 60px;
+}
+
+#task-content{
+  width: 90%;
+  height: 80px;
+  margin: 20px;
+  background:rgba(255,255,255,1);
+  border-top: 2px solid #C0C0C0;
+  border-bottom: 2px solid #F00;
+  padding:10px;
+}
+
+#datepicker-button{
+  float: left;
+  color: #FF4747;
+  margin-left: 30px;
+  margin-top: 2px;
+  margin-right: 5px;
+}
+
+#addDeadline{
+  float: left;
+  border: 20px;
+}
+
+#header-deadline{
+  float: left;
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.checkbox{
+  float: left;
+  width:70%;
+  color:#666;
+  padding:20px;
+    left: 30px;
+  font-size: 12px;
+
+}
+#header-task-name{
+  margin-top: 30px;
+  margin-left: 20px;
+  max-width: 60%;
+  position: fixed;
+  font-weight: 700;
+  font-size: 25px;
+}
+
+h2 {
+    font-size: 1rem;
+    color: black;
+}
+
+.checklist {
+
+    div {
+        margin-left: 15px;
+        clear: both;
+        overflow: hidden;
+    }
+
+    label {
+        width: 100%;
+        border-radius: 2px;
+        border: 1px solid #D1D3D4;
+        font-weight: normal;
+    }
+
+    input[type="radio"],
+    input[type="checkbox"] {
+
+        &:empty {
+            display: none;
+
+            ~ label {
+                position: relative;
+                line-height: 2.5em;
+                text-indent: 3.25em;
+                margin-top: 1em;
+                cursor: pointer;
+                user-select: none;
+
+                &:before {
+                    position: absolute;
+                    display: block;
+                    top: 0;
+                    bottom: 0;
+                    left: 0;
+                    content: '';
+                    width: 2.5em;
+                    background: #D1D3D4;
+                    border-radius: 3px 0 0 3px;
+                }
+            }
+        }
+
+        &:hover:not(:checked) ~ label {
+            color: #888;
+
+            &:before {
+                content: '\2714';
+                text-indent: .9em;
+                color: #C2C2C2;
+            }
+        }
+
+        &:checked ~ label {
+            color: #777;
+
+            &:before {
+                content: '\2714';
+                text-indent: .9em;
+                color: #333;
+                background-color: #ccc;
+            }
+        }
+
+        &:focus ~ label:before {
+            box-shadow: 0 0 0 3px #999;
+        }
+    }
+
+    &-default {
+        input[type="radio"],
+        input[type="checkbox"] {
+            &:checked ~ label:before {
+                color: #fff;
+                background-color: #FF4747;
+            }
+        }
+    }
+
+    &-primary {
+        input[type="radio"],
+        input[type="checkbox"] {
+            &:checked ~ label:before {
+                color: #fff;
+                background-color: #FF4747;
+            }
+        }
+    }
+
+    &-success {
+        input[type="radio"],
+        input[type="checkbox"] {
+            &:checked ~ label:before {
+                color: #fff;
+                background-color: #FF4747;
+            }
+        }
+    }
+
+    &-danger {
+        input[type="radio"],
+        input[type="checkbox"] {
+            &:checked ~ label:before {
+                color: #fff;
+                background-color: #FF4747;
+            }
+        }
+    }
+
+    &-warning {
+        input[type="radio"],
+        input[type="checkbox"] {
+            &:checked ~ label:before {
+                color: #fff;
+                background-color: #FF4747;
+            }
+        }
+    }
+
+    &-info {
+        input[type="radio"],
+        input[type="checkbox"] {
+            &:checked ~ label:before {
+                color: #fff;
+                background-color: #FF4747;
+            }
+        }
+    }
 }
