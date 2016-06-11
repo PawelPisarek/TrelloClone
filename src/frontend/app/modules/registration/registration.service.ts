@@ -26,6 +26,22 @@ export class UsersService {
                 headers: header
             })
             .map(res => (<Response>res).json())
+            .subscribe(
+                data => this.saveJwt(data),
+                err => this.logError(err)
+            );
+    }
+
+    saveJwt(jwt) {
+        if (jwt) {
+            localStorage.setItem('token', jwt.token);
+            localStorage.setItem('userId', jwt.userId);
+        }
+        if (jwt.failed){
+
+        }else{
+            this.router.navigateByUrl('/dashboard');
+        }
     }
 
     private logError(err): any {

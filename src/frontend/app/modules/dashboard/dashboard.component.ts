@@ -18,12 +18,14 @@ import {Router} from "angular2/router";
 //
 // ])
 export class DashboardComponent {
+  user: string = "TUTAJ POBRAC USERA";
   boards: Board[] = [];
   constructor(private _service:BoardService, private  _router:Router){}
 
   ngOnInit() {
       this._service.getBoards().subscribe(data=> {
           this.boards = data;
+          console.log(this.boards);
       },error => {
           console.log(error);
       });
