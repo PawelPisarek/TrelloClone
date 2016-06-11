@@ -16,14 +16,56 @@
         </div>
         <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
           <div class="modal-dialog modal-lg">
-            <div class="modal-content taskModal">
-              SUPER MODAL
+            <div class="modal-content taskModal" >
+              <div id="task-name">
+                <md-button-close id="close-icon" class="material-icons">&#xE5CD;</md-button-close>
+                <div id="header-task-name"><h>TASK NAME</h></div>
+              </div> 
+                <div layout="column"> 
+                  <md-content id="task-content">DESCRIPTION TASK</md-content>
+                   
+                    <div class="checkbox">
+                       <h2>CHECKLIST:</h2>
+
+                      <div class="checklist">
+                          <div class="checklist-default">
+                              <input type="checkbox" name="checkbox" id="checkbox1" checked/>
+                              <label for="checkbox1">First Option default</label>
+                          </div>
+                          <div class="checklist-primary">
+                              <input type="checkbox" name="checkbox" id="checkbox2" checked/>
+                              <label for="checkbox2">Second Option primary</label>
+                          </div>
+                          <div class="checklist-success">
+                              <input type="checkbox" name="checkbox" id="checkbox3" checked/>
+                              <label for="checkbox3">Third Option success</label>
+                          </div>
+                          <div class="checklist-danger">
+                              <input type="checkbox" name="checkbox" id="checkbox4" checked/>
+                              <label for="checkbox4">Fourth Option danger</label>
+                          </div>
+                          <div class="checklist-warning">
+                              <input type="checkbox" name="checkbox" id="checkbox5" checked/>
+                              <label for="checkbox5">Fifth Option warning</label>
+                          </div>
+                          <div class="checklist-info">
+                              <input type="checkbox" name="checkbox" id="checkbox6" checked/>
+                              <label for="checkbox6">Sixth Option info</label>
+                          </div>
+                      </div>
+                  </div>
+                  
+                  <div id="addDeadline">
+                    <i id="datepicker-button" class="material-icons">timer</i>
+                    <span id="header-deadline">Add deadline</span>
+                  </div>
+                </div>
             </div>
           </div>
         </div>
         <md-buttons-container  class="tasks" layout-align="center center">
           <div id="sortable1" class="connectedSortable taskList" layout="column">
-            <task-list [board]="board" [category]="category"></task-list>
+            <task-list [board]="board" [category]="category" layout="column"></task-list>
             <!--<md-button-task class="task" *ngFor="let task of tasks" (click)="clicked()" data-toggle="modal" data-target=".bd-example-modal-lg"><span>{{task.name}}</span></md-button-task>-->
           </div>
         </md-buttons-container>
@@ -31,7 +73,7 @@
      </md-card>
     </div>
 
-    <div class="board">
+    <!-- <div class="board">
       <md-card  layout="column" >
         <div layout="row">
           <md-card-title class="tasks-title">TODO</md-card-title>
@@ -89,9 +131,9 @@
         </md-buttons-container>
         <md-button class="button-addNewTask">Add</md-button>
       </md-card>
-    </div>
+    </div> -->
 
   <router-outlet></router-outlet>
-
-</div>
+ 
+ </div>
 </div>

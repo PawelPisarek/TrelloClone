@@ -23,36 +23,7 @@ export class TaskListComponent {
 
     @Input() board:Board;
     @Input() category:Category;
-    private tasks:Task[]=[
-        {
-            'name':"TASKNAME0",
-            'board': 0
-        },
-        {
-            'name':"TASKNAME1",
-            'board': 0
-        },
-        {
-            'name':"TASKNAME2",
-            'board': 0
-        },
-        {
-            'name':"TASKNAME3",
-            'board': 0
-        },
-        {
-            'name':"TASKNAME4",
-            'board': 1
-        },
-        {
-            'name':"TASKNAME5",
-            'board': 1
-        },
-        {
-            'name':"TASKNAME6",
-            'board': 2
-        }
-    ];
+    private tasks: Task[];
     hideInput:boolean = false;
 
     showInput() {

@@ -160,7 +160,7 @@ module.exports = class SqliteConnector implements IDatabaseConnector {
 		
 		let stmt = `SELECT * FROM task WHERE id_boards = ${boardID} and id_kategorie = ${katID}`;
 		let dane = [];
-        
+
 			db.each(stmt, (err, row) => {
 				dane.push(row);
 
