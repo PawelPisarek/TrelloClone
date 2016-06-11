@@ -1,4 +1,4 @@
-import {Component} from "angular2/core";
+import {Component, Input} from "angular2/core";
 import {Router} from "express-serve-static-core";
 import {RouteParams} from "angular2/router";
 import {TaskService} from "./task.service";
@@ -14,12 +14,6 @@ export class TaskDetailComponent {
 
     }
 
-    private _task:OneTask;
+    @Input() task:Task;
 
-    ngOnInit() {
-        let id = this._routeParams.get("id");
-        this._service.getTask(id).subscribe(data=> {
-            this._task = data;
-        });
-    }
 }

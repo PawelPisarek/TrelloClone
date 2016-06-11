@@ -113,11 +113,8 @@ module.exports = class SqliteConnector implements IDatabaseConnector {
 	
 	//BOARD------------------------------------------------------------------------------------------------
 	
-	getBoard(boardData, callback:resolver<IBoard>) {
-        let id = boardData.boardID;
-        let userID = boardData.userID;
-
-        let stmt = `SELECT * FROM boards WHERE id = ${id} and author = ${userID} LIMIT 1`;
+	getBoard(id: number, userID:number, callback:resolver<IBoard>) {
+        let stmt = `SELECT * FROM boards WHERE id = ${id} and author = ${userID}`;
         db.get(stmt, (err, row) => {
             callback(row, err);
         });
@@ -163,16 +160,16 @@ module.exports = class SqliteConnector implements IDatabaseConnector {
 		
 		let stmt = `SELECT * FROM task WHERE id_boards = ${boardID} and id_kategorie = ${katID}`;
 		let dane = [];
-
+		new Promise(function (resolve, reject) {
 			db.each(stmt, (err, row) => {
 				dane.push(row);
-
-			}, function(err,count) {
-                callback(dane, err);
-            });
-
-
-
+			});
+			setTimeout(function () {
+				resolve(dane);
+			}, 10);
+		}).then(dane => {
+			callback(dane, 'blad');
+		});
     }
 	
 	moveTask(taskID:number, newKatID:number, callback:resolver<Array<IBoard>>) {

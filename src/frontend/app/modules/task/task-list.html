@@ -1,1 +1,8 @@
-<md-button-task class="task" *ngFor="let task of tasks" (click)="clicked()" data-toggle="modal" data-target=".bd-example-modal-lg"><span>{{task.name}}</span></md-button-task>
+<md-button-task class="task" *ngFor="let task of tasks" (click)="clicked()" data-toggle="modal"
+                data-target=".bd-example-modal-lg">
+
+
+   <task-detail [task]="task"></task-detail>
+
+
+</md-button-task>
