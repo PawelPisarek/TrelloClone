@@ -8,7 +8,7 @@ router.post('/board', (req, res) => {
     var db = req.app.get('DatabaseConnector'),
         auth = {
             name: req.body.name,
-            author: req.body.author
+            author: req.user.id
         };
 
     db.createBoard(auth, (user, err) => {
@@ -24,12 +24,20 @@ router.post('/board', (req, res) => {
         }
     });
 });
+    
 
-router.get('/board/:id/:userID', (req, res) => {
-    req.app.get('DatabaseConnector').getBoard(req.params.id, req.params.userID, (boards, err) => {
+router.get('/board/:id', (req, res) => {
+    var db = req.app.get('DatabaseConnector'),
+        boardData = {
+            boardID: req.params.id,
+            userID: req.user.id
+        };
+
+    db.getBoard(boardData, (boards, err) => {
         console.log(req.user);
         if (boards) {
             console.log('Found board id=' + req.params.id);
+            console.log(boards);
             res.json(boards);
         } else {
             res.status(404).send(err);

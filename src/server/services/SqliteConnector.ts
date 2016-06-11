@@ -113,8 +113,11 @@ module.exports = class SqliteConnector implements IDatabaseConnector {
 	
 	//BOARD------------------------------------------------------------------------------------------------
 	
-	getBoard(id: number, userID:number, callback:resolver<IBoard>) {
-        let stmt = `SELECT * FROM boards WHERE id = ${id} and author = ${userID}`;
+	getBoard(boardData, callback:resolver<IBoard>) {
+        let id = boardData.boardID;
+        let userID = boardData.userID;
+
+        let stmt = `SELECT * FROM boards WHERE id = ${id} and author = ${userID} LIMIT 1`;
         db.get(stmt, (err, row) => {
             callback(row, err);
         });

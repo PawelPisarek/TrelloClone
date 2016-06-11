@@ -12,7 +12,7 @@ router.post('/task', (req, res) => {
 			opis: req.body.opis,
 			deadline: req.body.deadline,
 			id_board: req.body.id_boards, 
-			id_user: req.body.id_users, 
+			id_user: req.user.id, 
 			id_kategoria: req.body.id_kategorie
         };
 
