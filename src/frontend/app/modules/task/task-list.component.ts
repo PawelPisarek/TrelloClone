@@ -8,10 +8,11 @@ import {BoardService} from "../board/board.service";
 import {Board} from "../board/board.model";
 import {error} from "util";
 import {Category} from "../category/category.model";
+import {TaskDetailComponent} from "./task-detail.component";
 declare var jQuery:any;
 @Component({
     selector: 'task-list',
-    directives: [MATERIAL_DIRECTIVES, ROUTER_DIRECTIVES],
+    directives: [MATERIAL_DIRECTIVES, ROUTER_DIRECTIVES,TaskDetailComponent],
     templateUrl: 'app/modules/task/task-list.html',
     providers: [TaskService]
 })
