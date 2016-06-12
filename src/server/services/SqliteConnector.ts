@@ -196,6 +196,22 @@ module.exports = class SqliteConnector implements IDatabaseConnector {
             callback(user, err);
         });  
     }
+
+    editTask(taskData, callback:resolver<IUser>) {
+        let taskName = mysql_real_escape_string(taskData.name);
+        let taskOpis = mysql_real_escape_string(taskData.opis);
+        let deadline = mysql_real_escape_string(taskData.deadline);
+        let taskID = parseInt(taskData.id_task);
+        let boardID = parseInt(taskData.id_board);
+        let userID = parseInt(taskData.id_user);
+        let katID = parseInt(taskData.id_kategoria);
+        
+        let values = [taskName, taskOpis, deadline, boardID, userID, katID].map((str) => '"' + str + '"').join(',');
+        let stmt = 'UPDATE "task" SET name = "' + taskName + '", opis = "' + taskOpis + '", deadline = "' + deadline + '", id_boards = ' + boardID + ', id_kategorie = ' + katID + ' WHERE  id = ' + taskID + ' and id_user = ' + userID + ' ';
+        db.get(stmt, function (err, user) {
+            callback(user, err);
+        });  
+    }
 	
 	
 	
