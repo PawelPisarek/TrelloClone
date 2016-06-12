@@ -97,15 +97,11 @@ module.exports = class SqliteConnector implements IDatabaseConnector {
     getBoards(userId:number, callback:resolver<Array<IBoard>>) {
         let stmt = 'SELECT * FROM boards WHERE author = ';
         let dane = [];
-        new Promise(function (resolve, reject) {
-            db.each(stmt + userId, (err, row) => {
-                dane.push(row);
-            });
-            setTimeout(function () {
-                resolve(dane);
-            }, 500);
-        }).then(dane => {
-            callback(dane, 'blad');
+
+        db.each(stmt, (err, row) => {
+            dane.push(row);
+        }, function(err,count) {
+            callback(dane, err);
         });
     }
 	
@@ -138,18 +134,14 @@ module.exports = class SqliteConnector implements IDatabaseConnector {
 	
 	//KATEGORIA------------------------------------------------------------------------------------------------
 	
-	getKategorie(callback:resolver<IUser>) {
+	getKategorie(callback:resolver<Array<IUser>>) {
 		let stmt = 'SELECT * FROM kategorie';
         let dane = [];
-        new Promise(function (resolve, reject) {
-            db.each(stmt, (err, row) => {
-                dane.push(row);
-            });
-            setTimeout(function () {
-                resolve(dane);
-            }, 500);
-        }).then(dane => {
-            callback(dane, 'blad');
+
+        db.each(stmt, (err, row) => {
+            dane.push(row);
+        }, function(err,count) {
+            callback(dane, err);
         });
     }
 	
@@ -164,15 +156,24 @@ module.exports = class SqliteConnector implements IDatabaseConnector {
 		let stmt = `SELECT * FROM task WHERE id_boards = ${boardID} and id_kategorie = ${katID}`;
 		let dane = [];
 
-			db.each(stmt, (err, row) => {
-				dane.push(row);
+		db.each(stmt, (err, row) => {
+			dane.push(row);
+		}, function(err,count) {
+            callback(dane, err);
+        });
+    }
 
-			}, function(err,count) {
-                callback(dane, err);
-            });
+    getTask(taskID:number, callback:resolver<Array<IBoard>>) {
+        let id = taskID;
 
+        let stmt = `SELECT * FROM task WHERE id = ${id}`;
+        let dane = [];
 
-
+        db.each(stmt, (err, row) => {
+            dane.push(row);
+        }, function(err,count) {
+            callback(dane, err);
+        });
     }
 	
 	moveTask(taskID:number, newKatID:number, callback:resolver<Array<IBoard>>) {
@@ -220,16 +221,12 @@ module.exports = class SqliteConnector implements IDatabaseConnector {
 	getChecklist(taskID:number, callback:resolver<Array<IBoard>>) {
 		let stmt = `SELECT * FROM checklist WHERE id_task = ${taskID}`;
 		let dane = [];
-		new Promise(function (resolve, reject) {
-			db.each(stmt, (err, row) => {
-				dane.push(row);
-			});
-			setTimeout(function () {
-				resolve(dane);
-			}, 500);
-		}).then(dane => {
-			callback(dane, 'blad');
-		});
+
+        db.each(stmt, (err, row) => {
+            dane.push(row);
+        }, function(err,count) {
+            callback(dane, err);
+        });
     }
 	
 	updateChecklist(checklistID:number, checked:number, callback:resolver<Array<IBoard>>) {
