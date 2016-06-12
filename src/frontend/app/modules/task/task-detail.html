@@ -1,50 +1,71 @@
-<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content taskModal" >
-            <div id="task-name">
-                <md-button-close id="close-icon" class="material-icons">&#xE5CD;</md-button-close>
-                <div id="header-task-name"><h>TASK NAME</h></div>
-            </div>
-            <div layout="column">
-                <md-content id="task-content">DESCRIPTION TASK</md-content>
+<!--<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">-->
+<!--<div class="modal-dialog modal-lg">-->
+<!--<div class="modal-content taskModal">-->
 
-                <div class="checkbox">
-                    <h2>CHECKLIST:</h2>
+<!--<div class="checkbox">-->
+<!--<h2>CHECKLIST:</h2>-->
 
-                    <div class="checklist">
-                        <div class="checklist-default">
-                            <input type="checkbox" name="checkbox" id="checkbox1" checked/>
-                            <label for="checkbox1">First Option default</label>
-                        </div>
-                        <div class="checklist-primary">
-                            <input type="checkbox" name="checkbox" id="checkbox2" checked/>
-                            <label for="checkbox2">Second Option primary</label>
-                        </div>
-                        <div class="checklist-success">
-                            <input type="checkbox" name="checkbox" id="checkbox3" checked/>
-                            <label for="checkbox3">Third Option success</label>
-                        </div>
-                        <div class="checklist-danger">
-                            <input type="checkbox" name="checkbox" id="checkbox4" checked/>
-                            <label for="checkbox4">Fourth Option danger</label>
-                        </div>
-                        <div class="checklist-warning">
-                            <input type="checkbox" name="checkbox" id="checkbox5" checked/>
-                            <label for="checkbox5">Fifth Option warning</label>
-                        </div>
-                        <div class="checklist-info">
-                            <input type="checkbox" name="checkbox" id="checkbox6" checked/>
-                            <label for="checkbox6">Sixth Option info</label>
-                        </div>
-                    </div>
-                </div>
+<!--<div class="checklist">-->
+<!--<div class="checklist-default">-->
+<!--<input type="checkbox" name="checkbox" id="checkbox1" checked/>-->
+<!--<label for="checkbox1">First Option default</label>-->
+<!--</div>-->
+<!--<div class="checklist-primary">-->
+<!--<input type="checkbox" name="checkbox" id="checkbox2" checked/>-->
+<!--<label for="checkbox2">Second Option primary</label>-->
+<!--</div>-->
+<!--<div class="checklist-success">-->
+<!--<input type="checkbox" name="checkbox" id="checkbox3" checked/>-->
+<!--<label for="checkbox3">Third Option success</label>-->
+<!--</div>-->
+<!--<div class="checklist-danger">-->
+<!--<input type="checkbox" name="checkbox" id="checkbox4" checked/>-->
+<!--<label for="checkbox4">Fourth Option danger</label>-->
+<!--</div>-->
+<!--<div class="checklist-warning">-->
+<!--<input type="checkbox" name="checkbox" id="checkbox5" checked/>-->
+<!--<label for="checkbox5">Fifth Option warning</label>-->
+<!--</div>-->
+<!--<div class="checklist-info">-->
+<!--<input type="checkbox" name="checkbox" id="checkbox6" checked/>-->
+<!--<label for="checkbox6">Sixth Option info</label>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
 
-                <div id="addDeadline">
-                    <i id="datepicker-button" class="material-icons">timer</i>
-                    <span id="header-deadline">Add deadline</span>
-                </div>
-            </div>
+<!--<div id="addDeadline">-->
+<!--<i id="datepicker-button" class="material-icons">timer</i>-->
+<!--<span id="header-deadline">Add deadline</span>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+
+<div style="background-color: #00e5ff" (click)="clicked()">
+    <div *ngIf="submitted">
+        <div (click)="showTask()">{{task.name}}</div>
+    </div>
+    <div *ngIf="!submitted">
+        <div (click)="hideTask()">
+
+            {{task.name}}<br>
+            {{task.opis}}<br>
+            {{task.deadline}}<br>
+            {{task.time}}<br>
+
         </div>
+        <form
+                (ngSubmit)="onSubmit(userForm.value)"
+                [ngFormModel]="userForm">
+            <input type="text" [ngFormControl]="name"><br>
+            <button type="submit"> Wyślij</button>
+        </form>
+
+        <ul>
+            <li *ngFor="let cl of checkList">{{cl.name}} {{cl.is_check}}</li>
+        </ul>
+        
+
     </div>
 </div>
-<span>{{task.name}}</span>

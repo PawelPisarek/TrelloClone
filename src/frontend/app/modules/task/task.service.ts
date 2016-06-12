@@ -1,6 +1,6 @@
 import {Injectable} from "angular2/core";
 import {Http, Response, Headers} from "angular2/http";
-import {Task, OneTask} from "./task.model";
+import {Task, OneTask, CheckList} from "./task.model";
 import {Board} from "../board/board.model";
 import {Category} from "../category/category.model";
 @Injectable()
@@ -21,6 +21,24 @@ export class TaskService {
                 if (apiTasks) {
                     apiTasks.forEach((task:Task)=> {
                         results.push(new Task(task.id, task.id_boards, task.id_users, task.id_kategorie, task.name, task.opis, task.deadline))
+                    })
+                }
+                return results;
+            })
+    }
+
+    getCheckList(task:Task) {
+        var header = new Headers();
+        let token = localStorage.getItem('token');
+        header.append('x-access-token', token);
+        return this.http.get(`http://localhost:8081/api/checklist/${task.id}`,
+            {headers: header})
+            .map(res=> (<Response>res).json())
+            .map((apiTasks)=> {
+                const results = [];
+                if (apiTasks) {
+                    apiTasks.forEach((checkList:CheckList)=> {
+                        results.push(new CheckList(checkList.id, checkList.name, checkList.id_task, checkList.is_check))
                     })
                 }
                 return results;
@@ -53,6 +71,26 @@ export class TaskService {
 
         header.append('Content-Type', 'application/json');
         return this.http.post(`http://localhost:8081/api/task`, creds, {headers: header})
+            .map(res => (<Response>res).json())
+            .map(data=> {
+                return data;
+            })
+    }
+
+    checklistTask(checkList:CheckList, task:Task) {
+
+        var header = new Headers();
+        let token = localStorage.getItem('token');
+        let userId = localStorage.getItem('userId');
+        header.append('x-access-token', token);
+        var creds = `{
+        "name": "${checkList.name}",
+        "id_task": "${task.id}", 
+        "is_check": "${checkList.is_check}"
+            }`;
+
+        header.append('Content-Type', 'application/json');
+        return this.http.post(`http://localhost:8081/api/checklist`, creds, {headers: header})
             .map(res => (<Response>res).json())
             .map(data=> {
                 return data;

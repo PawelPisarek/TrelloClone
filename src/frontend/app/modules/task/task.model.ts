@@ -15,3 +15,10 @@ export class OneTask {
                 public description:string) {
     }
 }
+export class CheckList {
+    constructor(public id:number,
+                public name:string,
+                public id_task:number,
+                public is_check:number) {
+    }
+}

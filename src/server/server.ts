@@ -33,6 +33,7 @@ app.use('/api', require('./modules/auth'));
 app.use('/api', require('./modules/user'));
 app.use('/api', require('./modules/dashboard'));
 app.use('/api', require('./modules/board'));
+app.use('/api', require('./modules/checklist'));
 app.use('/api', require('./modules/task'));
 
 //Starting server listen here:
