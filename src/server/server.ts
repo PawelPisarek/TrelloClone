@@ -35,6 +35,7 @@ app.use('/api', require('./modules/dashboard'));
 app.use('/api', require('./modules/board'));
 app.use('/api', require('./modules/checklist'));
 app.use('/api', require('./modules/task'));
+app.use('/api', require('./modules/checklist'));
 
 //Starting server listen here:
 var server = app.listen(8081, function () {

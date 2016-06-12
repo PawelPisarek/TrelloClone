@@ -30,6 +30,32 @@ router.post('/task', (req, res) => {
     });
 });
 
+router.post('/taskEdit', (req, res) => {
+    var db = req.app.get('DatabaseConnector'),
+        dane = {
+            name: req.body.name, 
+            opis: req.body.opis,
+            deadline: req.body.deadline,
+            id_task: req.user.id,
+            id_board: req.body.id_boards, 
+            id_user: req.user.id, 
+            id_kategoria: req.body.id_kategorie
+        };
+
+    db.editTask(dane, (user, err) => {
+        if (err) {
+            res.status(500).json({ //TODO: more user friendly message?
+                error: err.message,
+                errno: err.errno
+            });
+        } else {
+            res.json({
+                data: 'Odswiez taski'
+            });
+        }
+    });
+});
+
 router.post('/taskMove', (req, res) => {
     var db = req.app.get('DatabaseConnector'),
         dane = {
@@ -64,7 +90,7 @@ router.get('/tasks/:id/:idCategory', (req, res) => {
 });
 
 router.get('/task/:id', (req, res) => {
-    req.app.get('DatabaseConnector').getBoard(req.params.id, (task, err) => {
+    req.app.get('DatabaseConnector').getTask(req.params.id, (task, err) => {
         if (task) {
             console.log('Found task id=' + req.params.id);
             res.json(task);
