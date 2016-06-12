@@ -98,4 +98,25 @@ export class TaskService {
     }
 
 
+    checklistUpdate(checkList:CheckList) {
+
+
+        var header = new Headers();
+        let token = localStorage.getItem('token');
+        let userId = localStorage.getItem('userId');
+        header.append('x-access-token', token);
+        var creds = `{
+        "id": "${checkList.name}",
+        "checked": ${checkList.is_check}
+            }`;
+
+        header.append('Content-Type', 'application/json');
+        return this.http.post(`http://localhost:8081/api/checklist`, creds, {headers: header})
+            .map(res => (<Response>res).json())
+            .map(data=> {
+                return data;
+            })
+    }
+
+
 }

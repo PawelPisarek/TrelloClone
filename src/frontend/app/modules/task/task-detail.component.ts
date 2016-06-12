@@ -60,4 +60,16 @@ export class TaskDetailComponent {
         // console.log();
     }
 
+    checklistUpdate(checkList:CheckList) {
+
+        checkList.is_check = (checkList.is_check) ? 0 : 1;
+        this._taskService.checklistUpdate(checkList)
+            .subscribe(data=> {
+                    this.getCheckList();
+                },
+                error=> {
+                    console.log(error);
+                })
+
+    }
 }

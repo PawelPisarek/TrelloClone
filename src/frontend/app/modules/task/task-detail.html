@@ -63,7 +63,7 @@
         </form>
 
         <ul>
-            <li *ngFor="let cl of checkList">{{cl.name}} {{cl.is_check}}</li>
+            <li *ngFor="let cl of checkList" (click)="checklistUpdate(cl)">{{cl.name}} {{cl.is_check}}</li>
         </ul>
         
 
