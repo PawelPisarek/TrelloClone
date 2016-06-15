@@ -1,4 +1,4 @@
-import {Component, Input} from "angular2/core";
+import {Component, Input, EventEmitter, Output} from "angular2/core";
 import {Router} from "express-serve-static-core";
 import {RouteParams} from "angular2/router";
 import {TaskService} from "./task.service";
@@ -26,6 +26,7 @@ export class TaskDetailComponent {
 
 
     @Input() task:Task;
+    @Output() shoTask:EventEmitter<Task>=new EventEmitter();
     private name:AbstractControl;
     private is_check:AbstractControl;
     private checkList:CheckList[];
@@ -58,6 +59,7 @@ export class TaskDetailComponent {
 
     clicked() {
         // console.log();
+        this.shoTask.emit(this.task);
     }
 
     checklistUpdate(checkList:CheckList) {

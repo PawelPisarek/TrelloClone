@@ -25,6 +25,7 @@ export class TaskListComponent {
     @Input() board:Board;
     @Input() category:Category;
     private tasks: Task[];
+    private taskz:Task;
     hideInput:boolean = false;
 
     showInput() {
@@ -49,5 +50,9 @@ export class TaskListComponent {
 
     onSelect(task:Task) {
         this._router.navigate(['TaskDetail', {id: task.id}])
+    }
+
+    setTask(task:Task) {
+        this.taskz = task;
     }
 }

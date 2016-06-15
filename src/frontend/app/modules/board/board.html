@@ -9,19 +9,9 @@
     <div  *ngFor="let task of tasks" (click)="clicked()" data-toggle="modal" data-target=".bd-example-modal-lg"><span>{{task.name}}</span></div>
 
     <div class="board" *ngFor="#category of categories">
-      <md-card  layout="column" >
-        <div layout="row">
-          <md-card-title class="tasks-title">{{category.name}}</md-card-title>
-          <md-button-menu id="menu-icon" class="material-icons">&#xE150;</md-button-menu>
-        </div>
-        <md-buttons-container  class="tasks" layout-align="center center">
-          <div id="sortable1" class="connectedSortable taskList" layout="column">
-            <task-list [board]="board" [category]="category" layout="column"></task-list>
-            <!--<md-button-task class="task" *ngFor="let task of tasks" (click)="clicked()" data-toggle="modal" data-target=".bd-example-modal-lg"><span>{{task.name}}</span></md-button-task>-->
-          </div>
-        </md-buttons-container>
-        <task-new [board]="board" [category]="category" (refreshBoard)="getCategory()"></task-new>
-     </md-card>
+        <task-list [board]="board" [category]="category" layout="column">
+
+      </task-list>
     </div>
 
     <!-- <div class="board">
