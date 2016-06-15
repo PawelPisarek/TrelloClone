@@ -1,0 +1,28 @@
+
+<div >
+    <div *ngIf="submitted">
+        <div (click)="showTask()">{{task.name}}</div>
+    </div>
+    <div *ngIf="!submitted">
+        <div (click)="hideTask()">
+
+            {{task.name}}<br>
+            {{task.opis}}<br>
+            {{task.deadline}}<br>
+            {{task.time}}<br>
+
+        </div>
+        <form
+                (ngSubmit)="onSubmit(userForm.value)"
+                [ngFormModel]="userForm">
+            <input type="text" [ngFormControl]="name"><br>
+            <button type="submit"> Wyślij</button>
+        </form>
+
+        <ul>
+            <li *ngFor="let cl of checkList" (click)="checklistUpdate(cl)">{{cl.name}} {{cl.is_check}}</li>
+        </ul>
+
+
+    </div>
+</div>

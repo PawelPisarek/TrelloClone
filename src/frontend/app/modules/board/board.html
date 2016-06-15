@@ -9,7 +9,7 @@
     <div  *ngFor="let task of tasks" (click)="clicked()" data-toggle="modal" data-target=".bd-example-modal-lg"><span>{{task.name}}</span></div>
 
     <div class="board" *ngFor="#category of categories">
-        <task-list [board]="board" [category]="category" layout="column">
+        <task-list [board]="board" [category]="category" layout="column" (refreshBoard)="getCategory()">
 
       </task-list>
     </div>

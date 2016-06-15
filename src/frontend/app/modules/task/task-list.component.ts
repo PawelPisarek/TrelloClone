@@ -1,4 +1,4 @@
-import {Component, Injector, Input, ElementRef} from 'angular2/core';
+import {Component, Injector, Input, ElementRef, EventEmitter, Output} from 'angular2/core';
 
 import {RouteParams, ROUTER_DIRECTIVES, RouteData, Router} from "angular2/router";
 import {MATERIAL_DIRECTIVES} from "ng2-material/all";
@@ -9,10 +9,12 @@ import {Board} from "../board/board.model";
 import {error} from "util";
 import {Category} from "../category/category.model";
 import {TaskDetailComponent} from "./task-detail.component";
+import {TaskAddChecklist} from "./task-add-checklist";
+import {TaskNewComponent} from "./task-new.component";
 declare var jQuery:any;
 @Component({
     selector: 'task-list',
-    directives: [MATERIAL_DIRECTIVES, ROUTER_DIRECTIVES,TaskDetailComponent],
+    directives: [MATERIAL_DIRECTIVES, ROUTER_DIRECTIVES,TaskDetailComponent,TaskAddChecklist,TaskNewComponent],
     templateUrl: 'app/modules/task/task-list.html',
     providers: [TaskService]
 })
@@ -24,6 +26,7 @@ export class TaskListComponent {
 
     @Input() board:Board;
     @Input() category:Category;
+    @Output() refreshBoard:EventEmitter<any>=new EventEmitter();
     private tasks: Task[];
     private taskz:Task;
     hideInput:boolean = false;
@@ -54,5 +57,8 @@ export class TaskListComponent {
 
     setTask(task:Task) {
         this.taskz = task;
+    }
+    getCategory(){
+        this.refreshBoard.emit(null);
     }
 }

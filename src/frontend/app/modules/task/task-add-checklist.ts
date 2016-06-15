@@ -5,23 +5,29 @@ import {TaskService} from "./task.service";
 import {Task, OneTask, CheckList} from "./task.model";
 import {FormBuilder, AbstractControl, ControlGroup, FORM_PROVIDERS} from "angular2/common";
 @Component({
-    selector: 'task-detail',
-    templateUrl: 'app/modules/task/task-detail.html',
+    selector: 'task-add-checklist',
+    templateUrl: 'app/modules/task/task-add-checklist.html',
     providers: [TaskService, FORM_PROVIDERS, ControlGroup]
 })
-export class TaskDetailComponent {
+export class TaskAddChecklist {
     constructor(private _routeParams:RouteParams,
                 private _taskService:TaskService,
                 private fb:FormBuilder,
                 private userForm:ControlGroup) {
 
+        this.userForm = fb.group({
+            'name': [''],
+            'is_check': [''],
+        });
+        this.name = this.userForm.controls['name'];
+        this.is_check = this.userForm.controls['is_check'];
 
     }
 
 
     @Input() task:Task;
-    @Output() shoTask:EventEmitter<Task>=new EventEmitter();
-
+    private name:AbstractControl;
+    private is_check:AbstractControl;
     private checkList:CheckList[];
     private submitted:boolean = true;
 
@@ -50,10 +56,7 @@ export class TaskDetailComponent {
             });
     }
 
-    clicked() {
-        // console.log();
-        this.shoTask.emit(this.task);
-    }
+
 
     checklistUpdate(checkList:CheckList) {
 
