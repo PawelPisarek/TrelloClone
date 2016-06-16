@@ -64,8 +64,8 @@ module.exports = class SqliteConnector implements IDatabaseConnector {
 	//USER------------------------------------------------------------------------------------------------
 	
     getUser(id:number, callback:resolver<IUser>) {
-		let stmt = 'SELECT id, email FROM users WHERE id = ';
-		db.get(stmt + id, (err, row) => {
+		let stmt = `SELECT id, email FROM users WHERE id = ${id}`;
+		db.get(stmt, (err, row) => {
 			callback(row, err);
 		});
     }
@@ -73,7 +73,7 @@ module.exports = class SqliteConnector implements IDatabaseConnector {
     getUserAuthByLogin(name:string, callback:resolver<IUser>) {
 		let email = mysql_real_escape_string(name);
 		
-        let stmt = 'SELECT * FROM users WHERE email = "' + email + '"';
+        let stmt = `SELECT * FROM users WHERE email = "${email}"`;
         db.get(stmt, (err, row) => {
             callback(row, err);
         });
@@ -95,7 +95,7 @@ module.exports = class SqliteConnector implements IDatabaseConnector {
 	//DASHBOARD------------------------------------------------------------------------------------------------
 	
     getBoards(userId:number, callback:resolver<Array<IBoard>>) {
-        let stmt = 'SELECT * FROM boards WHERE author = ';
+        let stmt = `SELECT * FROM boards WHERE author = ${userId}`;
         let dane = [];
 
         db.each(stmt, (err, row) => {
