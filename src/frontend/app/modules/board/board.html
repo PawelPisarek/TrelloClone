@@ -3,8 +3,8 @@
     <div>
       BOARD ID: {{board.id}} NAZWA: {{board.name}} AUTOR: {{board.author}}
     </div>
+    
   </md-toolbar-info>
-
   <div id="boards" layout="row">
     <div  *ngFor="let task of tasks" (click)="clicked()" data-toggle="modal" data-target=".bd-example-modal-lg"><span>{{task.name}}</span></div>
 
@@ -77,4 +77,7 @@
   <router-outlet></router-outlet>
  
  </div>
+  <div layout="row">
+    <a href="/dashboard"> Dashboard </a>
+  </div>
 </div>
