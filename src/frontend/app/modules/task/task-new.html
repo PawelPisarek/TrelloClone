@@ -1,14 +1,12 @@
 
-<div *ngIf="!submitted" (click)="edit()" id="add">
-    <md-button layout="center center" class="button-addNewTask">Add</md-button>
+<div *ngIf="!submitted" (click)="edit()" id="add" flex-offset="5" flex="90">
+    <md-button layout="center center" layout-align="center center" class="button-addNewTask">Add</md-button>
 </div>
-<div *ngIf="submitted">
+<div *ngIf="submitted" flex-offset="5" flex="90">
     <md-input-container class="md-block">
-    <label>Nazwa tasku</label>
-    <input md-input type="text"
-           [(ngModel)]="formModel"
-    >
-</md-input-container>
-    <md-button layout="center center" class="button-addNewTask" (click)="submit()"><span>Add Task</span></md-button>
+      <label class="inputTitle">Task name</label>
+      <input md-input type="text" [(ngModel)]="formModel">
+    </md-input-container>
+    <md-button layout="center center" layout-align="center center" class="button-addNewTask" (click)="submit()"><span>Add Task</span></md-button>
     <br>
 </div>

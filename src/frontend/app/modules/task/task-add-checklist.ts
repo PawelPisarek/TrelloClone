@@ -40,6 +40,7 @@ export class TaskAddChecklist {
             .subscribe(data => {
                 this.checkList = data;
             })
+            console.log(this.checkList);
     }
 
     showTask() {
@@ -69,5 +70,9 @@ export class TaskAddChecklist {
                     console.log(error);
                 })
 
+    }
+
+    getClId(checkList:CheckList) {
+      return checkList.id;
     }
 }

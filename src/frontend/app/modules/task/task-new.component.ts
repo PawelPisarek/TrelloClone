@@ -39,8 +39,8 @@ export class TaskNewComponent {
             0,
             this.category,
             this.formModel,
-            'opis',
-            'deadline był wczoraj')).subscribe(dane => {
+            'Tu możesz zmienić opis tego taska.',
+            '24.06.2016')).subscribe(dane => {
             this.refreshBoard.emit(null);
         },error=>{
             console.log(error);

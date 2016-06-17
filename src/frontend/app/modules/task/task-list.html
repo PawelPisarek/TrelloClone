@@ -12,47 +12,17 @@
                     <div id="header-task-name"><h> {{taskz.name}}</h></div>
                 </div>
                 <div layout="column">
-                    <md-content id="task-content"> {{taskz.opis}}</md-content>
+                    <md-content id="task-content">
+                      <div style="float: left;">{{taskz.opis}}</div>
+                      <div id="addDeadline" style="float: right;">
+                          <i id="datepicker-button" class="material-icons">timer</i>
+                          <span id="header-deadline" style="margin-top: -2px;">{{taskz.deadline}}</span>
+                      </div>
+                    </md-content>
 
-                   <br>
-                   <br>
-
-                    <div class="checkbox">
-                        <h2>CHECKLIST:</h2>
-
-                        <div class="checklist">
-                            <div class="checklist-default">
-                                <input type="checkbox" name="checkbox" id="checkbox1" checked/>
-                                <label for="checkbox1">First Option default</label>
-                            </div>
-                            <div class="checklist-primary">
-                                <input type="checkbox" name="checkbox" id="checkbox2" checked/>
-                                <label for="checkbox2">Second Option primary</label>
-                            </div>
-                            <div class="checklist-success">
-                                <input type="checkbox" name="checkbox" id="checkbox3" checked/>
-                                <label for="checkbox3">Third Option success</label>
-                            </div>
-                            <div class="checklist-danger">
-                                <input type="checkbox" name="checkbox" id="checkbox4" checked/>
-                                <label for="checkbox4">Fourth Option danger</label>
-                            </div>
-                            <div class="checklist-warning">
-                                <input type="checkbox" name="checkbox" id="checkbox5" checked/>
-                                <label for="checkbox5">Fifth Option warning</label>
-                            </div>
-                            <div class="checklist-info">
-                                <input type="checkbox" name="checkbox" id="checkbox6" checked/>
-                                <label for="checkbox6">Sixth Option info</label>
-                            </div>
-                        </div>
-                    </div>
                     <task-add-checklist [task]="taskz"></task-add-checklist>
 
-                    <div id="addDeadline">
-                        <i id="datepicker-button" class="material-icons">timer</i>
-                        <span id="header-deadline">Add deadline</span>
-                    </div>
+
                 </div>
             </div>
         </div>

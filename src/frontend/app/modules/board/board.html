@@ -1,11 +1,6 @@
 <div *ngIf="board">
-  <md-toolbar-info class="info-toolbar" layout="row">
-    <div>
-      BOARD ID: {{board.id}} NAZWA: {{board.name}} AUTOR: {{board.author}}
-    </div>
-  </md-toolbar-info>
 
-  <div id="boards" layout="row">
+  <div id="boards" layout="row" flex-offset="10" flex="80">
     <div  *ngFor="let task of tasks" (click)="clicked()" data-toggle="modal" data-target=".bd-example-modal-lg"><span>{{task.name}}</span></div>
 
     <div class="board" *ngFor="#category of categories">
@@ -13,68 +8,7 @@
 
       </task-list>
     </div>
-
-    <!-- <div class="board">
-      <md-card  layout="column" >
-        <div layout="row">
-          <md-card-title class="tasks-title">TODO</md-card-title>
-          <md-button-menu id="menu-icon" class="material-icons">&#xE150;</md-button-menu>
-        </div>
-        <md-buttons-container  class="tasks" layout-align="center center">
-          <div id="sortable2" class="connectedSortable taskList" layout="column">
-            <md-button-task class="task" (click)="clicked()" data-toggle="modal" data-target=".bd-example-modal-lg"><span>TASK</span></md-button-task>
-          </div>
-        </md-buttons-container>
-        <md-button class="button-addNewTask">Add</md-button>
-      </md-card>
-    </div>
-
-    <div class="board">
-      <md-card  layout="column" >
-        <div layout="row">
-          <md-card-title class="tasks-title">IN PROGRESS</md-card-title>
-          <md-button-menu id="menu-icon" class="material-icons">&#xE150;</md-button-menu>
-        </div>
-        <md-buttons-container class="tasks" layout-align="center center">
-          <div id="sortable2" class="connectedSortable taskList" layout="column">
-            <md-button-task class="task" (click)="clicked()" data-toggle="modal" data-target=".bd-example-modal-lg"><span>TASK</span></md-button-task>
-          </div>
-        </md-buttons-container>
-        <md-button class="button-addNewTask">Add</md-button>
-      </md-card>
-    </div>
-
-    <div class="board">
-      <md-card  layout="column" >
-        <div layout="row">
-          <md-card-title class="tasks-title">TESTING</md-card-title>
-          <md-button-menu id="menu-icon" class="material-icons">&#xE150;</md-button-menu>
-        </div>
-        <md-buttons-container class="tasks" layout-align="center center">
-          <div id="sortable2" class="connectedSortable taskList" layout="column">
-            <md-button-task class="task" (click)="clicked()" data-toggle="modal" data-target=".bd-example-modal-lg"><span>TASK</span></md-button-task>
-          </div>
-        </md-buttons-container>
-        <md-button class="button-addNewTask">Add</md-button>
-      </md-card>
-    </div>
-
-    <div class="board">
-      <md-card  layout="column" >
-        <div layout="row">
-          <md-card-title class="tasks-title">DONE</md-card-title>
-          <md-button-menu id="menu-icon" class="material-icons">&#xE150;</md-button-menu>
-        </div>
-        <md-buttons-container class="tasks" layout-align="center center">
-          <div id="sortable2" class="connectedSortable taskList" layout="column">
-            <md-button-task class="task" (click)="clicked()" data-toggle="modal" data-target=".bd-example-modal-lg"><span>TASK</span></md-button-task>
-          </div>
-        </md-buttons-container>
-        <md-button class="button-addNewTask">Add</md-button>
-      </md-card>
-    </div> -->
-
   <router-outlet></router-outlet>
- 
+
  </div>
 </div>

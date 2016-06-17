@@ -1,28 +1,20 @@
 
 <div >
-    <div *ngIf="submitted">
-        <div (click)="showTask()">{{task.name}}</div>
-    </div>
-    <div *ngIf="!submitted">
-        <div (click)="hideTask()">
-
-            {{task.name}}<br>
-            {{task.opis}}<br>
-            {{task.deadline}}<br>
-            {{task.time}}<br>
-
+    <div>
+      <div class="checklist" flex-offset="20" flex="60">
+        <md-button *ngIf="submitted" layout="center center" layout-align="center center" class="button-addNewTask" (click)="showTask()"><span>Show checklist</span></md-button>
+        <div *ngFor="let cl of checkList" (click)="checklistUpdate(cl)" class="checklist-default">
+            <input type="checkbox" name="checkbox" id="{{cl.id}}" />
+            <label attr.for="{{cl.id}}">{{cl.name}}</label>
         </div>
+      </div>
         <form
                 (ngSubmit)="onSubmit(userForm.value)"
                 [ngFormModel]="userForm">
-            <input type="text" [ngFormControl]="name"><br>
-            <button type="submit"> Wyślij</button>
+            <div flex-offset="10" flex="80" style="margin-bottom: 10px;">
+              <input class="itemInput" type="text" [ngFormControl]="name"placeholder="Add an item...">
+              <button type="submit" class="button-addCheckItem">Add</button>
+            </div>
         </form>
-
-        <ul>
-            <li *ngFor="let cl of checkList" (click)="checklistUpdate(cl)">{{cl.name}} {{cl.is_check}}</li>
-        </ul>
-
-
     </div>
 </div>
