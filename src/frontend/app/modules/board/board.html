@@ -1,6 +1,6 @@
 <div *ngIf="board">
 
-  <div id="boards" layout="row" flex-offset="10" flex="80">
+  <div id="boards" layout="row" flex-offset="5" flex="90">
     <div  *ngFor="let task of tasks" (click)="clicked()" data-toggle="modal" data-target=".bd-example-modal-lg"><span>{{task.name}}</span></div>
 
     <div class="board" *ngFor="#category of categories">
